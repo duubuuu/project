@@ -1,0 +1,98 @@
+
+img[src=""]{
+  display:none;
+}
+
+
+.local_traking_list{
+
+  z-index: 100;
+  border-radius: 2px;
+  background: #fff;
+  background: rgba(255,255,255,0.8);
+  padding: 10px;
+
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.addr_select{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 100;
+    text-align: center;
+}
+
+.addr_select label{
+  display:inline-block;
+}
+
+.addr_select div{
+    border-radius: 2px;
+    background: #fff;
+    background: rgba(255,255,255,0.8);
+    z-index: 1;
+    padding: 10px;
+    margin: 1px;
+    border-radius: 5px;
+    cursor:pointer;
+    display: inline-block;
+}
+
+
+
+
+.park_icon_div{
+  position: relative;
+
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+
+.busul_park{
+  background:#fff;
+  box-shadow: 0 4px 4px #00000042;
+  border-radius:50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #008EFF;
+  border-radius: 50%;
+}
+
+.nowoi_park{
+  background:#fff;
+  box-shadow: 0 4px 4px #00000042;
+  border-radius:50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #008EFF;
+  border-radius: 50%;
+  margin : 0px 5px;
+}
+
+
+
+
+.tracking_view_info_display{
+  width: 92%;
+  max-width: 400px;
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.9);
+  border-radius: 10px 5px 5px 10px;
+  z-index: 10000000;
+  padding: 7px;
+  overflow: hidden;
+  display:none;
+}
+
+
+.tracking_view_info_display div{
+  font-size:0.9em;
+}

@@ -1,0 +1,530 @@
+/*<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">*/
+
+
+
+.nanumsquare {
+    font-family: 'NanumSquare', sans-serif !important;
+}
+
+
+
+* {
+
+}
+html {
+    font-size: 18px;
+    padding:0px;
+    margin:0px;
+    /* transform: skew(-0.001deg); */
+    height:100%;
+    width:100%;
+
+}
+body {
+  height:100%;
+  width:100%;
+    padding:0px;
+    margin:0px;
+
+}
+img {
+    width: 100%;
+    height:100%;
+}
+a {
+    text-decoration: none;
+}
+button.gray_btn a:link,
+button.gray_btn a:visited {
+    color: #333333;
+}
+button.white_btn a:link,
+button.white_btn a:visited {
+    color: #008EFF;
+}
+
+
+
+/* swal-popup 재디자인 */
+
+/*
+.swal-modal {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    min-width: 72vw;
+    min-height: 18vh;
+    text-align: center;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    width: auto;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.swal-text:first-child {
+    margin-top: 0;
+}
+.swal-button-container {
+    margin: 0;
+}
+.swal-text {
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 150%;
+    max-width: none;
+    color: #333333;
+    text-align: center;
+    padding: 0;
+}
+*/
+/* ok버튼감추기 */
+/*
+.swal-footer {
+    padding: 0;
+    display: none;
+}
+.swal-modal:before {
+    content: "";
+    display: inline-block;
+    background-image: url(../../img/icon_danger.png);
+    background-size: 100%;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+@media (max-width: 500px) {
+    .swal-modal {
+        width: auto;
+    }
+}
+*/
+
+
+.flex {
+    display: flex; align-items: center;
+    margin: 0;
+}
+.flex_wrap {
+    flex-wrap: wrap;
+    display: inline-flex;
+}
+.font_600 {
+    font-weight: 600;
+}
+
+
+
+/* 인풋 체크박스 디자인수정 */
+input[type="checkbox"] {
+
+}
+input[type="checkbox"] + label {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    min-width: 3.5rem;
+    word-spacing: -2px;
+}
+input[type="checkbox"] + label span {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background: url(../img/checkbox_nochecking.png) left top no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    margin: 0 0.5rem 0 0;
+}
+input[type="checkbox"]:checked + label span {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background: url(../img/checkbox_checking.png) left top no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    margin: 0 0.5rem 0 0;
+}
+
+/* 인풋 레디오버튼 디자인수정 */
+input[type="radio"] {
+    width: 17px;
+    height: 23px;
+    margin-bottom: 2px;
+
+}
+
+
+input[type="radio"]:focus{
+  outline:none;
+}
+
+
+input[type="radio"] + label {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    min-width: 2.5rem;
+    margin-left:4px;
+}
+input[type="radio"] + label span {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background: url(../img/radio_nochecking.png) left top no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    margin: 0 0.5rem 0 0;
+}
+input[type="radio"]:checked + label span {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background: url(../img/radio_checking.png) left top no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    margin: 0 0.5rem 0 0;
+}
+
+
+/* 인풋스타일 */
+div.inputA {
+    width: 73%;
+    height: 2rem;
+    border-radius: 0.2rem;
+    background: #ffffff;
+    border: 1px solid #EBEBEB;
+    margin-right:6px;
+}
+div.inputA select {
+    padding: 0 0.5rem;
+}
+
+div.inputB {
+    width: 100%;
+    height: 2rem;
+    border-radius: 0.2rem;
+    background: #EBEBEB;
+}
+
+div.inputB input {
+    text-align: center;
+    color: #000000;
+}
+
+/* 팝업스타일 */
+div.popup_background {
+    /* background-color: #0000001a; */
+    background-color: #0000005c;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+div.popup {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    min-width: 63vw;
+    min-height: 15vh;
+    text-align: center;
+    padding: 2rem 1rem;
+    /* box-shadow: 0 0 20px #00000070; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+div.popup div.icon {
+    width: 30px;
+    margin-bottom: 1rem;
+}
+.icon.width35 {
+   width: 35px !important;
+  margin: 0px auto 17px auto;
+}
+div.popup h3, .deny_font_bold {
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 150%;
+}
+/* login창 근호씨가 만든 클래스명 */
+.deny_phone_mail {
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin-top: 1rem;
+}
+.tel_link_copy {
+    margin-bottom: 0.3rem;
+}
+
+/* 박스스타일 */
+div.box {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px #00000036;
+    margin: 1rem 0;
+    padding: 1rem 0;
+}
+div.box>div {
+
+}
+/* div.box>div {
+padding: 0 1rem 0.5rem 1rem;
+} */
+div.box>div:last-child {
+    padding-bottom: 0;
+}
+
+
+
+/* 기본 이너 */
+.inner {
+    width: 95vw;
+    margin: 0px auto;
+}
+/* 초기화면 좁은 이너 */
+.main_inner {
+    width: 85vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    margin:0px auto;
+}
+
+div.A {
+    width: 100%;
+    height: 2.8rem;
+    border-radius: 0.2rem;
+    background: #ffffff;
+    border: 1px solid #EBEBEB;
+}
+div.A input {
+    text-align: left;
+}
+
+
+input[type="text" i], input[type="textarea" i] {
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 0 0.4rem;
+    box-sizing: border-box;
+    font-family: 'NanumSquare';
+    font-size: 1rem;
+    background-color: transparent;
+    text-align: center;
+}
+input[type="checkbox" i] {
+    vertical-align: middle;
+    margin-right: 0.3rem;
+}
+
+input::placeholder {
+    color: #DADADA;
+}
+input:focus-visible, select:focus-visible {
+    outline-color: #4CACF9;
+}
+
+/* 기본 셀렉트박스 */
+select {
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 0 0.8rem;
+    box-sizing: border-box;
+    font-family: 'NanumSquare';
+    color: #333333;
+    background: url('../img/img_select_polygon.png') no-repeat 95% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 1rem;
+}
+select::-ms-expand {
+    display: none;
+}
+option {
+    font-size: 1rem;
+}
+
+/* 기본 버튼 */
+button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button span.icon {
+    width: 20px;
+    display: inline-flex;
+}
+button.big_font {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+button.sky_btn {
+    width: 100%;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    background-color: #4CACF9;
+    color: #fff;
+}
+button.blue_btn {
+    width: 100%;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    background-color: #008EFF;
+    color: #fff;
+}
+button.white_btn {
+    width: 100%;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    background: #FFFFFF;
+    border: 1px solid #008EFF;
+    background-color: #ffffff;
+    color: #008EFF;
+    margin: 0px auto;
+}
+button.gray_btn {
+    width: 100%;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    background: #FFFFFF;
+    border: 1px solid #BDBDBD;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+
+h1.main_title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+h1.main_title02 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+.input_set div.A, .input_set button {
+    margin-bottom: 0.5rem;
+    border-radius: 0.3rem !important;
+}
+.main_logo, .main_lopark {
+    margin: 1rem auto 0;
+    width: 50%;
+}
+.input_set p {
+    margin-bottom: 0.5rem;
+}
+.top_nav {
+  height: 41px;
+  line-height: 42px;
+  background: #fff;
+}
+.top_nav .inner {
+   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+span.top_icon {
+    width: 6vw;
+    position: relative;
+    /* top: 3px; */
+    margin: 0px 15px;
+}
+
+/* 스크롤 div */
+.survey_div {
+    height: 94vh;
+    width:100%;
+    overflow: scroll;
+    background-color: #EDF7FF;
+}
+.photo_div, .no_scroll_div {
+
+
+    background-color: #EDF7FF;
+    padding:10px 0px 50px 0px;
+}
+
+.no_scroll_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+span.page_name {
+    font-weight: 600;
+    font-size: 0.9em;
+}
+.info {
+    display: flex;
+    padding: 0 0.8rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.info_icon1 {
+    width: 6vw;
+    display: inline-flex;
+}
+.info_icon2 {
+    width: 6vw;
+    display: inline-flex;
+    margin-right: 0.3rem;
+}
+div.map {
+    width: 100%;
+    height: 80vh;
+    background: antiquewhite;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.map2 {
+    height: 90vh !important;
+}
+
+div.photo {
+    width: 100%;
+    background-color: #C4C4C4;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    padding: 1rem 0;
+    height: 22rem;
+}
+
+div.photo_s {
+    margin: 0 1rem 1rem 1rem;
+    border:1px solid #a0a0a0;
+}
+
+
+.container {
+  margin: 20px auto;
+  max-width: 640px;
+}
+
+
+img{
+  border-radius:10px;
+  display: block;
+  /* This rule is very important, please don't ignore this */
+  max-width: 100%;
+}

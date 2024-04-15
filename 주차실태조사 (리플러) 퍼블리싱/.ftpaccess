@@ -1,0 +1,5 @@
+<Limit ALL>
+Allow 220.77.25.27
+Allow 127.0.0.1
+DenyAll
+</Limit>
