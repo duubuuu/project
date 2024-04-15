@@ -1,0 +1,129 @@
+/* Web font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+/* 기본스타일 초기화, 폰트 크기, 폰트 색상, 폰트 패밀리 */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+p,
+blockquote,
+pre,
+code,
+address,
+ul,
+ol,
+li,
+menu,
+nav,
+section,
+article,
+aside,
+dl,
+dt,
+dd,
+table,
+thead,
+tbody,
+tfoot,
+label,
+caption,
+th,
+td,
+form,
+fieldset,
+legend,
+hr,
+input,
+button,
+textarea,
+object,
+figure,
+figcaption {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR';
+  font-size: 15px;
+  /* color: #727272; */
+}
+
+/* border 속성 제거 */
+img,
+fieldset,
+input,
+select,
+textarea,
+button {
+  border: none;
+}
+
+/* 불릿 제거 */
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+/* table 초기화(다양한 해상도에 따라 자동 크기 조절을 위해 100%) */
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+/* 기울임, 진한 글씨 속성값을 가진 요소들의 스타일을 초기화 한다. */
+address,
+cite,
+code,
+em {
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* 인라인 요소들의 높이가 틀어지는 현상을 잡기 위해 vertical-align: middle */
+label,
+img,
+input,
+select,
+textarea,
+button,
+a {
+  vertical-align: middle;
+}
+
+/* 앵커 초기화. 컬러는 inherit이 좋을텐데? */
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* float 초기화 */
+.clear {
+  clear: both;
+}
+.clear:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* IR(Image Replacement) 기법으로 화면 낭독기 사용자에게 필요한 코드 */
+.hide {
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* 버튼 커서 */
+button {
+  cursor: pointer;
+}

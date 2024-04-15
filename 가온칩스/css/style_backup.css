@@ -1,0 +1,61 @@
+/* common */
+.blue_btn {
+    background-color: #1C2B55;
+    color: #ffffff;
+}
+
+/* login page */
+.inner_max500 {
+    height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.inner_max500 .logo {
+    margin: 0 auto 65px;
+}
+.login_id,.login_pw  {
+    border: 1px solid #D3D3D3;
+    height: 50px;
+    padding: 0 10px;
+}
+input::-webkit-input-placeholder {
+    color: #CCCCCC;
+}
+input + input {
+    margin: 15px 0 12px 0;
+}
+.remember_id {
+    display: flex;
+    align-items: center;
+}
+input[type="checkbox"]{
+    display: none;
+}
+input[type="checkbox"] + label {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #D3D3D3;
+    position: relative;
+    margin-right: 8px;
+}
+input[id="check1"]:checked + label::after {
+    content: '✔';
+    font-size: 13px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+button.login_btn {
+    height: 60px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 46px;
+}
