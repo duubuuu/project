@@ -1,3 +1,4 @@
+<?php include_once "./head.php"; ?>
 <header>
     <div class="header_top">
         <a href="">
@@ -21,22 +22,34 @@
             </div>
         </div>
         <div class="user_set">
-            <div class="profile_box">
-                <div class="user_pic">
-                    <img src="./img/people.png" alt="사람_아이콘">
+            <!-- 마이페이지로 이동 -->
+            <div class="user_box">                
+                <div class="user_icon">
                 </div>
                 <div class="user_name">영업1팀 홍길동</div>
             </div>
-            <div class="alart_box">
-                <div class="ring">
-                    <img src="./img/alarm_header.png" alt="종_아이콘_화이트">
+            <div class="alarm_box">
+                <!-- 알림페이지로 이동 -->
+                <div class="alarm_icon">
                 </div>
-                <div class="ring_num"></div>
+                <!-- 알림 레이어팝업 연결 -->
+                <div class="alarm_count">
+                    + 4
+                </div>
             </div>
-            <button class="setting"></button>
-            <button class="recyclebin"></button>
-            <div class="darkmode">
-                이미지?
+            <div class="setting"></div>
+            <div class="recyclebin"></div>
+            <!-- 다크모드전환 -->
+            <div class="view_mode">    
+                <div class="light_mode_icon">
+                    <img src="./img/light_icon.png" alt="">
+                </div>                        
+                <div class="select_view_mode">
+                    <div class="select_view_mode_box"></div>
+                </div>    
+                <div class="dark_mode_icon">
+                    <img src="./img/dark_icon.png" alt="">
+                </div>    
             </div>
         </div>
 

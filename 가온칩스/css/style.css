@@ -7,7 +7,7 @@
 }
 
 .header_top {
-  height: 36px;
+  height: 30px;
   background-color: #141E3C;
   display: flex;
   align-items: center;
@@ -20,7 +20,7 @@
 }
 
 .header_bottom {
-  height: 80px;
+  height: 70px;
   background-color: #1C2B55;
   display: flex;
   justify-content: space-between;
@@ -29,6 +29,9 @@
 }
 .header_bottom .logo {
   width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .header_bottom .logo img {
   width: 100%;
@@ -67,26 +70,95 @@
   display: flex;
   align-items: center;
 }
-.header_bottom .user_set .user_pic {
-  width: 30px;
-  height: 30px;
+.user_set > div {
   margin-right: 15px;
 }
-.header_bottom .user_set .user_pic img {
-  width: 100%;
+.header_bottom .user_set .user_icon {
+  width: 30px;
+  height: 30px;
+  background: url(../img/people.png) no-repeat center / 100%;
+  margin-right: 10px;
 }
-.header_bottom .user_set .profile_box {
+.header_bottom .user_set .user_box {
   display: flex;
   align-items: center;
   color: #ffffff;
 }
-.header_bottom .user_set .ring {
+.alarm_box {
+  display: flex;
+  align-items: center;
+}
+.header_bottom .alarm_box .alarm_icon {
   width: 30px;
   height: 30px;
+  background: url(../img/alarm_header.png) no-repeat center / 100%;
 }
-.header_bottom .user_set .ring img {
+.alarm_count {
+  width: 45px;
+  height: 21px;
+  border-radius: 10px;
+  background-color: #FFB800;
+  color: #ffffff;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header_bottom .setting {
+  width: 25px;
+  height: 25px;
+  background: url(../img/manager_icon.png) no-repeat center / 100%;
+}
+.recyclebin {
+  width: 25px;
+  height: 25px;
+  background: url(../img/write_delate_icon.png) no-repeat center / 100%;
+}
+
+div.view_mode {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+div.light_mode_icon {
+  width: 25px;
+  height: 25px;
+}
+div.light_mode_icon img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+div.select_view_mode {
+  width: 50px;
+  height: 25px;
+  margin: 0 5px;
+  border-radius: 12.5px;
+  background-color: #ffffff6b;
+  position: relative;
+}
+div.select_view_mode_box {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+div.dark_mode_icon {
+  width: 25px;
+  height: 25px;
+  opacity: 0.5;
+}
+div.dark_mode_icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 /* login page */
 .inner_max500 {
