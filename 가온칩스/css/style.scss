@@ -1,4 +1,4 @@
-/* common */
+// common
 $main-color: #1C2B55;
 $main-txt: #FFFFFF;
 
@@ -14,11 +14,11 @@ $main-txt: #FFFFFF;
     font-weight: normal;
     background-color: $main-color;
     color: $main-txt;
-}
+} 
 
-// header style
+// header
 .header_top {
-    height: 36px;
+    height: 30px;
     background-color: #141E3C;
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@ $main-txt: #FFFFFF;
     }
 }
 .header_bottom {
-    height: 80px;
+    height: 70px;
     background-color: #1C2B55;
     display: flex;
     justify-content: space-between;
@@ -40,6 +40,9 @@ $main-txt: #FFFFFF;
 
     .logo {
         width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
             width: 100%;
@@ -81,35 +84,105 @@ $main-txt: #FFFFFF;
         display: flex;
         align-items: center;
 
-        .user_pic {
+        &> div {
+            margin-right: 15px;
+        }
+        .user_icon {
             width: 30px;
             height: 30px;
-            margin-right: 15px;
-
-            img {
-                width: 100%;
-            }
+            background: url(../img/people.png) no-repeat center / 100%;
+            margin-right: 10px;
         }
-
-        .profile_box {
+        .user_box {
             display: flex;
             align-items: center;
             color: #ffffff;
         }
+        .alarm_box {
+            display: flex;
+            align-items: center;
 
-        .ring {
-            width: 30px;
-            height: 30px;
-
-            img {
-                width: 100%;
+            .alarm_icon {
+                width: 30px;
+                height: 30px;
+                background: url(../img/alarm_header.png) no-repeat center / 100%;
             }
-        } 
+            .alarm_count {
+                width: 45px;
+                height: 21px;
+                border-radius: 10px;
+                background-color: #FFB800;
+                color: #ffffff;
+                font-weight: 800;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .setting {
+            width: 25px;
+            height: 25px;
+            background: url(../img/manager_icon.png) no-repeat center / 100%;
+        }
+        .recyclebin {
+            width: 25px;
+            height: 25px;
+            background: url(../img/write_delate_icon.png) no-repeat center / 100%;
+        }
+        .view_mode {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+
+            .light_mode_icon {
+                width: 25px;
+                height: 25px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .select_view_mode {
+                width: 50px;
+                height: 25px;
+                margin: 0 5px;
+                border-radius: 12.5px;
+                background-color: #ffffff6b;
+                position: relative;
+
+                .select_view_mode_box {
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    position: absolute;
+                    top: 3px;
+                    left: 3px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                }   
+            }
+            .dark_mode_icon {
+                width: 25px;
+                height: 25px;
+                opacity: 0.5;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+        }
     }
     
 }
 
-/* login page */
+
 .inner_max500 {
     height: 100vh;
     max-width: 500px;
@@ -169,4 +242,228 @@ $main-txt: #FFFFFF;
         font-weight: bold;
         margin-top: 46px;
     }         
+}
+
+// topManager_space
+.container {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    
+    aside.topManager {
+        background-color: #F8F8F8;
+    }
+    section {
+        padding: 0 20px;
+
+        h1 {
+            font-size: 26px;
+            font-weight: bold;
+        }
+        .permissions_tab {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            text-align: center;
+            height: 50px;
+
+            & > a {
+                border: 1px solid #D3D3D3;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .by_group {
+                background-color: $main-color;
+                color: $main-txt;
+            }
+        }
+        .byGroup_area {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 4fr;
+            column-gap: 20px;
+
+            ul {
+                border: 1px solid #D3D3D3;                
+                height: calc(100vh - 250px);
+
+                li {
+                    height: 40px;
+                    color: $main-color;
+                    font-size: 18px;
+                    font-weight: bold;
+
+                    &:hover {
+                        background-color: #F0F4FA;
+                    }
+
+                    a {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        padding: 0 10px;
+                        
+                        &::before {
+                            display: inline-block;
+                            content: "";
+                            height: 15px;
+                            width: 15px;
+                            background: url(../img/group_icon.png) no-repeat center / 100%;
+                            margin-right: 10px;
+                        }
+                        
+                    }
+                }
+            }
+
+            .ByGroup_table {
+                display: grid;
+                grid-template-rows: 50px 50px 50px;
+                border-left: 1px solid #D3D3D3;
+                border-bottom: 1px solid #D3D3D3;
+                height: min-content;
+            
+                .item {
+                    border-top: 1px solid #D3D3D3;
+                    border-right: 1px solid #D3D3D3;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+    
+                    &._1 {
+                        grid-column: 1 / 2;
+                        grid-row: 1 / 2;
+                    }
+                    &._2 {
+                        grid-column: 2 / 3;
+                        grid-row: 1 / 2;
+                    }
+                    &._3 {
+                        grid-column: 3 / 6;
+                        grid-row: 1 / 2;
+                    }
+                    &._4 {
+                        grid-column: 6 / 9;
+                        grid-row: 1 / 2;
+                    }
+                    &._5 {
+                        grid-column: 9 / 11;
+                        grid-row: 1 / 2;
+                    }
+                    &._6 {
+                        grid-column: 11 / 13;
+                        grid-row: 1 / 2;
+                    }
+
+
+                    &._7 {
+                        grid-column: 1 / 2;
+                        grid-row: 2 / 3;
+                    }
+                    &._8 {
+                        grid-column: 2 / 3;
+                        grid-row: 2 / 3;
+                    }
+                    &._9 {
+                        grid-column: 3 / 4;
+                        grid-row: 2 / 3;
+                    }
+                    &._10 {
+                        grid-column: 4 / 5;
+                        grid-row: 2 / 3;
+                    }
+                    &._11 {
+                        grid-column: 5 / 6;
+                        grid-row: 2 / 3;
+                    }
+                    &._12 {
+                        grid-column: 6 / 7;
+                        grid-row: 2 / 3;
+                    }
+                    &._13 {
+                        grid-column: 7 / 8;
+                        grid-row: 2 / 3;
+                    }
+                    &._14 {
+                        grid-column: 8 / 9;
+                        grid-row: 2 / 3;
+                    }
+                    &._15 {
+                        grid-column: 9 / 10;
+                        grid-row: 2 / 3;
+                    }
+                    &._16 {
+                        grid-column: 10 / 11;
+                        grid-row: 2 / 3;
+                    }
+                    &._17 {
+                        grid-column: 11 / 12;
+                        grid-row: 2 / 3;
+                    }
+                    &._18 {
+                        grid-column: 12 / 13;
+                        grid-row: 2 / 3;
+                    }
+                    
+                    
+                    &._19 {
+                        grid-column: 1 / 2;
+                        grid-row: 3 / 4;
+                    }
+                    &._20 {
+                        grid-column: 2 / 3;
+                        grid-row: 3 / 4;
+                    }
+                    &._21 {
+                        grid-column: 3 / 4;
+                        grid-row: 3 / 4;
+                    }
+                    &._22 {
+                        grid-column: 4 / 5;
+                        grid-row: 3 / 4;
+                    }
+                    &._23 {
+                        grid-column: 5 / 6;
+                        grid-row: 3 / 4;
+                    }
+                    &._24 {
+                        grid-column: 6 / 7;
+                        grid-row: 3 / 4;
+                    }
+                    &._25 {
+                        grid-column: 7 / 8;
+                        grid-row: 3 / 4;
+                    }
+                    &._26 {
+                        grid-column: 8 / 9;
+                        grid-row: 3 / 4;
+                    }
+                    &._27 {
+                        grid-column: 9 / 10;
+                        grid-row: 3 / 4;
+                    }
+                    &._28 {
+                        grid-column: 10 / 11;
+                        grid-row: 3 / 4;
+                    }
+                    &._29 {
+                        grid-column: 11 / 12;
+                        grid-row: 3 / 4;
+                    }
+                    &._30 {
+                        grid-column: 12 / 13;
+                        grid-row: 3 / 4;
+                    }
+                    
+                    &.colorAdd {
+                        background-color: #F3F3F3;
+                    }
+                }
+            }
+
+
+        }
+    }
 }
