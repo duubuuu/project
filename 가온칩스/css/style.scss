@@ -1,6 +1,26 @@
-// common
+// common 
 $main-color: #1C2B55;
 $main-txt: #FFFFFF;
+$danger-color: #EA0000;
+
+button {
+    width: 149px;
+    height: 45px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.flexEnd {
+    display: flex;
+    justify-content: flex-end;
+}
+button + button {
+    margin-left: 5px;
+}
+h1.title {
+    margin: 40px 0 20px 0;
+    font-size: 26px;
+    font-weight: bold;
+}
 
 // @extend 사용하여 버튼 스타일 상속(고대로복붙)가능
 .small_btn {
@@ -96,7 +116,10 @@ $main-txt: #FFFFFF;
         .user_box {
             display: flex;
             align-items: center;
-            color: #ffffff;
+        
+            .user_name {
+                color: #ffffff;
+            }
         }
         .alarm_box {
             display: flex;
@@ -251,14 +274,23 @@ $main-txt: #FFFFFF;
     
     aside.topManager {
         background-color: #F8F8F8;
+            height: calc(100vh - 100px);
+
+        ul {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            margin-top: 40px;
+
+            li {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 25px;
+            }
+        }
     }
     section {
         padding: 0 20px;
 
-        h1 {
-            font-size: 26px;
-            font-weight: bold;
-        }
         .permissions_tab {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -266,14 +298,21 @@ $main-txt: #FFFFFF;
             text-align: center;
             height: 50px;
 
+            & > a:nth-child(1) {
+                border-left: 1px solid #D3D3D3;
+            }
+
             & > a {
-                border: 1px solid #D3D3D3;
+                border-top: 1px solid #D3D3D3;
+                border-bottom: 1px solid #D3D3D3;
+                border-right: 1px solid #D3D3D3;
                 height: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
-            .by_group {
+            // common
+            .selectedTab {
                 background-color: $main-color;
                 color: $main-txt;
             }
@@ -286,7 +325,7 @@ $main-txt: #FFFFFF;
 
             ul {
                 border: 1px solid #D3D3D3;                
-                height: calc(100vh - 250px);
+                height: auto;
 
                 li {
                     height: 40px;
@@ -299,7 +338,7 @@ $main-txt: #FFFFFF;
                     }
 
                     a {
-                        width: 100%;
+                        width: calc(100% - 20px);
                         height: 100%;
                         display: flex;
                         align-items: center;
@@ -462,8 +501,47 @@ $main-txt: #FFFFFF;
                     }
                 }
             }
+            
+            .txt_box {
+                h2.title {
+                    font-size: 20px;
+                    font-weight: 700;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+
+                    &::before {
+                        display: inline-block;
+                        content: "";
+                        height: 24px;
+                        width: 24px;
+                        background: url(../img/info.png) no-repeat center / 100%;
+                        margin-right: 10px;
+                    }
+                }
+                .detail {
+                    width: calc(100% - 50px);
+                    height: auto;
+                    background-color: #F8F8F8;
+                    border-radius: 10px;
+                    padding: 25px;
+                    line-height: 30px;
+                    font-size: 16px;
+
+                    strong {
+                        font-weight: 700;
+                    }
+                }
+            }
 
 
+        }
+        .byUser_area {
+
+        }
+        .byAnonymous {
+            
         }
     }
 }
