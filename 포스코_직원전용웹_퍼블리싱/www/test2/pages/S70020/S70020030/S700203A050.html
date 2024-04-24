@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--jquery import-->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+
+
+<script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+<!--jqGrid import-->
+<script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+<script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+<script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+<script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+<!--datepicker import-->
+<script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+<script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+<script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+<!-- jQuery Modal -->
+<script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+<script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+<!--font awesome-->
+<script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+<!--DEXT5 -->
+<script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="../../../js/common_util.js"></script>
+<script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+<script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+<script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+<script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+<script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+<script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+<script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+<script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+<script type="text/javascript" src="../../../js/common.js"></script>
+
+<title>소 표준 검증결과 의견 등록</title>
+<style>
+/* 프로필 메시지 폰트  */
+.ly-user-timeset p{
+font-size: 17px;
+}
+
+/* 패딩값 조절 */
+.search-box {padding : 0;}
+
+.information {max-width: 516px;}
+.information .infor [type='checkbox']:not(:checked) + label, .information .infor [type='checkbox']:checked + label {color : #d200ff}
+.button.search[size='small'],
+.search-box > .rows .column label,
+.select2 select,
+.search-box > .rows .column .input,
+.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th,
+.ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td,
+.table-row .table tbody th, .table-row .table th, .table-row .table td,
+.type input.input, .type input.hasDatepicker
+{font-size: 17px}
+.table-row .table tbody th {background-color: #e3e8f3; width: 220px; height : 43px; }
+.type input.input {min-width: 120px;}
+
+.form-submit .button {background-color : #5978b9}
+
+.select2:after {top : 12px;}
+
+input.input,
+input.hasDatepicker {
+min-width: 100px;
+}
+
+.search-box>.rows .column .fields {
+display: flex;
+/* flex-direction: column; */
+justify-content: start;
+}
+
+.ui-widget.ui-widget-content {
+border: 1px solid #c5c5c5;
+border-left: none;
+border-right:none;
+}
+
+/* border-right-none 처리 */
+.none_border{border-right : none !important;}
+
+/* 디자인표준변경 */
+.button {font-size: 17px; font-weight: 400; height : 36px;}
+.button.search{background-color: #91a1c2;}
+.button.search[size='small'] {height: 36px; font-size : 17px; font-weight: 400; line-height: 36px;}
+.radioset{font-weight: 400;}
+.select2 select{font-size: 17px}
+.search-box > .rows .column .input{font-size: 17px; font-weight: 400;}
+.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{background-color: #d9deec; font-size: 17px; font-weight: 400;}
+.ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td{font-size: 17px; font-weight: 400;}
+.ui-jqgrid .ui-jqgrid-htable th {height: 43px;}
+
+/* 폰트크기변경 */
+.search-box > .rows .column label {font-size: 17px; line-height : 36px;}
+.search-box > .rows .column label:last-child {line-height : none;}
+
+/* 메뉴 음영처리 */
+.txt_grad{
+text-shadow: 1px 1px 6px #5a4cc3;
+}
+
+/* 박스 안쪽 간격 */
+.ly-contents-boxed{
+/* .doc_css{ */
+padding: 15px 26px 15px 29px;
+}
+
+/* 박스 상단 하단 17px 간격 */
+.ly-contents-boxed + .ly-contents-boxed {margin-top: 17px;}
+
+
+/* 버튼 섀도우 지움 : 클래스명 추가 필요 */
+.ck_btn{ box-shadow: none !important; height:36px; font-size: 17px; }
+
+/* 타이틀 크기 변경 : 클래스명 추가 필요 */
+.big_title { font-size: 27px; font-weight: 500;}
+.sub_big_title{ font-size: 19px; font-weight: 500;}
+
+/* jqgrid 칸 높이 */
+.ui-jqgrid tr.jqgrow td, .ui-jqgrid tr.jqgroup td {height: 43px;}
+
+/* 화살표버튼 = 타이틀 화살표 파랑 버튼 */
+.button.blue.acc{width: 30px; height: 30px;}
+
+/* 타이틀과 접히는 jqgrid 사이 15px */
+.table-row {margin-top : 0; margin-bottom : 10px;}
+
+/* 텍스트박스 */
+.ui input, .select2, .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td input[type=text] {height: 36px; min-width: 5px;}
+
+#examination {height : 36px; padding: 0 22px 0 14px;}
+.pxw-120 {width : 100% !important;}
+.ui input, .select2, .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td input[type=text] {text-align : center;}
+
+.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{background-color: #d9deec;}
+.button.search{background-color: #91a1c2;}
+.ly-contents-boxed + .ly-contents-boxed {margin-top: 17px;}
+
+/* 폰트크기변경 */
+.button.search[size='small'],
+.select2 select,
+.search-box > .rows .column .input,
+.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th,
+.ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td,
+.control-column label,
+.ui-jqgrid .ui-jqgrid-view input, .ui-jqgrid .ui-jqgrid-view select, .ui-jqgrid .ui-jqgrid-view textarea, .ui-jqgrid .ui-jqgrid-view button,
+.control-column.item-right button,
+.type input.input, .type input.hasDatepicker
+{font-size: 17px}
+.ui-jqgrid .ui-jqgrid-htable .ui-th-div{height: 18px; font-size: 17px}
+
+.arrow{color: #fff; border-radius: 7px; background-color: #488aff; box-shadow: 2px 2px 5px 0px #c6c8dd; vertical-align: sub;}
+.ui-jqgrid tr.jqgrow td{padding: 4px;}
+.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th .ui-jqgrid-sortable{padding: 0;}
+#PROPOSE_LST_GD {text-align : left;}
+
+/* 어긋남 수정 */
+.box-toggle .button svg {bottom : 6px;}
+
+/* 일반그리드 td 색상변경 */
+.table-row .table td {background : #f6f8fa;}
+
+/* Radio 버튼 이미지 선명도 향상 */
+[type='radio']:checked + label:after, [type='radio']:not(:checked) + label:after {
+top: 7px !important;
+left: 7px;
+width: 8px;
+height: 8px;
+}
+[type='radio']:checked + label:before, [type='radio']:not(:checked) + label:before {
+border: 2px solid #cccccc;
+}
+textarea {color: #666;}
+</style>
+</head>
+<body>
+<div id="root">
+<!--ifram include header -->
+<article>
+<header>
+<div class="ly-user-header">
+<h1 class="logo">
+<a href="#none"><img src="../../../images/com/logo.png" alt="with posco 전자 제안관리 system" /></a>
+</h1>
+<nav class="ly-gnb">
+<ul class="ft_center_top">
+<li>
+   <a href="#none" alt="HOME" class="txt_grad" data-target="true">HOME</a>
+</li>
+<li>
+   <a href="#none" alt="마이페이지" class="txt_grad" data-target="true">MyPage</a>
+</li>
+<li class="on">
+   <a href="#none" alt="제안하기" class="txt_grad" data-target="true">제안작성</a>
+   <ul>
+       <li><a href="#none" alt="제안서등록" id="S700101A010">제안등록</a></li>
+       <li><a href="#none" alt="제안서임시저장" id="S700101A020">제안 임시저장</a></li>
+       <li><a href="#none" alt="제안서수정" id="S700101A030">제안 수정</a></li>
+       <!-- <li><a href="#none" alt="제안서 양식 다운로드" id="S700101A030">제안 양식 다운로드</a></li> -->
+   </ul>
+</li>
+<li>
+   <a href="#none" alt="검색하기" class="txt_grad" data-target="true">검색하기</a>
+</li>
+<li>
+   <a href="#none" alt="심사하기" class="txt_grad" data-target="true">심사하기</a>
+</li>
+<li>
+   <a href="#none" alt="명예의 전당" class="txt_grad" data-target="true">명예의 전당</a>
+</li>
+<li>
+   <a href="#none" alt="기준정보" class="txt_grad" data-target="true">기준정보</a>
+</li>
+<li>
+   <a href="#none" alt="DashBoard" class="txt_grad" data-target="true">DashBoard</a>
+</li>
+</ul>
+</nav>
+<div class="ly-user-timeset">
+<p class="ft_right_top">안녕하세요 <span>홍길동</span> 님</p>
+<span class="ic-member">
+       <a href="#none"><span class="material-icons set_top_identity">perm_identity</span></a>
+   </span>
+<span class="ic-change">
+       <a href="#none"><img src="../../../images/com/head-icon01.png" /></a>
+   </span>
+<span class="ic-helper">
+       <a href="#none"><span class="material-icons set_top_icon">help_outline</span></a>
+   </span>
+<span class="ic-logout">
+       <a href="#none"><span class="material-icons set_top_icon">power_settings_new</span></a>
+   </span>
+</div>
+<div class="nav-bar"></div>
+</div>
+</header>
+</article>
+<section class="ly-box">
+<h1>심사하기</h1>
+<h3>이제 보여줄 때입니다.서제스트 팩토리에서 당신의 놀라운 상상력을 현실로 바꿔보세요!</h3>
+<div class="box-toggle">
+<button class="ui button icon"><i class="fas fa-chevron-up"></i></button>
+</div>
+</section>
+<div class="ly-container">
+<!--ifram include sidebar -->
+<div class="ly-side">
+<ul>
+   <li class="active">
+       <a href="#child1" rel="child1" onclick="return false"><i class="s-icon icon3-1"></i>제안심사</a>
+   </li>
+   <li>
+       <a href="#child2" rel="child2" onclick="return false"><i class="s-icon icon3-2"></i>부서(팀)장 확인</a>
+   </li>
+   <li>
+       <a href="#child3" rel="child3" onclick="return false"><i class="s-icon icon3-3"></i>재무 검증</a>
+   </li>
+   <li>
+       <a href="#child4" rel="child4" onclick="return false"><i class="s-icon icon3-4"></i>심사계획</a>
+   </li>
+   <li>
+       <a href="#child5" rel="child5" onclick="return false"><i class="s-icon icon3-4"></i>심사확정</a>
+   </li>
+</ul>
+<div class="side-toggle">
+   <button class="ui button icon"><i class="fas fa-chevron-left"></i></button>
+</div>
+</div>
+<div class="ly-wrapper">
+<main class="ly-contents">
+   <div class="ly-contents-boxed" >
+     <div class="search-content">
+       <form class="ui form">
+         <div class="search-box">
+           <div class="rows">
+             <div class="column">
+               <div class="fields">
+                 <div class="field">
+                   <label class="pxw-80">제안번호</label>
+                   <input type="text" class="ui input" />
+                 </div>
+                 <div class="field">
+                   <label class="pxw-80">평가구분</label>
+                   <div class="ui select2 pxw-200">
+                     <select id="PROPOSE_CUR_EVALU_STEP_TP">
+                       <option disabled hidden checked>전체</option>
+                       <option value="Y">전체</option>
+                       <option value="A">평가</option>
+                       <option value="D">미평가</option>
+                     </select>
+                   </div>
+                 </div>
+                 <div class="field">
+                 <label class="pxw-50">기간</label>
+                   <div class="ui select2 pxw-150 mgr10">
+                     <select id="PROPOSE_CUR_EVALU_STEP_TP">
+                       <option disabled hidden checked>등록일자</option>
+                       <option value="Y">등록일자</option>
+                       <option value="A">등록일자</option>
+                     </select>
+                   </div>
+                   <div class="ui type pxw-115">
+                     <input type="text" class="ui input" id="CREATION_START_DATE" value="2020-11-30" />
+                   </div>
+                   <span class="text">~</span>
+                   <div class="ui type pxw-115">
+                     <input type="text" class="ui input" id="CREATION_END_DATE" value="2020-12-30" />
+                   </div>
+                   <div class="ui type dpi">
+                     <button type="button" class="ui button icon date2 mgl10" id="SSC_ALL_ACTIVITY_PRD">
+                       <span class="material-icons material-icons-outlined set_date">date_range</span>
+                     </button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="column top">
+               <button class="ui button search mgr4 mgl10" size="small">조회</button>
+             </div>
+           </div>
+         </div>
+       </form>
+     </div>
+       <div class="contents-wrapper">
+           <!--상단 jqGrid-->
+           <div class="table-row" id="S700203A030_jqGrid_container1" >
+               <table id="S700203A030_jqGrid_view1" style="width: 100% "></table>
+               <div id="jqGridPager"></div>
+               <div id="paginate"></div>
+           </div>
+         </div>
+   </div>
+   <div class="ly-contents-boxed">
+     <div class="contents-wrapper">
+       <div class="table-row" style=" margin-top: 0 !important;">
+         <table id="TB_S70_SUGC020" class="ui table">
+           <colgroup>
+             <col style="width: 200px" />
+           </colgroup>
+           <tbody>
+             <tr>
+               <th style="border-left : none;">제안번호</th>
+               <td style="width : 525px;">1904KS53473</td>
+               <th>제안명</th>
+               <td style="border-right : none;">1열연 정정 이물 흠결함 개선으로</td>
+             </tr>
+             <tr>
+               <th style="border-left : none;">금액</th>
+               <td style="width : 525px;"><input type="text" class="ui input mgr10" value="82,160,320" style="font-size : 17px;"/>원</td>
+               <th>개선향상율</th>
+               <td colspan="3" style="border-right : none; padding: 0;"><input type="text" class="ui input mgl16 mgr10" style="font-size : 17px;"/>%</td>
+             </tr>
+             <tr>
+               <th style="border-left : none;">산정내용</th>
+               <td id="PROPOSER_WKS_TP" colspan="3" style="border-right : none;">
+                 <div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px;' resizable='no'>
+-개선전 : 슬러지발생량ⅹ처리비용 = 1373m3 ⅹ 59,840원 = 82,160,320원
+-개선후 : `18/07~`18/12 스러지 처리비용 무
+[효과금액] : (개선전 외주작업 처리비용-개선후 외주작업 처리비용) = 82,160,320원
+                 </textarea></div>
+               </td>
+             </tr>
+             <tr>
+               <th style="border-left : none;">보완의견</th>
+               <td id="PROPOSER_WKS_TP" colspan="3" style="border-right : none;">
+                 <div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:100px;' resizable='no'>
+                 </textarea></div>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+   <div class="form-submit">
+       <button class="ui button blue" size="large" style="font-size: 17px; height: 36px;">평가확정</button>
+       <button class="ui button blue" size="large" style="font-size: 17px; height: 36px;" onclick="opendModal2()">수정보완요청처리</button>
+   </div>
+
+</main>
+</div>
+</div>
+</div>
+
+<script src="../../../js/common.js"></script>
+<script src="../../../js/components/panel/tab.js"></script>
+<script src="../../../js/components/renderer/render.js"></script>
+<script src="../../../js/components/pagenate/pager.js"></script>
+<script>
+// $("#show_div_1").hide();
+// function show_div(id){
+//   var i = 1;
+//   for(i=1;i<5;i++){
+//     if(i == id){
+//       $("#button"+id).css({
+//         backgroundColor: "#5978b9"
+//       });
+//       $("#show_div_"+id).css({
+//         'display':'block',
+//         'width':'100%'
+//       });
+//       $("#S700203A030_jqGrid_view1").setGridWidth($("#accordionView0").width(), true);
+//     }else{
+//       $("#button"+i).css({
+//         backgroundColor: "#91a1c2"
+//       });
+//       $("#show_div_"+i).hide();
+//     }
+//   }
+// }
+
+</script>
+<script>
+  $("#S700203A030_jqGrid_view1").jqGrid({
+      datatype: "local", //json
+      colModel: [
+              {
+                  label: "선택",
+                  name: "c1",
+                  width: 60,
+                  align: "center",
+                  sortable: false,
+                  formatter: function radio(cellValue, options, rowObject) {
+                      var result =
+                          '<div class="ui renderer-wrp center singleradio">' +
+                          '<input class="ui radio checkbox" name="singleRadioChecked" type="radio" value=' +
+                          "rd" +
+                          options.rowId +
+                          " id=" +
+                          "rd" +
+                          options.rowId +
+                          ">" +
+                          "<label for=" +
+                          "rd" +
+                          options.rowId +
+                          ">";
+                      "</label>" + "</div>";
+                      return result;
+                  },
+              },
+              {
+                  label: "제안번호",
+                  name: "c2",
+                  width: 100,
+                  align: "center",
+                  sortable: false,
+              },
+              {
+                  label: "제안명",
+                  name: "c3",
+                  width: 300,
+                  align: "left",
+                  sortable: false,
+                  formatter: function link(cellValue) {
+                      var result = '<a href="#none">' + cellValue + "</a>";
+                      return result;
+                  },
+              },
+              {
+                  label: "제안자",
+                  name: "c4",
+                  width: 100,
+                  align: "center",
+                  sortable: false,
+              },
+              {
+                  label: "소속",
+                  name: "c5",
+                  width: 250,
+                  align: "left",
+                  sortable: false,
+              },
+              {
+                  label: "개선장소",
+                  name: "c6",
+                  width: 200,
+                  align: "left",
+                  sortable: false,
+                  classes:'none_border'
+              },
+
+          ],
+          data: [
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+              {
+                  c1: "",
+                  c2: "1904KS53473",
+                  c3: "1열연 정정 이물 흠결함 개선으로",
+                  c4: "홍길동",
+                  c5: "(광양)제강부 슬라브정정",
+                  c6: "슬라브정정 2정정",
+              },
+
+      ],
+          loadComplete: function (data) {
+          // 페이지 셋팅
+
+          // initPage("S700201A010_jqGrid_view0", "paginate", true, "TOT");
+      },
+      rowNum : 10,
+      viewrecords: true,
+      loadonce: true,
+      height: "auto",
+      autowidth: true,
+      shrinkToFit: true,
+      pager: "#jqGridPager",
+  });
+
+$(window)
+.bind("resize", function () {
+$("#S700203A030_jqGrid_view1").setGridWidth($("#S700203A030_jqGrid_container1").width(), true);
+})
+.trigger("resize");
+
+
+</script>
+</body>
+</html>

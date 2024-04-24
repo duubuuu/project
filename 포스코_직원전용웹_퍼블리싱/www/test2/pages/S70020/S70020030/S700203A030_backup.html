@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+	<!--jquery import-->
+	<script src="../../../js/vendor/jquery/jquery.min.js"></script>
+
+	<script src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+	<!--jqGrid import-->
+	<script src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+	<script src="../../../js/vendor/util/grid.locale-kr.js"></script>
+	<!--datepicker import-->
+	<script src="../../../js/vendor/util/moment.js"></script>
+	<script src="../../../js/vendor/util/moment.locale-kr.js"></script>
+	<script src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+
+	<!-- jQuery Modal -->
+	<script src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+	<script src="../../../js/components/modal/modal.js"></script>
+	<link rel="stylesheet" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+
+	<!--font awesome-->
+	<script src="../../../js/vendor/fontawesome/all.js"></script>
+
+	<!--style-->
+	<link rel="stylesheet" href="../../../css/default.css" />
+
+	<link rel="stylesheet" href="../../../js/vendor/jquery/jquery-ui.css" />
+	<link rel="stylesheet" href="../../../js/vendor/jqgrid/jqGrid.css" />
+	<link rel="stylesheet" href="../../../js/vendor/datepicker/datepicker.css" />
+
+	<title>재무 및 표준 검증위원 지정</title>
+	<style>
+		.button.search[size='small'],
+		.search-box>.rows .column label,
+		.select2 select,
+		.search-box>.rows .column .input,
+		.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th {
+			font-size: 17px
+		}
+
+		.ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td {
+			font-size: 15px;
+		}
+
+		.ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+			height: 18px;
+			font-size: 17px
+		}
+
+		/* jqgrid css 변경 */
+		.ui-jqgrid tr.jqgrow td,
+		.ui-jqgrid tr.jqgroup td {
+			border-color: #cccccc;
+		}
+
+		.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th {
+			background-color: #d9deec;
+			font-size: 17px;
+			font-weight: 400;
+		}
+
+		.none_border {
+			border-right: none !important;
+		}
+
+		/*돋보기 아이콘 수정*/
+		.renderer-wrp .input+.button {
+			box-shadow: none;
+		}
+
+		.button.icon {
+			border: none;
+			background-color: #f6f8fa;
+			font-size: 17px;
+			height: 30px;
+			padding-bottom: 2px;
+			box-shadow: none !important;
+			margin-left: 4px;
+		}
+
+		/* 메뉴 음영처리 */
+		.txt_grad {
+			text-shadow: 1px 1px 6px #5a4cc3;
+		}
+
+		/* 박스 안쪽 간격 */
+		.ly-contents-boxed {
+			/* .doc_css{ */
+			padding: 15px 26px 25px 29px;
+		}
+
+		/* 박스 상단 하단 17px 간격 */
+		.ly-contents-boxed+.ly-contents-boxed {
+			margin-top: 17px;
+		}
+
+		/* 버튼 디자인 표준 변경 */
+		.button.search[size='small'] {
+			height: 36px;
+			font-size: 17px;
+			font-weight: 400;
+			line-height: 36px;
+		}
+
+		.control-column.item-right button:last-child {
+			height: 30px;
+			font-size: 17px;
+			font-weight: 400;
+			line-height: 30px;
+		}
+
+		.form-submit .button {
+			background-color: #5978b9
+		}
+
+		/* 버튼 섀도우 지움 : 클래스명 추가 필요 */
+		.ck_btn {
+			box-shadow: none !important;
+			height: 36px;
+			font-size: 17px;
+		}
+
+		/* 폰트크기변경 */
+		.search-box>.rows .column label {
+			font-size: 17px;
+		}
+
+		/* 타이틀 크기 변경 : 클래스명 추가 필요 */
+		.big_title {
+			font-size: 27px;
+			font-weight: 500;
+		}
+
+		.sub_big_title {
+			font-size: 19px;
+			font-weight: 500;
+		}
+
+		/* jqgrid 칸 높이 */
+		.ui-jqgrid tr.jqgrow td,
+		.ui-jqgrid tr.jqgroup td {
+			height: 43px;
+		}
+
+		/* jqgrid 머리(항목) line-height  */
+		.ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+			margin-top: 0;
+		}
+
+		/* 화살표버튼 = 타이틀 화살표 파랑 버튼 */
+		.button.blue.acc {
+			width: 30px;
+			height: 30px;
+		}
+
+		/* 텍스트박스 */
+		.ui input,
+		.select2,
+		.ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td input[type=text] {
+			height: 36px;
+			min-width: 5px;
+		}
+
+		/*칸 높이*/
+		.ui-jqgrid tr.jqgrow td,
+		.ui-jqgrid tr.jqgroup td {
+			padding: 0 4px;
+		}
+
+		/*헤더*/
+		.txt_grad {
+			text-shadow: 1px 1px 6px #5a4cc3;
+		}
+
+		/* 프로필 메시지 폰트  */
+		.ly-user-timeset p {
+			font-size: 17px;
+		}
+
+		/* 토글버튼 */
+		.box-toggle .button {
+			min-width: 70px;
+			height: 14px;
+			border-top: 0;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 10px;
+			border-bottom-left-radius: 10px;
+			background-color: #b8c7e6;
+			border: none;
+		}
+
+		.box-toggle .button svg {
+			bottom: 7px;
+		}
+
+		/*박스 안 표 밑 간격*/
+		.table-row {
+			margin-top: 15px;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="root">
+		<!--ifram include header -->
+		<!--ifram include header -->
+		<article>
+			<header>
+				<div class="ly-user-header">
+					<h1 class="logo">
+						<a href="#none"><img src="../../../images/com/logo.png" alt="with posco 전자 제안관리 system" /></a>
+					</h1>
+					<nav class="ly-gnb">
+						<ul class="ft_center_top">
+							<li>
+								<a href="#none" alt="HOME" class="txt_grad" data-target="true">HOME</a>
+							</li>
+							<li>
+								<a href="#none" alt="마이페이지" class="txt_grad" data-target="true">MyPage</a>
+							</li>
+							<li>
+								<a href="#none" alt="제안하기" class="txt_grad" data-target="true">제안작성</a>
+							</li>
+							<li>
+								<a href="#none" alt="검색하기" class="txt_grad" data-target="true">검색하기</a>
+							</li>
+							<li class="on">
+								<a href="#none" alt="심사하기" class="txt_grad" data-target="true">심사하기</a>
+								<ul>
+									<li><a href="#none" alt="제안심사" id="">제안심사</a></li>
+									<li><a href="#none" alt="부서(팀)장 확인" id="">부서(팀)장 확인</a></li>
+									<li><a href="#none" alt="재무 검증" id="">재무 검증</a></li>
+									<li><a href="#none" alt="심사계획" id="">심사계획</a></li>
+									<li><a href="#none" alt="심사확정" id="">심사확정</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#none" alt="명예의 전당" class="txt_grad" data-target="true">명예의 전당</a>
+							</li>
+							<li>
+								<a href="#none" alt="기준정보" class="txt_grad" data-target="true">기준정보</a>
+							</li>
+							<li>
+								<a href="#none" alt="DashBoard" class="txt_grad" data-target="true">DashBoard</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="ly-user-timeset">
+						<p class="ft_right_top">안녕하세요 <span>홍길동</span> 님</p>
+						<span class="ic-member">
+							<a href="#none"><span class="material-icons set_top_identity">perm_identity</span></a>
+						</span>
+						<span class="ic-change">
+							<a href="#none"><img src="../../../images/com/head-icon01.png" /></a>
+						</span>
+						<span class="ic-helper">
+							<a href="#none"><span class="material-icons set_top_icon">help_outline</span></a>
+						</span>
+						<span class="ic-logout">
+							<a href="#none"><span class="material-icons set_top_icon">power_settings_new</span></a>
+						</span>
+					</div>
+					<div class="nav-bar"></div>
+				</div>
+			</header>
+		</article>
+		<section class="ly-box">
+			<h1>심사하기</h1>
+			<h3>이제 보여줄 때입니다.서제스트 팩토리에서 당신의 놀라운 상상력을 현실로 바꿔보세요!</h3>
+			<div class="box-toggle">
+				<button class="ui button icon"><i class="fas fa-chevron-up"></i></button>
+			</div>
+		</section>
+		<div class="ly-container">
+			<!--ifram include sidebar -->
+			<div class="ly-side">
+				<ul>
+					<li class="active">
+						<a href="#child1" rel="child1" onclick="return false"><i class="s-icon icon3-1"></i>제안심사</a>
+					</li>
+					<li>
+						<a href="#child2" rel="child2" onclick="return false"><i class="s-icon icon3-2"></i>부서(팀)장 확인</a>
+					</li>
+					<li>
+						<a href="#child3" rel="child3" onclick="return false"><i class="s-icon icon3-3"></i>재무 검증</a>
+					</li>
+					<li>
+						<a href="#child4" rel="child4" onclick="return false"><i class="s-icon icon3-4"></i>심사계획</a>
+					</li>
+					<li>
+						<a href="#child5" rel="child5" onclick="return false"><i class="s-icon icon3-4"></i>심사확정</a>
+					</li>
+				</ul>
+				<div class="side-toggle">
+					<button class="ui button icon"><i class="fas fa-chevron-left"></i></button>
+				</div>
+			</div>
+			<div class="ly-wrapper">
+				<main class="ly-contents">
+					<div class="ly-contents-boxed">
+						<div class="contents-wrapper">
+							<div class="control">
+								<div class="control-column item-right">
+									<button class="ui button blue" style="font-size: 17px;line-height: 18px;">등록/수정</button>
+								</div>
+							</div>
+							<!--상단 jqGrid-->
+							<div class="table-row" id="S700203A030_jqGrid_container0">
+								<table id="S700203A030_jqGrid_view0" style="width: 100%"></table>
+								<div id="jqGridPager"></div>
+								<div id="paginate"></div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../../js/common.js"></script>
+	<script src="../../../js/components/panel/tab.js"></script>
+	<script src="../../../js/components/renderer/render.js"></script>
+	<script src="../../../js/components/pagenate/pager.js"></script>
+	<script>
+		$(function() {
+			$('input[name="daterange1"]').daterangepicker({
+				opens: "right",
+				locale: {
+					format: "YYYY-MM-DD"
+				},
+			});
+
+			$("#S700203A030_jqGrid_view0").jqGrid({
+				datatype: "local", //json
+				colModel: [{
+						label: "제안번호",
+						name: "SUGGESTION_NUMBER",
+						width: 100,
+						align: "center",
+						sortable: false,
+					},
+					{
+						label: "제안명",
+						name: "PROPOSE_NM",
+						width: 200,
+						align: "center",
+						sortable: false,
+						formatter: function link(cellValue) {
+							var result = '<a href="#none">' + cellValue + "</a>";
+							return result;
+						},
+					},
+					{
+						label: "제안자",
+						name: "FULL_NAME",
+						width: 60,
+						align: "center",
+						sortable: true,
+					},
+					{
+						label: "소속",
+						name: "NAME",
+						width: 200,
+						align: "left",
+						sortable: false,
+					},
+					{
+						label: "개선장소",
+						name: "PROPOSE_EXAM_PLACE",
+						width: 100,
+						align: "center",
+						sortable: false,
+					},
+					{
+						label: "재무검증요원",
+						name: "col6",
+						width: 120,
+						align: "center",
+						sortable: false,
+						formatter: function openPopupBtn(cellValue, options, rowObject) {
+							console.log("data 확인용", cellValue, options, rowObject);
+							var result =
+								'<div class="ui renderer-wrp">' +
+								'<input class="ui input pw-100" type="text" >' +
+								'<button class="ui button icon blue" onclick="opendModal()"><i class="fas fa-search"></i></button>' +
+								"</div>";
+							return result;
+						},
+					},
+					{
+						label: "표준검증위원",
+						name: "col7",
+						width: 120,
+						align: "center",
+						sortable: false,
+						formatter: function openPopupBtn(cellValue, options, rowObject) {
+							console.log("data 확인용", cellValue, options, rowObject);
+							var result =
+								'<div class="ui renderer-wrp">' +
+								'<input class="ui input pw-100" type="text" >' +
+								'<button class="ui button icon blue" onclick="opendModal2()"><i class="fas fa-search"></i></button>' +
+								"</div>";
+							return result;
+						},
+						classes: 'none_border'
+					},
+				],
+				data: [{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+				],
+				loadComplete: function(data) {
+					// 페이지 셋팅
+					$("#S700203A030_jqGrid_view0").parent().parent().css("max-height", "540px");
+					$("#S700203A030_jqGrid_view0").parent().parent().css("overflow-x", "hidden");
+					// initPage("S700201A010_jqGrid_view0", "paginate", true, "TOT");
+				},
+				rowNum: 10,
+				viewrecords: true,
+				loadonce: true,
+				height: "auto",
+				autowidth: true,
+				shrinkToFit: true,
+				pager: "#jqGridPager",
+			});
+		});
+
+		$(window)
+			.bind("resize", function() {
+				$("#S700203A030_jqGrid_view0").setGridWidth($("#S700203A030_jqGrid_container0").width(), true);
+			})
+			.trigger("resize");
+
+		function opendModal() {
+			event.preventDefault();
+			$.popup({
+				url: "./S700203A030POP01.html",
+
+				// 모달창 호출할때 넘길 파라메터들
+				/*
+				    data: {
+				    param_name1: value_1,
+				    param_name2: value_2,
+				},
+				*/
+				//animation : "bounce",
+				close: function(result) {
+					// 모달창에서 넘어온 값
+					console.log(result);
+				},
+			});
+		}
+
+		function opendModal2() {
+			event.preventDefault();
+			$.popup({
+				url: "./S700203A030POP02.html",
+
+				// 모달창 호출할때 넘길 파라메터들
+				/*
+				    data: {
+				    param_name1: value_1,
+				    param_name2: value_2,
+				},
+				*/
+				//animation : "bounce",
+				close: function(result) {
+					// 모달창에서 넘어온 값
+					console.log(result);
+				},
+			});
+		}
+	</script>
+</body>
+
+</html>

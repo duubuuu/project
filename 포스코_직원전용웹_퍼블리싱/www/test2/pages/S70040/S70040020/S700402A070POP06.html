@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+        <!--jquery import-->
+        <script src="../../../js/vendor/jquery/jquery.min.js"></script>
+
+        <script src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <!--datepicker import-->
+        <script src="../../../js/vendor/util/moment.js"></script>
+        <script src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <script src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+
+        <!-- jQuery Modal -->
+        <script src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script src="../../../js/components/modal/modal.js"></script>
+        <link rel="stylesheet" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+
+        <!--font awesome-->
+        <script src="../../../js/vendor/fontawesome/all.js"></script>
+
+        <!--style-->
+        <link rel="stylesheet" href="../../../css/default.css" />
+
+        <link rel="stylesheet" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" href="../../../js/vendor/datepicker/datepicker.css" />
+        <link rel="stylesheet" href="../../../css/laylab.css" />
+
+        <title>자료실 글쓰기</title>
+        <style>
+        .table-row .table tr {height: 43px;}
+        .table-row .table th, .table-row .table td {height: 43px;}
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                            <div class="flex">
+                                <div class="ly-contents-head">
+                                    <h1 class="contents-title big_title">자료실 글쓰기</h1>
+                                </div>
+                                <div class="ly-contents-head-rt">
+                                    <div class="control">
+                                        <div class="control-column item-right">
+                                            <button class="ui button search mgr10" size="small">목록</button>
+                                            <button class="ui button search" size="small">저장</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contents-wrapper">
+                                <!--상단 jqGrid-->
+                                <div class="table-row">
+                                    <table id="TB_S70_SUGC020" class="ui table">
+                                        <colgroup>
+                                            <col style="width: 200px" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th style="border-left: none;">제목</th>
+                                                <td id="BBS_WRITING_TITLE" style="padding: 3px 16px; border-right: none;">
+                                                    <div class="ui renderer-wrp">
+                                                        <input type="text" class="ui input pw-100" maxlength="450" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">E-MAIL</th>
+                                                <td id="EMAIL_ADDRESS" style="border-right: none;">123456@posco.co.kr</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">작성자</th>
+                                                <td id="BBS_REG_NAME" style="border-right: none;">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">첨부파일</th>
+                                                <td id="FILE_PATH_NAME" style="padding: 3px 16px; border-right: none;">
+                                                    <div class="ui renderer-wrp">
+                                                        <!--ECM 업로드기능으로 교체-->
+                                                        <input type="text" name="upload" class="ui input pw-100" disabled />
+                                                        <label class="input-file-button" for="input-file">파일찾기</label>
+                                                        <input type="file" id="input-file" style="display: none" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">팝업허용</th>
+                                                <td id="POPUP_FLAG" style="border-right:none;">
+                                                    <!--disabled입력시 체크불가-->
+                                                    <input type="checkbox" name="ch1" id="change0" checked />
+                                                    <label for="change0"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">메시지</th>
+                                                <td id="SSC_NOTICE_PLT_CONT" style="padding: 3px 16px; border-right:none;">
+                                                    <textarea draggable="false" style="resize: none; min-height: 150px; height: 225px; box-shadow: inset 2px 4px 10px -4px rgb(196 198 220 / 78%);"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+            var fileTarget = $("#input-file");
+            fileTarget.on("change", function () {
+                // 값이 변경되면
+                var cur = $("input[type='file']").val();
+                $("input[name='upload']").val(cur);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+        <!--jquery import-->
+        <script src="../../../js/vendor/jquery/jquery.min.js"></script>
+
+        <script src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <!--datepicker import-->
+        <script src="../../../js/vendor/util/moment.js"></script>
+        <script src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <script src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+
+        <!-- jQuery Modal -->
+        <script src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script src="../../../js/components/modal/modal.js"></script>
+        <link rel="stylesheet" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+
+        <!--font awesome-->
+        <script src="../../../js/vendor/fontawesome/all.js"></script>
+
+        <!--style-->
+        <link rel="stylesheet" href="../../../css/default.css" />
+
+        <link rel="stylesheet" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" href="../../../js/vendor/datepicker/datepicker.css" />
+        <link rel="stylesheet" href="../../../css/laylab.css" />
+
+        <title>상담실 상세조회</title>
+        <style>
+        .table-row .table tr {height: 43px;}
+        .table-row .table th, .table-row .table td {height: 43px;}
+        [type='radio']:checked + label, [type='radio']:not(:checked) + label
+        {color: #333333 !important;}
+        /* Radio 버튼 이미지 선명도 향상 */
+		    [type='radio']:checked + label:after,
+		    [type='radio']:not(:checked) + label:after {
+			    top: 10px;
+			    left: 7px;
+			    width: 8px;
+			    height: 8px;
+		    }
+		    [type='radio']:checked + label:before,
+		    [type='radio']:not(:checked) + label:before {
+			    border: 2px solid #cccccc;
+		    }
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                            <div class="flex">
+                                <div class="ly-contents-head">
+                                    <h1 class="contents-title big_title">상담실 상세조회</h1>
+                                </div>
+                                <div class="ly-contents-head-rt">
+                                    <div class="control">
+                                        <div class="control-column item-right">
+                                          <button class="ui button search mgr10" size="small">답장</button>
+                                          <button class="ui button search mgr10" size="small">수정</button>
+                                          <button class="ui button search" size="small">삭제</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contents-wrapper">
+                                <div class="table-row">
+                                    <table id="TB_S70_SUGC020" class="ui table">
+                                        <colgroup>
+                                            <col style="width: 200px" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th style="border-left: none;">제목</th>
+                                                <td id="BBS_WRITING_TITLE"  style="border-right: none;">제안평가 기간이 너무 길어요?</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">E-MAIL</th>
+                                                <td id="EMAIL_ADDRESS" style="border-right: none;">123456@posco.co.kr</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">작성자</th>
+                                                <td id="BBS_REG_NAME" style="border-right: none;">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">첨부파일</th>
+                                                <td id="FILE_PATH_NAME" style="border-right: none;"></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="border-left: none;">팝업허용</th>
+                                                <td id="POPUP_FLAG" style="border-right: none;">비허용</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th style="border-left: none;">메시지</th>
+                                                <td id="SSC_NOTICE_PLT_CONT" style="border-right: none;">
+                                                  아래 제안건(2건)의 평가가 어떻게 진행되고 있는지 궁금합니다.
+                                                  <br>○제안번호: 1511BS64665 <br>-제안명 : 폐 자재중 고가금속 선별후 제강 부원료 재활용으로 수익성 창출
+                                                  <br>-제안일자: '15.11.11 <br>○제안번호: 1511BS64637 <br>-제안명 : 폐 자재에서 고가금속 선별후 별도 매각으로 수익성 향상<br>-제안일자: '15.11.11
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script></script>
+    </body>
+</html>

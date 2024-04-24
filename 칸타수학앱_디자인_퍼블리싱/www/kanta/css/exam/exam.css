@@ -1,0 +1,34 @@
+/* .pb_img_div{
+  position: fixed;
+  width: 100%;
+  height: 79%;
+  margin-top: 10rem;
+} */
+
+/* 희영수정 */
+.pb_img_div {
+    position: fixed;
+    width: 100%;
+    /* height: 79%; */
+    transform: translateY(-50%);
+    top: 50%;
+}
+
+.pb_img_div:after {
+    display: inline-block;
+    height: 100%;
+    content: "";
+    vertical-align: middle;
+}
+
+
+.pb_img{
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+
+
+.question-view-mom{
+  display:none;
+}

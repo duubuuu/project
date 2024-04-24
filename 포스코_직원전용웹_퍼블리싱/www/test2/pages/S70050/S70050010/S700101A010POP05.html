@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--jquery import-->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+
+
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+          <!--jqGrid import-->
+          <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+          <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+          <!--datepicker import-->
+          <script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+          <!-- jQuery Modal -->
+          <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+          <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+          <!--font awesome-->
+          <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+       <!--DEXT5 -->
+          <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+          <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+         <script type="text/javascript" src="../../../js/common_util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+         <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+         <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+         <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+         <script type="text/javascript" src="../../../js/common.js"></script>
+        <title>비재무 배점표 품질</title>
+        <style>
+        .ui-widget.ui-widget-content {
+  border: none;
+  border-left: none;
+  border-right:none;
+}
+/* border-right-none 처리 */
+        .none_border{border-right : none !important;}
+
+          .ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top: 0;     height: auto;}
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td select{height: auto}
+          .renderer-wrp .input + .button{box-shadow: revert}
+          .button.icon{border : none; background-color:transparent;}
+          .control{margin: 0 auto; width: 110px;}
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td{line-height: inherit;}
+          .control-column{margin: 0 auto; float: revert !important;}
+
+          .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{background-color: #d9deec;}
+          .button.search{background-color: #91a1c2;}
+          .material-icons{color: #585858;}
+
+          /* 폰트크기변경 */
+          .button.search[size='small'],
+          .search-box > .rows .column label,
+          .select2 select,
+          .search-box > .rows .column .input,
+          .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th,
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td
+          {font-size: 17px}
+
+
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <!-- <div class="ly-contents-boxed">
+                            <div class="flex">
+                                <div class="ly-contents-head">
+                                    <h1 class="contents-title">비재무 배점표 품질</h1>
+                                </div>
+                            </div>
+                            <div class="contents-wrapper" id="accordionView1"> -->
+                                <!-- 창의성 점수표 -->
+                                <!-- <div class="table-row" id="S700201A010_jqGrid_container1">
+                                    <table id="S700201A010_jqGrid_view1" style="width: 100%"></table>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="ly-contents-boxed">
+                            <!-- <div class="flex">
+                                <div class="ly-contents-head">
+                                    <h1 class="contents-title">품질문제 예방수준</h1>
+                                </div>
+                            </div> -->
+                            <div class="contents-wrapper" id="accordionView2">
+                                <!-- 노력도 점수표 -->
+                                <div class="table-row" id="S700201A010_jqGrid_container2">
+                                    <table id="S700201A010_jqGrid_view2" style="width: 100%"></table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+            var chkcell={cellId:undefined, chkval:undefined}; //cell rowspan 중복 체크
+
+            var fileTarget = $("#input-file");
+            fileTarget.on("change", function () {
+                // 값이 변경되면
+                var cur = $("input[type='file']").val();
+                $("input[name='upload']").val(cur);
+            });
+
+            // <script src="../../../js/common.js"></script>
+            <script src="../../../js/components/panel/tab.js"></script>
+            <script src="../../../js/components/renderer/render.js"></script>
+            <script src="../../../js/components/pagenate/pager.js"></script>
+            <script>
+            // console.log('aa');
+                $(function () {
+                    var $CREATION_START_DATE = $('input[id="CREATION_START_DATE"]');
+                    var $CREATION_END_DATE = $('input[id="CREATION_END_DATE"]');
+                    var $CREATION_ALL_DATE = $('input[id="CREATION_ALL_DATE"]');
+
+                    $CREATION_START_DATE.daterangepicker(
+                        {
+                            // showDropdowns: true,
+                            opens: "right",
+                            locale: { format: "YYYY-MM" },
+                            singleDatePicker: true,
+                            viewMode: "months",
+                            minViewMode: "months"
+                        },
+                        function (start, end, label) {
+                            console.log(start, end, label);
+                        }
+                    );
+
+                    $CREATION_END_DATE.daterangepicker(
+                        {
+                          viewMode: "months",
+                          minViewMode: "months",
+                            opens: "right",
+                            // showDropdowns: true,
+                            locale: { format: "YYYY-MM" },
+                            singleDatePicker: true,
+                        },
+                        function (start, end, label) {
+                            console.log(start, end, label);
+                        }
+                    );
+
+                    $CREATION_ALL_DATE.daterangepicker(
+                        {
+                          viewMode: "months",
+                          minViewMode: "months",
+                            opens: "left",
+                            // showDropdowns: true,
+                            locale: { format: "YYYY-MM" },
+                            autoUpdateInput: false, //default value 제거
+                        },
+                        function (start, end, label) {
+                            console.log(start, end, label);
+                        }
+                    );
+
+                    $('input[id="CREATION_ALL_DATE"]').on("apply.daterangepicker", function (ev, picker) {
+                        $CREATION_START_DATE.val(picker.startDate.format("YYYY-MM"));
+                        $CREATION_END_DATE.val(picker.endDate.format("YYYY-MM"));
+                    });
+
+                    $('input[id="CREATION_ALL_DATE"]').on(
+                        //취소시 리셋
+                        "cancel.daterangepicker",
+                        function (ev, picker) {
+                            if ($(this).val()) {
+                                $(this).val();
+                            } else {
+                                $(this).val("");
+                            }
+                        }
+                    );
+                });
+                var linkText = ["작업표준", "변경관리", "위험성평가"];
+                var arr = ["#none", "#none", "#none"];
+                var arr2 = ["필요", "불필요", "불필요사유"];
+
+                //sample
+                var setting =
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[0] +
+                    "'>" +
+                    linkText[0] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+                    "<label for='chk1'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+                    "<label for='chk2'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='001'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[1] +
+                    "'>" +
+                    linkText[1] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+                    "<label for='chk3'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+                    "<label for='chk4'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='003'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[2] +
+                    "'>" +
+                    linkText[2] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+                    "<label for='chk5'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+                    "<label for='chk6'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='005'></input>" +
+                    "</div>";
+
+                var setting2 =
+                    "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+                //비재무 배점표 품질 디스플레이
+                $("#S700201A010_jqGrid_view1").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                        {
+                            label: "구분",
+                            name: "col1",
+                            width: `100`,
+                            align: "center",
+                            sortable: false,
+                            cellattr: arrtSetting,
+                        },
+                        {
+                            label: "점수",
+                            name: "col2",
+                            width: 50,
+                            align: "center",
+                            sortable: false,
+                            cellattr: arrtSetting,
+                        },
+                        {
+                            label: "항목",
+                            name: "col3",
+                            index: "col3",
+                            width: 50,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "배점",
+                            name: "col4",
+                            width: 25,
+                            align: "center",
+                            sortable: false,
+                            cellattr: cellMerge,
+                        },
+                        {
+                            label: "배점",
+                            name: "col5",
+                            width: 25,
+                            align: "center",
+                            sortable: false,
+
+                        },
+                        {
+                            label: "기준 내용",
+                            name: "col6",
+                            width: 300,
+                            align: "left",
+                            sortable: false,
+                        }
+                    ],
+
+                    data: [
+                        {
+                            col1: "아이디어수준/독창성",
+                            col2: "10점",
+                            col3: "S",
+                            col4: "10",
+                            col5: "9",
+                            col6: "획기적인 업무의 변화를 통한 전사(양제철소,연구원)  최초의 Idea 수준",
+                            attr: {col1: {rowspan: "5"},    col2: {rowspan: "5"}} ,
+                          },
+                        {
+                            col1: "아이디어수준/독창성",
+                            col2: "10점",
+                            col3: "A",
+                            col4: "8",
+                            col5: "7",
+                            col6: "업무의 변화를 통한 제철소 내 최초의 Idea 수준",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}}
+                         },
+                        {
+                            col1: "아이디어수준/독창성",
+                            col2: "10점",
+                            col3: "B",
+                            col4: "6",
+                            col5: "5",
+                            col6: "기존 방법에 아이디어를 추가하여 성과를 창출한 수준",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}}
+                          },
+                        {
+                            col1: "아이디어수준/독창성",
+                            col2: "10점",
+                            col3: "C",
+                            col4: "4",
+                            col5: "3",
+                            col6: "업무, 프로세스 개선 폭이 크지 않아 업무의 변화 정도가 작음",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}}
+                          },
+                        {
+                            col1: "아이디어수준/독창성",
+                            col2: "10점",
+                            col3: "D",
+                            col4: "2",
+                            col5: "1",
+                            col6: "기존 업무와 뚜렷한 차이점이 없음",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}}
+                          },
+                        {
+                            col1: "기술수준",
+                            col2: "10점",
+                            col3: "5",
+                            col4: "10",
+                            col5: "9",
+                            col6: "전사(양제철소,연구원) 최고 기술 보유가 가능한 기술전문가 기술 개선 ",
+                            attr: {col1: {rowspan: "5"},    col2: {rowspan: "5"}}
+                          },
+                        {
+                            col1: "기술수준",
+                            col2: "10점",
+                            col3: "4",
+                            col4: "8",
+                            col5: "7",
+                            col6: "사내(제철소 ,기술연구원) 우수직무기술 보유가 가능한 기술 개선",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                        {
+                            col1: "기술수준",
+                            col2: "10점",
+                            col3: "3",
+                            col4: "6",
+                            col5: "5",
+                            col6: "주임/파트장 조직 내 순환근무 및 돌발조치 가능한 기술개선",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}}
+                          },
+                        {
+                            col1: "기술수준",
+                            col2: "10점",
+                            col3: "2",
+                            col4: "4",
+                            col5: "3",
+                            col6: "주임/파트장 조직 내 타업무 지원 가능한 기술개선",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}}
+                          },
+                        {
+                            col1: "기술수준",
+                            col2: "10점",
+                            col3: "1",
+                            col4: "2",
+                            col5: "1",
+                            col6: "선배사원 조언을 통해 일상업무 수행할 수 있는 기술개선 ",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}}
+                          },
+                    ],
+
+                    viewrecords: true,
+                    height: "auto",
+                    autowidth: false,
+                    shrinkToFit: false,
+                    rowNum:100,
+                    scrollOffset:"auto",
+                    loadComplete: function () {
+                        var bg = { "background-color": "#dbebfb" };
+                        var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+                        var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+
+
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 1, "col1", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 2, "col2", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 3, "col3", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 4, "col4", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 5, "col5", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 6, "col6", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 7, "col7", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 8, "col8", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 9, "col9", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 10, "col10", "", bg);
+
+                        // var grid = this;
+                        //
+                        // $('td[rowspan="1"]', grid).each(function () {
+                        //   console.log(this.id);
+                        //
+                        //   var spans = $('td[rowspanid="' + this.id + '"]', grid).length + 1;
+                        //
+                        //   if (spans > 1) {
+                        //
+                        //     $(this).attr('rowspan', spans);
+                        //
+                        //   }
+                        //
+                        // });
+                        //
+                        // var prevCellVal = { cellId: undefined, value: undefined };
+                        //
+                        // var form = function(rowId, val, rawObject, cm, rdata) {
+                        //
+                        // var result;
+                        //
+                        // if (prevCellVal.value == val) {
+                        //
+                        // result = ' style="display: none" rowspanid="' + prevCellVal.cellId + '"';
+                        //
+                        // } else {
+                        //
+                        // var cellId = this.id + '_row_' + rowId + '_' + cm.name;
+                        //
+                        // result = ' rowspan="1" id="' + cellId + '"';
+                        //
+                        // prevCellVal = { cellId: cellId, value: val };
+                        //
+                        // }
+                        //
+                        // return result;
+                        //
+                        // };
+                        // $('#S700201A010_jqGrid_view1').jqGrid('setGridWidth', '1000');
+                        // $("#S700201A010_jqGrid_view1").setGridWidth(500,false);
+
+                        // $("#S700201A010_jqGrid_view1").jqGrid('setGroupHeaders',{
+                        //   useColSpanStyle :true,
+                        //   groupHeaders : [
+                        //     {startColumnName : 'col3',numberOfColums : 9, titleText: '성과 등급별 건수'},
+                        //   ]
+                        // });
+                        //
+                        // $("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders",{
+                        //   useColSpanStyle :true,
+                        //   groupHeaders : [
+                        //     {startColumnName : 'col4,numberOfColumns : 2 , titleText: '배점'},
+                        //     {startColumnName : 'col12',numberOfColumns : 3 , titleText : '성과'},
+                        //     {startColumnName : 'col19',numberOfColumns : 2 , titleText : '인원'},
+                        //     {startColumnName : 'col22',numberOfColumns : 2 , titleText : '우수제안'},
+                        //     {startColumnName : 'col24',numberOfColumns : 2 , titleText : '제안성과'},
+                        //   ]
+                        // });
+                        var newWidth = $("#S700201A010_jqGrid_view1_col4").width() + $("#S700201A010_jqGrid_view1_col5").width();
+                        jQuery("#S700201A010_jqGrid_view1").jqGrid("setLabel", "col4", "배점", "", {
+                              style: "width: " + newWidth + "px;",
+                              colspan: "2"
+                          });
+                        jQuery("#S700201A010_jqGrid_view1").jqGrid("setLabel", "col5", "기준내용", "", {style: "display: none"});
+
+                        $("#S700201A010_jqGrid_view1").setGroupHeaders({
+                          useColSpanStyle : true,
+                          groupHeaders : [
+                            // { numberOfColumns : 2, titleText : "배점", startColumnName : "col4" },
+                          ]
+                        });
+                    },
+                });
+
+
+
+
+                //품질예방문제 예방수준 디스플레이
+                $("#S700201A010_jqGrid_view2").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                        {
+                            label: "품질문제 예방수준",
+                            name: "col1",
+                            width: `600`,
+                            align: "left",
+                            sortable: false,
+                            cellattr : arrtSetting,
+                        },
+                        {
+                            label: "가산점수",
+                            name: "col2",
+                            width: 50,
+                            align: "center",
+                            sortable: false,
+                            cellattr: arrtSetting,
+                        },
+                        // {
+                        //     label: "항목",
+                        //     name: "col3",
+                        //     index: "col3",
+                        //     width: 50,
+                        //     align: "center",
+                        //     sortable: false,
+                        // },
+                        // {
+                        //     label: "배점",
+                        //     name: "col4",
+                        //     width: 25,
+                        //     align: "center",
+                        //     sortable: false,
+                        //     cellattr: cellMerge,
+                        // },
+                        // {
+                        //     label: "배점",
+                        //     name: "col5",
+                        //     width: 25,
+                        //     align: "center",
+                        //     sortable: false,
+                        //
+                        // },
+                        // {
+                        //     label: "기준 내용",
+                        //     name: "col6",
+                        //     width: 300,
+                        //     align: "left",
+                        //     sortable: false,
+                        // }
+                    ],
+
+                    data: [
+                        {
+                            col1: "참여도",
+                            col2: "10점",
+                            col3: "S",
+                            col4: "10",
+                            col5: "9",
+                            col6: "Team work 활동으로 적절하고 효과적으로 문제점을 완벽하게 해결한 개선활동",
+                            attr: {col1: {rowspan: "5"},    col2: {rowspan: "5"}} ,
+                          },
+                        {
+                            col1: "참여도",
+                            col2: "10점",
+                            col3: "A",
+                            col4: "8",
+                            col5: "7",
+                            col6: "Team work 활동으로 적절하고 효과적인 해결방법으로 문제재발을 최소화 시킨 개선활동",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                         },
+                        {
+                            col1: "참여도",
+                            col2: "10점",
+                            col3: "B",
+                            col4: "6",
+                            col5: "5",
+                            col6: "적절한 해결방안으로 외부(Benefit Sharing과제,외주사,공사성 등)의 도움에 의한 문제점을최소화시킨 개선",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                        {
+                            col1: "참여도",
+                            col2: "10점",
+                            col3: "C",
+                            col4: "4",
+                            col5: "3",
+                            col6: "초보적 수준의 미흡한 해결방안으로 외부(Benefit Sharing과제,외주사,공사성 등)의 도움에 의한 개선",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                        {
+                            col1: "참여도",
+                            col2: "10점",
+                            col3: "D",
+                            col4: "2",
+                            col5: "1",
+                            col6: "외부(Benefit Sharing과제,외주사,공사성 등)의 도움에 전적으로 의존한 개선활동",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                        {
+                            col1: "노력등급",
+                            col2: "5점",
+                            col3: "5",
+                            col4: "5",
+                            // col5: "5",
+                            col5: "<div style='text-align:left'>리더수준의 개선과제 2개</div>",
+                            attr: {col1: {rowspan: "5"},    col2: {rowspan: "5"}},
+                          },
+                        {
+                            col1: "노력등급",
+                            col2: "5점",
+                            col3: "4",
+                            col4: "4",
+                            // col5: "4",
+                            col5: "<div style='text-align:left'>리더수준의 개선과제 1개</div>",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                        {
+                            col1: "노력등급",
+                            col2: "5점",
+                            col3: "3",
+                            col4: "3",
+                            // col5: "3",
+                            col5: "<div style='text-align:left'>팀원수준의 개선과제 1개</div>",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                        {
+                            col1: "노력등급",
+                            col2: "5점",
+                            col3: "2",
+                            col4: "2",
+                            // col5: "2",
+                            col5: "<div style='text-align:left'>즉실천활동 2개</div>",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                        {
+                            col1: "노력등급",
+                            col2: "5점",
+                            col3: "1",
+                            col4: "1",
+                            // col5: "1",
+                            col5: "<div style='text-align:left'>즉실천활동 1개</div>",
+                            attr: {col1: {display: "none"}, col2: {display: "none"}} ,
+                          },
+                    ],
+
+                    viewrecords: true,
+                    height: "auto",
+                    autowidth: false,
+                    shrinkToFit: false,
+                    rowNum:100,
+                    scrollOffset:"auto",
+                    loadComplete: function () {
+                        var bg = { "background-color": "#dbebfb" };
+                        var ids = $("#S700201A010_jqGrid_view2").jqGrid("getDataIDs");
+                        var gridData = $("#S700201A010_jqGrid_view2").jqGrid("getRowData");
+
+
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 1, "col1", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 2, "col2", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 3, "col3", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 4, "col4", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 5, "col5", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 6, "col6", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col7", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 8, "col8", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 9, "col9", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 10, "col10", "", bg);
+
+
+                        var grid = this;
+
+                       $('td[name="cellRowspan"]', grid).each(function() {
+                           var spans = $('td[rowspanid="'+this.id+'"]',grid).length+1;
+                           if(spans>1){
+                            $(this).attr('rowspan',spans);
+                           }
+                       });
+
+
+                        // $('#S700201A010_jqGrid_view1').jqGrid('setGridWidth', '1000');
+                        // $("#S700201A010_jqGrid_view1").setGridWidth(500,false);
+
+                        // $("#S700201A010_jqGrid_view1").jqGrid('setGroupHeaders',{
+                        //   useColSpanStyle :true,
+                        //   groupHeaders : [
+                        //     {startColumnName : 'col3',numberOfColums : 9, titleText: '성과 등급별 건수'},
+                        //   ]
+                        // });
+                        //
+                        // $("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders",{
+                        //   useColSpanStyle :true,
+                        //   groupHeaders : [
+                        //     {startColumnName : 'col4,numberOfColumns : 2 , titleText: '배점'},
+                        //     {startColumnName : 'col12',numberOfColumns : 3 , titleText : '성과'},
+                        //     {startColumnName : 'col19',numberOfColumns : 2 , titleText : '인원'},
+                        //     {startColumnName : 'col22',numberOfColumns : 2 , titleText : '우수제안'},
+                        //     {startColumnName : 'col24',numberOfColumns : 2 , titleText : '제안성과'},
+                        //   ]
+                        // });
+                        var newWidth = $("#S700201A010_jqGrid_view2_col4").width() + $("#S700201A010_jqGrid_view2_col5").width();
+                        jQuery("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col4", "배점", "", {
+                              style: "width: " + newWidth + "px;",
+                              colspan: "2"
+                          });
+                        jQuery("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col5", "기준내용", "", {style: "display: none"});
+
+
+                        $("#S700201A010_jqGrid_view2").setGroupHeaders({
+                          useColSpanStyle : true,
+                          groupHeaders : [
+                            // { numberOfColumns : 2, titleText : "배점", startColumnName : "col4" },
+                          ]
+                        });
+                    },
+                });
+
+                function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+
+                    var data = setting;
+
+                    if (
+                        rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+                    ) {
+                        return "colspan=2;";
+                    }
+
+                    if (rowObject.col2 == data) {
+                        return "colspan=6;";
+                    }
+
+                    if (rowObject.col2 == setting2) {
+                        return "colspan=6;";
+                    }
+
+
+                    if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>"){
+                      return "colspan=6;"
+                    }
+                    if(rowObject.col1 == '노력등급'){
+                      return "colspan=2;";
+                    }
+                }
+
+                function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+                    if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+                        return "colspan=3;";
+                    }
+                }
+
+                function jsFormatterCell(rowid, val, rowObject, cm, rdata){
+                    var result = "";
+
+                    if(chkcell.chkval != val){ //check 값이랑 비교값이 다른 경우
+                        var cellId = this.id + '_row_'+rowid+'-'+cm.name;
+                        result = ' rowspan="5" id ="'+cellId+'" + name="cellRowspan"';
+                        // alert(result);
+                        chkcell = {cellId:cellId, chkval:val};
+                    }else{
+                        result = 'style="display:none"  rowspanid="'+chkcell.cellId+'"'; //같을 경우 display none 처리
+                        // alert(result);
+                    }
+                    return result;
+                  }
+                 function arrtSetting(rowId, val, rawObject, cm) {
+                      // console.log(rawObject);
+                      // return 0;
+                      var attr = rawObject.attr[cm.name], result;
+                      // console.log(attr);
+                      if (attr.rowspan) {
+                          result = ' rowspan=' + '"' + attr.rowspan + '"';
+                      } else if (attr.display) {
+                          result = ' style="display:' + attr.display + '"';
+                      }
+                      return result;
+                  };
+
+
+                $(window)
+                    .bind("resize", function () {
+                        $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+                        $("#S700201A010_jqGrid_view2").setGridWidth($("#S700201A010_jqGrid_container2").width(), true);
+                    })
+                    .trigger("resize");
+
+
+            </script>
+        </script>
+
+    </body>
+</html>

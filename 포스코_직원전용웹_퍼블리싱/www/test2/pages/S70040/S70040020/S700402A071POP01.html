@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+        <script src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <!--datepicker import-->
+        <script src="../../../js/vendor/util/moment.js"></script>
+        <script src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <!-- jQuery Modal -->
+        <script src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script src="../../../js/components/modal/modal.js"></script>
+        <link rel="stylesheet" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+        <!--font awesome-->
+        <script src="../../../js/vendor/fontawesome/all.js"></script>
+        <!--style-->
+        <link rel="stylesheet" href="../../../css/default.css" />
+        <link rel="stylesheet" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" href="../../../css/laylab.css" />
+        <title>제안Helper 등록</title>
+        <style>
+        .table-row .table tbody th{background-color: #d9deec;}
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                            <div class="flex">
+                                <div class="ly-contents-head">
+                                    <!-- <h1 class="contents-title">글쓰기</h1> -->
+                                </div>
+                                <div class="ly-contents-head-rt">
+                                    <div class="control">
+                                        <div class="control-column item-right">
+                                            <button class="ui button search mgr4 mgl10" size="small" style="background-color: #91a1c2; height: 36px; font-size: 17px;">저장</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contents-wrapper">
+                                <!--상단 jqGrid-->
+                                <div class="table-row">
+                                    <table id="TB_S70_SUGC020" class="ui table">
+                                        <colgroup>
+                                            <col style="width: 200px" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th style="border-left: none; padding: 3px 16px; width: 15%;">제목</th>
+                                                <td id="BBS_WRITING_TITLE" style="padding: 3px 16px; width: 55%;">
+                                                    <div class="ui renderer-wrp">
+                                                        <input type="text" class="ui input pw-100" maxlength="450" />
+                                                    </div>
+                                                </td>
+                                                <th style="padding: 3px 16px; width: 15%;">공유조직</th>
+                                                <td style="border-right: none; padding: 3px 16px; width: 175px; width: 20%;">
+                                                  <div class="ui select2 pw-100">
+                                                    <select id="PROPOSE_CUR_EVALU_STEP_TP" style="height: 36px; color:#333333; font-size: 17px;">
+                                                      <option disabled hidden checked>전사</option>
+                                                      <option value="Y">전사</option>
+                                                      <option value="N">부문</option>
+                                                      <option value="B">부서</option>
+                                                      <option value="">공장</option>
+                                                    </select>
+                                                  </div>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                                <!-- <th style="border-left: none;">내용</th> -->
+                                                <td colspan="4" id="" style="border-right: none; border-left: none;">
+                                                    <textarea draggable="false" style="resize: none; min-height: 150px;"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script>
+            var fileTarget = $("#input-file");
+            fileTarget.on("change", function () {
+                // 값이 변경되면
+                var cur = $("input[type='file']").val();
+                $("input[name='upload']").val(cur);
+            });
+        </script>
+    </body>
+</html>

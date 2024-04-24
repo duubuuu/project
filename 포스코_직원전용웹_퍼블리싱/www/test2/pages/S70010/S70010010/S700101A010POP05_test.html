@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--jquery import-->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+
+
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+          <!--jqGrid import-->
+          <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+          <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+          <!--datepicker import-->
+          <script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+          <!-- jQuery Modal -->
+          <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+          <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+          <!--font awesome-->
+          <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+       <!--DEXT5 -->
+          <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+          <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+         <script type="text/javascript" src="../../../js/common_util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+         <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+         <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+         <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+         <script type="text/javascript" src="../../../js/common.js"></script>
+        <title>비재무 배점표 품질 : 되야할텐데</title>
+        <style>
+          .ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top: 0;     height: auto;}
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td select{height: auto}
+          .renderer-wrp .input + .button{box-shadow: revert}
+          .button.icon{border : none; background-color:transparent;}
+          .control{margin: 0 auto; width: 110px;}
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td{line-height: inherit;}
+          .control-column{margin: 0 auto; float: revert !important;}
+
+          .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{background-color: #d9deec;}
+          .button.search{background-color: #91a1c2;}
+          .material-icons{color: #585858;}
+
+          /* 폰트크기변경 */
+          .button.search[size='small'],
+          .search-box > .rows .column label,
+          .select2 select,
+          .search-box > .rows .column .input,
+          .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th,
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td
+          {font-size: 17px}
+
+
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+
+
+                        <div class="ly-contents-boxed">
+                            <!-- <div class="flex">
+                                <div class="ly-contents-head">
+                                    <h1 class="contents-title">비재무 배점표 품질 표</h1>
+                                </div>
+                            </div> -->
+                            <div class="contents-wrapper" id="accordionView1">
+                                <!-- 비재무 배점표 품질 -->
+                                <div class="table-row" id="S700201A010_jqGrid_container1">
+                                    <table id="S700201A010_jqGrid_view1" style="width: 100%"></table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ly-contents-boxed">
+                            <!-- <div class="flex">
+                                <div class="ly-contents-head">
+                                    <h1 class="contents-title">품질문제 예방수준 표</h1>
+                                </div>
+                            </div> -->
+                            <div class="contents-wrapper" id="accordionView2">
+                                <!-- 품질문제 예방수준 표  -->
+                                <div class="table-row" id="S700201A010_jqGrid_container2">
+                                    <table id="S700201A010_jqGrid_view2" style="width: 100%"></table>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+            var chkcell={cellId:undefined, chkval:undefined}; //cell rowspan 중복 체크
+
+            var fileTarget = $("#input-file");
+            fileTarget.on("change", function () {
+                // 값이 변경되면
+                var cur = $("input[type='file']").val();
+                $("input[name='upload']").val(cur);
+            });
+
+            // <script src="../../../js/common.js"></script>
+            <script src="../../../js/components/panel/tab.js"></script>
+            <script src="../../../js/components/renderer/render.js"></script>
+            <script src="../../../js/components/pagenate/pager.js"></script>
+            <script>
+            // console.log('aa');
+                $(function () {
+                    var $CREATION_START_DATE = $('input[id="CREATION_START_DATE"]');
+                    var $CREATION_END_DATE = $('input[id="CREATION_END_DATE"]');
+                    var $CREATION_ALL_DATE = $('input[id="CREATION_ALL_DATE"]');
+
+                    $CREATION_START_DATE.daterangepicker(
+                        {
+                            // showDropdowns: true,
+                            opens: "right",
+                            locale: { format: "YYYY-MM" },
+                            singleDatePicker: true,
+                            viewMode: "months",
+                            minViewMode: "months"
+                        },
+                        function (start, end, label) {
+                            console.log(start, end, label);
+                        }
+                    );
+
+                    $CREATION_END_DATE.daterangepicker(
+                        {
+                          viewMode: "months",
+                          minViewMode: "months",
+                            opens: "right",
+                            // showDropdowns: true,
+                            locale: { format: "YYYY-MM" },
+                            singleDatePicker: true,
+                        },
+                        function (start, end, label) {
+                            console.log(start, end, label);
+                        }
+                    );
+
+                    $CREATION_ALL_DATE.daterangepicker(
+                        {
+                          viewMode: "months",
+                          minViewMode: "months",
+                            opens: "left",
+                            // showDropdowns: true,
+                            locale: { format: "YYYY-MM" },
+                            autoUpdateInput: false, //default value 제거
+                        },
+                        function (start, end, label) {
+                            console.log(start, end, label);
+                        }
+                    );
+
+                    $('input[id="CREATION_ALL_DATE"]').on("apply.daterangepicker", function (ev, picker) {
+                        $CREATION_START_DATE.val(picker.startDate.format("YYYY-MM"));
+                        $CREATION_END_DATE.val(picker.endDate.format("YYYY-MM"));
+                    });
+
+                    $('input[id="CREATION_ALL_DATE"]').on(
+                        //취소시 리셋
+                        "cancel.daterangepicker",
+                        function (ev, picker) {
+                            if ($(this).val()) {
+                                $(this).val();
+                            } else {
+                                $(this).val("");
+                            }
+                        }
+                    );
+                });
+                var linkText = ["작업표준", "변경관리", "위험성평가"];
+                var arr = ["#none", "#none", "#none"];
+                var arr2 = ["필요", "불필요", "불필요사유"];
+
+                //sample
+                var setting =
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[0] +
+                    "'>" +
+                    linkText[0] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+                    "<label for='chk1'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+                    "<label for='chk2'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='001'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[1] +
+                    "'>" +
+                    linkText[1] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+                    "<label for='chk3'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+                    "<label for='chk4'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='003'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[2] +
+                    "'>" +
+                    linkText[2] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+                    "<label for='chk5'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+                    "<label for='chk6'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='005'></input>" +
+                    "</div>";
+
+                var setting2 =
+                    "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+              //비재무 배점표 품질 디스플레이
+                $("#S700201A010_jqGrid_view1").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                    {
+                        label: "평가항목",
+                        name: "col1",
+                        width: `100`,
+                        align: "center",
+                        sortable: false,
+                        cellattr: arrtSetting,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col2",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                        cellattr: cellMerge,
+                        // cellattr: arrtSetting,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col3",
+                        index: "col3",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col4",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col5",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col6",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                        cellattr: cellMerge,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col7",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col8",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col9",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                        cellattr: cellMerge,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col10",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col11",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col12",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                        cellattr: cellMerge,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col13",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                        label: "배점기준",
+                        name: "col14",
+                        width: 100,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                          label: "배점기준",
+                          name: "col15",
+                          width: 100,
+                          align: "center",
+                          sortable: false,
+                      },
+                      {
+                          label: "배점기준",
+                          name: "col16",
+                          width: 100,
+                          align: "center",
+                          sortable: false,
+                      },
+                      {
+                          label: "배점기준",
+                          name: "col17",
+                          width: 100,
+                          align: "center",
+                          sortable: false,
+                      },
+                    ],
+
+                    data: [
+                        {
+                    col1: "비재무성과(40점)",
+                    col2: "개선향상율(%)",
+                    col3: "90~100",
+                    col4: "90~100",
+                    col5: "40",
+                    col6: "80~90",
+                    col7: "80~90",
+                    col8: "35",
+                    col9: "70~80",
+                    col10: "70~80",
+                    col11: "30",
+                    col12: "60~70",
+                    col13: "60~70",
+                    col14: "25",
+                    col15: "~60",
+                    col16: "20",
+                    col17: "",
+                    attr: {col1: {rowspan: "6"}, col2: {rowspan: "5"}} ,
+                    },
+                    {
+                    col1: "비재무성과(40점)",
+                    col2: "기대효과(원)",
+                    col3: "2.5억 이상 : 40",
+                    col4: "2.5억 이상 : 40",
+                    col5: "2.5억 이상 : 40",
+                    col6: "1.5억 이상 : 35",
+                    col7: "1.5억 이상 : 35",
+                    col8: "1.5억 이상 : 35",
+                    col9: "5천 이상 : 30",
+                    col10: "5천 이상 : 30",
+                    col11: "5천 이상 : 30",
+                    col12: "8백 이상 : 25",
+                    col13: "8백 이상 : 25",
+                    col14: "8백 이상 : 25",
+                    col15: "4백 이하 : 20",
+                    col16: "4백 이하 : 20",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {rowspan: "5"}} ,
+                    },
+                    {
+                    col1: "비재무성과(40점)",
+                    col2: "기대효과(원)",
+                    col3: "2.3억 이상 : 39",
+                    col4: "2.3억 이상 : 39",
+                    col5: "2.3억 이상 : 39",
+                    col6: "1.3억 이상 : 34",
+                    col7: "1.3억 이상 : 34",
+                    col8: "1.3억 이상 : 34",
+                    col9: "4천 이상 : 29",
+                    col10: "4천 이상 : 29",
+                    col11: "4천 이상 : 29",
+                    col12: "7백 이상 : 24",
+                    col13: "7백 이상 : 24",
+                    col14: "7백 이상 : 24",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    {
+                    col1: "비재무성과(40점)",
+                    col2: "기대효과(원)",
+                    col3: "2.1억 이상 : 38",
+                    col4: "2.1억 이상 : 38",
+                    col5: "2.1억 이상 : 38",
+                    col6: "1.1억 이상 : 33",
+                    col7: "1.1억 이상 : 33",
+                    col8: "1.1억 이상 : 33",
+                    col9: "3천 이상 : 28",
+                    col10: "3천 이상 : 28",
+                    col11: "3천 이상 : 28",
+                    col12: "6백 이상 : 23",
+                    col13: "6백 이상 : 23",
+                    col14: "6백 이상 : 23",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    {
+                    col1: "비재무성과(40점)",
+                    col2: "기대효과(원)",
+                    col3: "1.9억 이상 : 37",
+                    col4: "1.9억 이상 : 37",
+                    col5: "1.9억 이상 : 37",
+                    col6: "9억 이상 : 32",
+                    col7: "9억 이상 : 32",
+                    col8: "9억 이상 : 32",
+                    col9: "2천 이상 : 27",
+                    col10: "2천 이상 : 27",
+                    col11: "2천 이상 : 27",
+                    col12: "5백 이상 : 22",
+                    col13: "5백 이상 : 22",
+                    col14: "5백 이상 : 22",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    {
+                    col1: "비재무성과(40점)",
+                    col2: "기대효과(원)",
+                    col3: "1.7억 이상 : 36",
+                    col4: "1.7억 이상 : 36",
+                    col5: "1.7억 이상 : 36",
+                    col6: "7억 이상 : 31",
+                    col7: "7억 이상 : 31",
+                    col8: "7억 이상 : 31",
+                    col9: "1천 이상 : 26",
+                    col10: "1천 이상 : 26",
+                    col11: "1천 이상 : 26",
+                    col12: "4백 이상 : 21",
+                    col13: "4백 이상 : 21",
+                    col14: "4백 이상 : 21",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {rowspan: "5"}}
+                    },
+                    {
+                    col1: "창의성(20점)",
+                    col2: "아이디어독창성(10점)",
+                    col3: "S급",
+                    col4: "10",
+                    col5: "9",
+                    col6: "A급",
+                    col7: "8",
+                    col8: "7",
+                    col9: "B급",
+                    col10: "6",
+                    col11: "5",
+                    col12: "C급",
+                    col13: "4",
+                    col14: "3",
+                    col15: "D급",
+                    col16: "2",
+                    col17: "",
+                    attr: {col1: {rowspan: "2"}, col2: {rowspan: "5"}} ,
+                    },
+                    {
+                    ccol1: "창의성(20점)",
+                    col2: "기술수준(10점)",
+                    col3: "5",
+                    col4: "10",
+                    col5: "9",
+                    col6: "4",
+                    col7: "8",
+                    col8: "7",
+                    col9: "3",
+                    col10: "6",
+                    col11: "5",
+                    col12: "2",
+                    col13: "4",
+                    col14: "3",
+                    col15: "1",
+                    col16: "2",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    {
+                    col1: "노력성(15점)",
+                    col2: "참여도(10점)",
+                    col3: "S급",
+                    col4: "10",
+                    col5: "9",
+                    col6: "A급",
+                    col7: "8",
+                    col8: "7",
+                    col9: "B급",
+                    col10: "6",
+                    col11: "5",
+                    col12: "C급",
+                    col13: "4",
+                    col14: "3",
+                    col15: "D급",
+                    col16: "2",
+                    col17: "",
+                    attr: {col1: {rowspan: "2"}, col2: {rowspan: "5"}} ,
+                    },
+                    {
+                    col1: "노력성(15점)",
+                    col2: "노력등급(5점)",
+                    col3: "5",
+                    col4: "5",
+                    col5: "",
+                    col6: "4",
+                    col7: "4",
+                    col8: "",
+                    col9: "3",
+                    col10: "3",
+                    col11: "",
+                    col12: "2",
+                    col13: "2",
+                    col14: "",
+                    col15: "1",
+                    col16: "1",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    {
+                    col1: "전파성(5점)",
+                    col2: "전파기준(5점)",
+                    col3: "소내",
+                    col4: "5",
+                    col5: "",
+                    col6: "부, 그룹내",
+                    col7: "4",
+                    col8: "",
+                    col9: "공장내",
+                    col10: "3",
+                    col11: "",
+                    col12: "해당 파트내",
+                    col13: "2",
+                    col14: "",
+                    col15: "주임 단위",
+                    col16: "1",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    {
+                    col1: "품질개선(5점)",
+                    col2: "품질예방수준(5점)기준표",
+                    col3: "5",
+                    col4: "5",
+                    col5: "",
+                    col6: "4",
+                    col7: "4",
+                    col8: "",
+                    col9: "3",
+                    col10: "3",
+                    col11: "",
+                    col12: "2",
+                    col13: "2",
+                    col14: "",
+                    col15: "1",
+                    col16: "1",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    {
+                    col1: "합계",
+                    col2: "()점 ()등급",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    attr: {col1: {display: "none"}, col2: {display: "none"}}
+                    },
+                    ],
+
+                    viewrecords: true,
+                    height: "auto",
+                    autowidth: false,
+                    shrinkToFit: false,
+                    rowNum:100,
+                    scrollOffset:"auto",
+                    loadComplete: function () {
+                        var bg = { "background-color": "#dbebfb" };
+                        var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+                        var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+
+
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 1, "col1", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 2, "col2", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 3, "col3", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 4, "col4", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 5, "col5", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 6, "col6", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 7, "col7", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 8, "col8", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 9, "col9", "", bg);
+                        $("#S700201A010_jqGrid_view1").jqGrid("setCell", 10, "col10", "", bg);
+
+                        var newWidth = $("#S700201A010_jqGrid_view1_col4").width() + $("#S700201A010_jqGrid_view1_col5").width();
+                        jQuery("#S700201A010_jqGrid_view1").jqGrid("setLabel", "col2", "배점기준", "", {
+                              style: "width: " + newWidth + "px;",
+                              colspan: "16"
+                          });
+                        // jQuery("#S700201A010_jqGrid_view1").jqGrid("setLabel", "col5", "기준내용", "", {style: "display: none"});
+
+                        $("#S700201A010_jqGrid_view1").setGroupHeaders({
+                          useColSpanStyle : true,
+                          groupHeaders : [
+                            // { numberOfColumns : 2, titleText : "배점", startColumnName : "col4" },
+                          ]
+                        });
+                    },
+                });
+
+
+
+
+                //노력도 점수표 디스플레이
+                $("#S700201A010_jqGrid_view2").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                        {
+                            label: "품질문제 예방수준",
+                            name: "col1",
+                            width: `500`,
+                            align: "left",
+                            sortable: false,
+                            // cellattr : arrtSetting,
+                        },
+                        {
+                            label: "가산점수",
+                            name: "col2",
+                            width: 50,
+                            align: "left",
+                            sortable: false,
+                            // cellattr: arrtSetting,
+                        },
+                    ],
+
+                    data: [
+                        {
+                        col1: "작업기준 및 이상조치 기준 등이 수립되어 있지 않아서 발생할 품질 불량 또는<br>부, 공장차원의 클레임 개선대책이 아닌 개인의 제안으로 근원적인 예방",
+                        col2: "5"
+                        },
+                        {
+                        col1: "설비 및 장치 점검/관리 미흡에 의한 품질 불량을 효과적으로 예방",
+                        col2: "4"
+                        },
+
+                        {
+                        col1: "품질검사기준, 기술기준, 제조 및 시험기준 미 준수에 대해<br>4M(Material/Machine/Method/Man) 측면의 개선으로 불량을 예방",
+                        col2: "3"
+                        },
+
+                        {
+                        col1: "차공정 인수거부 또는 보류(인증오류, 시험오류)되는 불량을 예방",
+                        col2: "2"
+                        },
+
+                        {
+                        col1: "제품 재처리 및 시험/시료 재시험을 사전 방지",
+                        col2: "1"
+                        },
+                    ],
+
+                    viewrecords: true,
+                    height: "auto",
+                    autowidth: false,
+                    shrinkToFit: false,
+                    rowNum:100,
+                    scrollOffset:"auto",
+                    loadComplete: function () {
+                        var bg = { "background-color": "#dbebfb" };
+                        var ids = $("#S700201A010_jqGrid_view2").jqGrid("getDataIDs");
+                        var gridData = $("#S700201A010_jqGrid_view2").jqGrid("getRowData");
+
+
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 1, "col1", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 2, "col2", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 3, "col3", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 4, "col4", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 5, "col5", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 6, "col6", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col7", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 8, "col8", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 9, "col9", "", bg);
+                        $("#S700201A010_jqGrid_view2").jqGrid("setCell", 10, "col10", "", bg);
+
+
+                        var grid = this;
+
+                       $('td[name="cellRowspan"]', grid).each(function() {
+                           var spans = $('td[rowspanid="'+this.id+'"]',grid).length+1;
+                           if(spans>1){
+                            $(this).attr('rowspan',spans);
+                           }
+                       });
+
+                        var newWidth = $("#S700201A010_jqGrid_view2_col4").width() + $("#S700201A010_jqGrid_view2_col5").width();
+                        jQuery("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col4", "배점", "", {
+                              style: "width: " + newWidth + "px;",
+                              colspan: "2"
+                          });
+                        jQuery("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col5", "기준내용", "", {style: "display: none"});
+
+
+                        $("#S700201A010_jqGrid_view2").setGroupHeaders({
+                          useColSpanStyle : true,
+                          groupHeaders : [
+                            // { numberOfColumns : 2, titleText : "배점", startColumnName : "col4" },
+                          ]
+                        });
+                    },
+                });
+
+
+                function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+
+                    var data = setting;
+
+                    if (
+                        rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+                    ) {
+                        return "colspan=2;";
+                    }
+
+                    if (rowObject.col2 == data) {
+                        return "colspan=6;";
+                    }
+
+
+                    if (rowObject.col2 == setting2) {
+                        return "colspan=6;";
+                    }
+
+
+                    if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>"){
+                      return "colspan=6;"
+                    }
+                    if(rowObject.col1 == '노력등급'){
+                      return "colspan=2;";
+                    }
+                }
+
+                function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+                    if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+                        return "colspan=3;";
+                    }
+                }
+
+                function jsFormatterCell(rowid, val, rowObject, cm, rdata){
+                    var result = "";
+
+                    if(chkcell.chkval != val){ //check 값이랑 비교값이 다른 경우
+                        var cellId = this.id + '_row_'+rowid+'-'+cm.name;
+                        result = ' rowspan="5" id ="'+cellId+'" + name="cellRowspan"';
+                        // alert(result);
+                        chkcell = {cellId:cellId, chkval:val};
+                    }else{
+                        result = 'style="display:none"  rowspanid="'+chkcell.cellId+'"'; //같을 경우 display none 처리
+                        // alert(result);
+                    }
+                    return result;
+                  }
+                 function arrtSetting(rowId, val, rawObject, cm) {
+                      // console.log(rawObject);
+                      // return 0;
+                      var attr = rawObject.attr[cm.name], result;
+                      // console.log(attr);
+                      if (attr.rowspan) {
+                          result = ' rowspan=' + '"' + attr.rowspan + '"';
+                      } else if (attr.display) {
+                          result = ' style="display:' + attr.display + '"';
+                      }
+                      return result;
+                  };
+
+
+                $(window)
+                    .bind("resize", function () {
+                        $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+                        $("#S700201A010_jqGrid_view2").setGridWidth($("#S700201A010_jqGrid_container2").width(), true);
+                        $("#S700201A010_jqGrid_view3").setGridWidth($("#S700201A010_jqGrid_container3").width(), true);
+                    })
+                    .trigger("resize");
+
+
+            </script>
+        </script>
+
+    </body>
+</html>

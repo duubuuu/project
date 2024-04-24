@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--jquery import-->
+        <!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+
+        <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
+        <link rel="stylesheet" href="../../../css/laylab.css" />
+
+        <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+        <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+        <!--datepicker import-->
+        <script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+        <!-- jQuery Modal -->
+        <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+        <!--font awesome-->
+        <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+        <!--DEXT5 -->
+        <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+       <script type="text/javascript" src="../../../js/common_util.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+       <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+       <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+       <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+       <script type="text/javascript" src="../../../js/common.js"></script>
+
+        <title>항목단위 검색</title>
+        <style>
+        .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th .ui-jqgrid-sortable {
+          overflow: initial;
+          padding: 0;
+          margin-top: 0;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+          <!--ifram include header -->
+<article>
+    <header>
+        <div class="ly-user-header">
+            <h1 class="logo">
+                <a href="#none"><img src="../../../images/com/logo.png" alt="with posco 전자 제안관리 system" /></a>
+            </h1>
+            <nav class="ly-gnb">
+                <ul class="ft_center_top">
+                    <li>
+                        <a href="#none" alt="HOME" class="txt_grad" data-target="true">HOME</a>
+                    </li>
+                    <li>
+                        <a href="#none" alt="마이페이지" class="txt_grad" data-target="true">MyPage</a>
+                    </li>
+                    <li class="on">
+                        <a href="#none" alt="제안하기" class="txt_grad" data-target="true">제안작성</a>
+                        <ul>
+                            <li><a href="#none" alt="제안서등록" id="S700101A010">제안등록</a></li>
+                            <li><a href="#none" alt="제안서임시저장" id="S700101A020">제안 임시저장</a></li>
+                            <li><a href="#none" alt="제안서수정" id="S700101A030">제안 수정</a></li>
+                            <!-- <li><a href="#none" alt="제안서 양식 다운로드" id="S700101A030">제안 양식 다운로드</a></li> -->
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" alt="검색하기" class="txt_grad" data-target="true">검색하기</a>
+                    </li>
+                    <li>
+                        <a href="#none" alt="심사하기" class="txt_grad" data-target="true">심사하기</a>
+                    </li>
+                    <li>
+                        <a href="#none" alt="명예의 전당" class="txt_grad" data-target="true">명예의 전당</a>
+                    </li>
+                    <li>
+                        <a href="#none" alt="기준정보" class="txt_grad" data-target="true">기준정보</a>
+                    </li>
+                    <li>
+                        <a href="#none" alt="DashBoard" class="txt_grad" data-target="true">DashBoard</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="ly-user-timeset">
+                <p class="ft_right_top">안녕하세요 <span>홍길동</span> 님</p>
+                <span class="ic-member">
+                            <a href="#none">
+                              <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#ffffff" style="top: 3px; filter: drop-shadow(0px 0px 0px #ffffff);"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 9c2.7 0 5.8 1.29 6 2v1H6v-.99c.2-.72 3.3-2.01 6-2.01m0-11C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg>
+                            </a>
+                        </span>
+                <span class="ic-change">
+                            <a href="#none"><img src="../../../images/com/head-icon01.png" /></a>
+                        </span>
+                <span class="ic-helper">
+                            <a href="#none">
+                              <svg height="28px" viewBox="0 0 24 24" width="28px" fill="#ffffff" style="top: 0; filter: drop-shadow(0px 0px 0px #ffffff);"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+                            </a>
+                        </span>
+                <span class="ic-logout">
+                            <a href="#none">
+                              <svg height="28px" viewBox="0 0 24 24" width="28px" fill="#ffffff" style="top: 0; filter: drop-shadow(0px 0px 0px #ffffff);"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg>
+                            </a>
+                        </span>
+            </div>
+            <div class="nav-bar"></div>
+        </div>
+    </header>
+</article>
+            <section class="ly-box">
+                <h1>심사하기</h1>
+                <h3>이제 보여줄 때입니다.서제스트 팩토리에서 당신의 놀라운 상상력을 현실로 바꿔보세요!</h3>
+                <div class="box-toggle">
+                    <button class="ui button icon"><i class="fas fa-chevron-up"></i></button>
+                </div>
+            </section>
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-side">
+                    <ul>
+                        <li class="active">
+                            <a href="#child1" rel="child1" onclick="return false"><i class="s-icon icon3-1"></i>제안심사</a>
+                        </li>
+                        <li>
+                            <a href="#child2" rel="child2" onclick="return false"><i class="s-icon icon3-2"></i>부서(팀)장 확인</a>
+                        </li>
+                        <li>
+                            <a href="#child3" rel="child3" onclick="return false"><i class="s-icon icon3-3"></i>재무 검증</a>
+                        </li>
+                        <li>
+                            <a href="#child4" rel="child4" onclick="return false"><i class="s-icon icon3-4"></i>심사계획</a>
+                        </li>
+                        <li>
+                            <a href="#child5" rel="child5" onclick="return false"><i class="s-icon icon3-4"></i>심사확정</a>
+                        </li>
+                    </ul>
+                    <div class="side-toggle">
+                        <button class="ui button icon"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                </div>
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                      <div class="button_set">
+                        <button class="ui button search mgl10 mgb10 " id="button1 " size="small"  style="max-width: 140px; line-height: 18px;">
+                          키워드 검색
+                        </button>
+                        <button class="ui button search mgl14 mgb10 " id="button2" size="small" style="max-width: none; width: auto ;line-height: 18px; padding: 0 25px; background-color: #5978b9">
+                          항목단위 검색
+                        </button>
+                        <button class="ui button search mgl14 mgb10 " id="button2" size="small" style="max-width: none; width: auto ;line-height: 18px; padding: 0 25px;">
+                          문서단위 유사제안 검색
+                        </button>
+                      </div>
+                      <div class="ly-contents-boxed" >
+                          <div class="contents-wrapper" id="">
+                            <div class="ly-contents-head" style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                  <button class="ui button icon blue acc" onclick="accordionFunc(0)" data-attr="accordionView0">
+                                      <i class="fas fa-chevron-down"></i>
+                                  </button>
+                                  <h1 class="contents-title big_title">항목단위 검색</h1>
+                                </div>
+                                <button class="ui button search" size="small">검색</button>
+                            </div>
+                            <div class="search-content"  id="accordionView0">
+                                <form class="ui form">
+                                    <div class="search-box" style="padding: 0;">
+                                        <div class="rows" style="display : block;">
+                                            <div class="column" style="display : flex;border:1.5px solid #5978b9; padding: 5px 5px 5px 0; margin-top: 10px;">
+                                                <div class="pw-10" style="display: flex; align-items: baseline;">
+                                                  <div style="width: 18px; position: relative; height: 18px;">
+                                                    <img src="../../../images/icon/arrow-icon.png" style="width: 100%; position: absolute; top: 2px; left: 7px;" alt="화살표아이콘">
+                                                  </div>
+                                                  <label style="font-weight: 500; padding-left: 10px;">제안자 정보</label>
+                                                </div>
+                                                <div class="fields pw-90">
+                                                    <div class="field" style="width: 22.6%; display: flex; margin-bottom: 0;">
+                                                        <label class="pxw-163">직번</label>
+                                                        <input type="text" class="ui input" value="4####" style="width: 100%;"/>
+                                                    </div>
+                                                    <div class="field" style="width: 22.6%; display: flex;  margin-bottom: 0;">
+                                                        <label class="pxw-163">성명</label>
+                                                        <input type="text" class="ui input" value="홍길동"  style="width: 100%;"/>
+                                                    </div>
+                                                    <div class="field" style="width: 25%; display: flex; margin-left: 3.1%;  margin-bottom: 0;">
+                                                        <label class="pxw-180">부서</label>
+                                                        <input type="text" class="ui input"  value="포항제철소"  style="width: 100%;"/>
+                                                        <div class="ui type dpi">
+                                                            <button type="button" class="ui button icon date2" >
+                                                              <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="column" style="display : flex; margin-left: 0 !important; margin-top: 30px;border:1.5px solid #5978b9; padding: 5px 5px 5px 0;">
+                                              <div class="pw-10" style="display: flex; align-items: baseline;">
+                                                  <div style="width: 18px; position: relative; height: 18px;">
+                                                    <img src="../../../images/icon/arrow-icon.png" style="width: 100%; position: absolute; top: 2px; left: 7px;" alt="화살표아이콘">
+                                                  </div>
+                                                  <label style="font-weight: 500; padding-left: 10px;">제안정보</label>
+                                                </div>
+                                                <div class="fields pw-90" style="display: block;">
+                                                    <div class="field" style="width: 22.6%; display: flex;">
+                                                        <label class="pxw-163">제안번호</label>
+                                                        <input type="text" class="ui input" value="1807PS26545" style="width: 100%;"/>
+                                                    </div>
+                                                    <div class="field" style="display: flex; margin-left: 0;">
+                                                        <div class="" style="display: flex; width: 25%;">
+                                                          <label class="pxw-155">사소구분</label>
+                                                          <div class="ui select2 pw-100">
+                                                              <select id="">
+                                                                  <!-- 첫번째는 선택하세요.-->
+                                                                  <option selected disabled hidden id="">선택</option>
+                                                                  <option value="A">포항연구원</option>
+                                                                  <option value="B">광양연구원</option>
+                                                              </select>
+                                                          </div>
+                                                        </div>
+                                                        <div class="" style="display: flex; margin-left: 44px; width: 25%;">
+                                                          <label class="pxw-155">재무구분</label>
+                                                          <div class="ui select2 pw-100 ">
+                                                              <select id="">
+                                                                  <!-- 첫번째는 선택하세요.-->
+                                                                  <option selected disabled hidden id="">선택</option>
+                                                                  <option value="A">비재무</option>
+                                                                  <option value="B">재무</option>
+                                                              </select>
+                                                          </div>
+                                                        </div>
+                                                        <div class="" style="display: flex; margin-left: 44px; width: 25%;">
+                                                          <label class="pxw-155">유형구분</label>
+                                                          <div class="ui select2 pw-100">
+                                                              <select id="">
+                                                                  <!-- 첫번째는 선택하세요.-->
+                                                                  <option selected disabled hidden id="">선택</option>
+                                                                  <option value="A">원가절감</option>
+                                                                  <option value="B">품질향상</option>
+                                                                  <option value="C">생산성향상</option>
+                                                                  <option value="D">안전향상</option>
+                                                                  <option value="E">설비개선</option>
+                                                                  <option value="F">환셩개선</option>
+                                                                  <option value="G">기타</option>
+                                                              </select>
+                                                          </div>
+                                                        </div>
+                                                        <div class="" style="display: flex; margin-left: 44px; width: 25%;">
+                                                          <label class="pxw-155">활동구분</label>
+                                                          <div class="ui select2 pw-100">
+                                                              <select id="">
+                                                                  <!-- 첫번째는 선택하세요.-->
+                                                                  <option selected disabled hidden id="">선택</option>
+                                                                  <option value="A">위드마이머신</option>
+                                                                  <option value="B">일상과제</option>
+                                                                  <option value="C">개선리더과제</option>
+                                                                  <option value="B">본인업무</option>
+                                                              </select>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="field" style="display: flex; margin-left: 0;">
+                                                        <div class="" style="width: 25%; display: flex;">
+                                                          <label class="pxw-163">업무표준번호</label>
+                                                          <input type="text" class="ui input" value="68753" style="width: 100%;"/>
+                                                        </div>
+                                                        <div class="mgl44" style="width: 25%; display: flex;">
+                                                          <label class="pxw-163">도면번호</label>
+                                                          <input type="text" class="ui input"  value="KBA53M079640000" style="width: 100%;"/>
+                                                        </div>
+                                                        <div class="mgl44" style="width: 25%; display: flex;">
+                                                          <label class="pxw-163">발명접수번호</label>
+                                                          <input type="text" class="ui input"  value="2000NK0008" style="width: 100%;"/>
+                                                        </div>
+                                                        <div class="mgl44" style="display: flex; width: 25%;">
+                                                          <label class="pxw-155">위험성평가</label>
+                                                          <div class="ui select2 pw-100">
+                                                              <select id="">
+                                                                  <!-- 첫번째는 선택하세요.-->
+                                                                  <option selected disabled hidden id="">선택</option>
+                                                                  <option value="A">Y</option>
+                                                                  <option value="B">N</option>
+                                                              </select>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="field" style="display: flex; margin-left: 0;">
+                                                        <div class="" style="display: flex; width: 22.54%;">
+                                                          <label class="pxw-155">현재진행단계</label>
+                                                          <div class="ui select2 pw-100">
+                                                              <select id="">
+                                                                  <!-- 첫번째는 선택하세요.-->
+                                                                  <option selected disabled hidden id="">선택</option>
+                                                                  <option value="A">부심사편성완료</option>
+                                                                  <option value="B">소심사편성완료</option>
+                                                                  <option value="C">전사심사편성완료</option>
+                                                              </select>
+                                                          </div>
+                                                        </div>
+                                                        <div class="" style="display: flex; margin-left: 3.3%; width: 22.54%;">
+                                                          <label class="pxw-155">최종등급</label>
+                                                          <div class="ui select2 pw-100">
+                                                              <select id="">
+                                                                  <!-- 첫번째는 선택하세요.-->
+                                                                  <option selected disabled hidden id="">선택</option>
+                                                                  <option value="A">1</option>
+                                                                  <option value="B">2</option>
+                                                                  <option value="C">3</option>
+                                                                  <option value="D">4</option>
+                                                                  <option value="E">5</option>
+                                                                  <option value="F">6</option>
+                                                                  <option value="G">7</option>
+                                                              </select>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="field" style="display: flex; margin-left: 0;">
+                                                      <div class="" style="display: flex; width: 45.1%;">
+                                                        <label class="pxw-302">제안 등록일</label>
+                                                        <div class="ui type">
+                                                            <input type="text" class="ui input date_center" id="REGISTRATION_START_DATE" autocomplete="off" />
+                                                        </div>
+                                                        <div class="ui type dpi">
+                                                            <button type="button" class="ui button icon date2" >
+                                                                <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                            </button>
+                                                        </div>
+                                                        <span class="text" style="line-height: 34px;">~</span>
+                                                        <div class="ui type">
+                                                            <input type="text" class="ui input date_center" id="REGISTRATION_END_DATE" autocomplete="off" />
+                                                        </div>
+                                                        <div class="ui type dpi">
+                                                            <button type="button" class="ui button icon date2" >
+                                                                <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                            </button>
+                                                        </div>
+                                                      </div>
+                                                      <div class="" style="display: flex; width: 45.1%; margin-left: 6.5%;">
+                                                        <label class="pxw-302">제안 확정일</label>
+                                                        <div class="ui type">
+                                                            <input type="text" class="ui input date_center" id="FIX_START_DATE" autocomplete="off" />
+                                                        </div>
+                                                        <div class="ui type dpi">
+                                                            <button type="button" class="ui button icon date2" >
+                                                                <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                            </button>
+                                                        </div>
+                                                        <span class="text" style="line-height: 34px;">~</span>
+                                                        <div class="ui type">
+                                                            <input type="text" class="ui input date_center" id="FIX_END_DATE" autocomplete="off" />
+                                                        </div>
+                                                        <div class="ui type dpi">
+                                                            <button type="button" class="ui button icon date2" >
+                                                                <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                            </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="field" style="display: flex; margin-left: 0; margin-bottom: 0;">
+                                                      <div class="" style="display: flex; width: 45.1%;">
+                                                        <label class="pxw-302">보상 지급일</label>
+                                                        <div class="ui type">
+                                                            <input type="text" class="ui input date_center" id="PROVISION_START_DATE" autocomplete="off" />
+                                                        </div>
+                                                        <div class="ui type dpi">
+                                                            <button type="button" class="ui button icon date2" >
+                                                                <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                            </button>
+                                                        </div>
+                                                        <span class="text" style="line-height: 34px;">~</span>
+                                                        <div class="ui type">
+                                                            <input type="text" class="ui input date_center" id="PROVISION_END_DATE" autocomplete="off" />
+                                                        </div>
+                                                        <div class="ui type dpi">
+                                                            <button type="button" class="ui button icon date2" >
+                                                                <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                            </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="column" style="display : flex; margin-top: 30px;border:1.5px solid #5978b9; padding: 5px 5px 5px 0;">
+                                              <div class="pw-10" style="display: flex; align-items: baseline;">
+                                                  <div style="width: 18px; position: relative; height: 18px;">
+                                                    <img src="../../../images/icon/arrow-icon.png" style="width: 100%; position: absolute; top: 2px; left: 7px;" alt="화살표아이콘">
+                                                  </div>
+                                                  <label style="font-weight: 500; padding-left: 10px;">평가정보</label>
+                                                </div>
+                                                <div class="fields pw-90">
+                                                    <div class="field" style="width: 22.8%; display: flex;  margin-bottom: 0;">
+                                                        <label class="pxw-127">Helper직번</label>
+                                                        <input type="text" class="ui input" value="4####"/>
+                                                    </div>
+                                                    <div class="field" style="width: 22.8%; display: flex; margin-left: 2.6%;  margin-bottom: 0;">
+                                                        <label class="pxw-125">최종평가점수</label>
+                                                        <input type="text" class="ui input" value="4####" />
+                                                    </div>
+                                                    <div class="field" style="display: flex; width: 45.1%; margin-left: 3.4%;  margin-bottom: 0;">
+                                                      <label class="pxw-302">제안 반려일</label>
+                                                      <div class="ui type">
+                                                          <input type="text" class="ui input" id="CREATION_START_DATE" autocomplete="off" />
+                                                      </div>
+                                                      <div class="ui type dpi">
+                                                          <button type="button" class="ui button icon date2" >
+                                                              <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                          </button>
+                                                      </div>
+                                                      <span class="text" style="line-height: 34px;">~</span>
+                                                      <div class="ui type">
+                                                          <input type="text" class="ui input" id="CREATION_END_DATE" autocomplete="off" />
+                                                      </div>
+                                                      <div class="ui type dpi">
+                                                          <button type="button" class="ui button icon date2" >
+                                                              <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+                                                          </button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="ly-contents-boxed">
+                        <p style="margin: 10px 0 15px; color: #ea0000;">* 검색 결과가 없을시 다른 키워드로 검색하시기 바랍니다.</p>
+                        <div class="" style="display: flex; justify-content: space-between; height: 50px; width: 100%; align-items: center; background: #d9deeca1; padding: 0 12px;">
+                          <p style="color: #333333;">제안관리 DB 검색결과</p>
+                          <p style="color: #333333; transform: translateX(-50%); left: 50%; position: absolute;">총 <span style="font-weight: 500;">3,453,328</span>건 중에서 <span style="font-weight: 500; color: #ea0000;">50</span>건이 검색되었습니다.</p>
+                        </div>
+                        <div class="contents-wrapper" id="">
+                          <!--부서별 제안통계 (상세) jqgrid start-->
+                          <div class="table-row" id="S700201A010_jqGrid_container1">
+                            <table id="S700201A010_jqGrid_view1" style="width: 100%"></table>
+                            <div id="jqGridPager"></div>
+                            <div id="paginate"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-submit" style="margin: 0; margin-top: 15px; ">
+                          <button class="ui button blue" size="large" style="font-size: 17px; height: 36px; background-color: #5978b9;">확인완료</button>
+                          <button class="ui button blue" size="large" style="font-size: 17px; height: 36px; background-color: #5978b9;">취소</button>
+                      </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script type="text/javascript">
+        var linkText = ["작업표준", "변경관리", "위험성평가"];
+        var arr = ["#none", "#none", "#none"];
+        var arr2 = ["필요", "불필요", "불필요사유"];
+        //sample
+        var setting =
+          "<div class='ui renderer-wrp left mgb4'>" +
+          "<a class='mgr10 pxw-80 left' href='" +
+          arr[0] +
+          "'>" +
+          linkText[0] +
+          "</a>" +
+          "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+          "<label for='chk1'>" +
+          arr2[0] +
+          "</label>" +
+          "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+          "<label for='chk2'>" +
+          arr2[1] +
+          "</label>" +
+          "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+          arr2[2] +
+          " id='001'></input>" +
+          "</div>" +
+          "<div class='ui renderer-wrp left mgb4'>" +
+          "<a class='mgr10 pxw-80 left' href='" +
+          arr[1] +
+          "'>" +
+          linkText[1] +
+          "</a>" +
+          "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+          "<label for='chk3'>" +
+          arr2[0] +
+          "</label>" +
+          "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+          "<label for='chk4'>" +
+          arr2[1] +
+          "</label>" +
+          "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+          arr2[2] +
+          " id='003'></input>" +
+          "</div>" +
+          "<div class='ui renderer-wrp left mgb4'>" +
+          "<a class='mgr10 pxw-80 left' href='" +
+          arr[2] +
+          "'>" +
+          linkText[2] +
+          "</a>" +
+          "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+          "<label for='chk5'>" +
+          arr2[0] +
+          "</label>" +
+          "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+          "<label for='chk6'>" +
+          arr2[1] +
+          "</label>" +
+          "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+          arr2[2] +
+          " id='005'></input>" +
+          "</div>";
+
+        var setting2 =
+          "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+        //self재무평가 평가 항목별 디스플레이
+        $("#S700201A010_jqGrid_view1").jqGrid({
+          datatype: "local", //json
+          colModel: [{
+              label: "NO",
+              name: "col1",
+              width: `50`,
+              align: "center",
+              sortable: false,
+              formatter: setUpdateNumber,
+            },
+            {
+              label: "제안 NO",
+              name: "col2",
+              width: 150,
+              align: "center",
+              sortable: false,
+              cellattr: cellMerge,
+            },
+            {
+              label: "구분",
+              name: "col3",
+              index: "col3",
+              width: 100,
+              align: "center",
+              sortable: false,
+            },
+            {
+              label: "제안명",
+              name: "col4",
+              width: 400,
+              align: "left",
+              sortable: false,
+              formatter: function link(cellValue) {
+                            var result = '<a href="#none">' + cellValue + "</a>";
+                            return result; },
+            },
+            {
+              label: "부서",
+              name: "col5",
+              width: 150,
+              align: "left",
+              sortable: false,
+            },
+            {
+              label: "성명",
+              name: "col6",
+              width: 100,
+              align: "center",
+              sortable: false,
+            },
+            {
+              label: "등급확정일",
+              name: "col7",
+              width: 100,
+              align: "center",
+              sortable: false,
+            },
+            {
+              label: "등급",
+              name: "col8",
+              width: 100,
+              align: "center",
+              sortable: false,
+              classes: 'none_border'
+            },
+          ],
+
+          data: [{
+              col1: "",
+              col2: "2008KS92520",
+              col3: "성과",
+              col4: "고로의 CPM사용 기술개발로 원가절감",
+              col5: "(광양)제선부",
+              col6: "홍길동",
+              col7: "2020/10/30",
+              col8: "반려",
+              },
+              {
+              col1: "",
+              col2: "2008KS91220",
+              col3: "성과",
+              col4: "고장력 극저탄소강 제조원가 절감",
+              col5: "(광양)제EIC기술부",
+              col6: "홍길동",
+              col7: "2020/10/13",
+              col8: "3",
+              },
+              {
+              col1: "",
+              col2: "2008KS92520",
+              col3: "성과",
+              col4: "고로의 CPM사용 기술개발로 원가절감",
+              col5: "(광양)제선부",
+              col6: "홍길동",
+              col7: "2020/10/30",
+              col8: "반려",
+              },
+              {
+              col1: "",
+              col2: "2008KS91220",
+              col3: "성과",
+              col4: "고장력 극저탄소강 제조원가 절감",
+              col5: "(광양)제EIC기술부",
+              col6: "홍길동",
+              col7: "2020/10/13",
+              col8: "3",
+              },
+              {
+              col1: "",
+              col2: "2008KS92520",
+              col3: "성과",
+              col4: "고로의 CPM사용 기술개발로 원가절감",
+              col5: "(광양)제선부",
+              col6: "홍길동",
+              col7: "2020/10/30",
+              col8: "반려",
+              },
+              {
+              col1: "",
+              col2: "2008KS91220",
+              col3: "성과",
+              col4: "고장력 극저탄소강 제조원가 절감",
+              col5: "(광양)제EIC기술부",
+              col6: "홍길동",
+              col7: "2020/10/13",
+              col8: "3",
+              },
+              {
+              col1: "",
+              col2: "2008KS92520",
+              col3: "성과",
+              col4: "고로의 CPM사용 기술개발로 원가절감",
+              col5: "(광양)제선부",
+              col6: "홍길동",
+              col7: "2020/10/30",
+              col8: "반려",
+              },
+              {
+              col1: "",
+              col2: "2008KS91220",
+              col3: "성과",
+              col4: "고장력 극저탄소강 제조원가 절감",
+              col5: "(광양)제EIC기술부",
+              col6: "홍길동",
+              col7: "2020/10/13",
+              col8: "3",
+              },
+              {
+              col1: "",
+              col2: "2008KS92520",
+              col3: "성과",
+              col4: "고로의 CPM사용 기술개발로 원가절감",
+              col5: "(광양)제선부",
+              col6: "홍길동",
+              col7: "2020/10/30",
+              col8: "반려",
+              },
+              {
+              col1: "",
+              col2: "2008KS91220",
+              col3: "성과",
+              col4: "고장력 극저탄소강 제조원가 절감",
+              col5: "(광양)제EIC기술부",
+              col6: "홍길동",
+              col7: "2020/10/13",
+              col8: "3",
+              },
+              {
+              col1: "",
+              col2: "2008KS92520",
+              col3: "성과",
+              col4: "고로의 CPM사용 기술개발로 원가절감",
+              col5: "(광양)제선부",
+              col6: "홍길동",
+              col7: "2020/10/30",
+              col8: "반려",
+              },
+              {
+              col1: "",
+              col2: "2008KS91220",
+              col3: "성과",
+              col4: "고장력 극저탄소강 제조원가 절감",
+              col5: "(광양)제EIC기술부",
+              col6: "홍길동",
+              col7: "2020/10/13",
+              col8: "3",
+              },
+              {
+              col1: "",
+              col2: "2008KS92520",
+              col3: "성과",
+              col4: "고로의 CPM사용 기술개발로 원가절감",
+              col5: "(광양)제선부",
+              col6: "홍길동",
+              col7: "2020/10/30",
+              col8: "반려",
+              },
+              {
+              col1: "",
+              col2: "2008KS91220",
+              col3: "성과",
+              col4: "고장력 극저탄소강 제조원가 절감",
+              col5: "(광양)제EIC기술부",
+              col6: "홍길동",
+              col7: "2020/10/13",
+              col8: "3",
+              },
+          ],
+          rowNum: 10,
+          viewrecords: true,
+          height: "auto",
+          autowidth: true,
+          shrinkToFit: true,
+          pager: "#jqGridPager",
+        });
+
+        function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+          //같은값 기준으로
+
+          var data = setting;
+
+          if (
+            rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+          ) {
+            return "colspan=2;";
+          }
+
+          if (rowObject.col2 == data) {
+            return "colspan=6;";
+          }
+
+          if (rowObject.col2 == setting2) {
+            return "colspan=6;";
+          }
+
+
+          if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+            return "colspan=6;"
+          }
+        }
+
+        function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+          //같은값 기준으로
+          if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+            return "colspan=3;";
+          }
+        }
+
+        $(window)
+          .bind("resize", function() {
+            $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+          })
+          .trigger("resize");
+
+        </script>
+        <script>
+        $(function () {
+            var $REGISTRATION_START_DATE = $('input[id="REGISTRATION_START_DATE"]');
+            var $REGISTRATION_END_DATE = $('input[id="REGISTRATION_END_DATE"]');
+
+            var $FIX_START_DATE = $('input[id="FIX_START_DATE"]');
+            var $FIX_END_DATE = $('input[id="FIX_END_DATE"]');
+
+            var $PROVISION_START_DATE = $('input[id="PROVISION_START_DATE"]');
+            var $PROVISION_END_DATE = $('input[id="PROVISION_END_DATE"]');
+
+            $REGISTRATION_START_DATE.daterangepicker(
+                {
+                    opens: "right",
+                    locale: { format: "YYYY-MM-DD" },
+                    singleDatePicker: true,
+                },
+                function (start, end, label) {
+                    console.log(start, end, label);
+                }
+            );
+
+            $REGISTRATION_END_DATE.daterangepicker(
+                {
+                    opens: "right",
+                    locale: { format: "YYYY-MM-DD" },
+                    singleDatePicker: true,
+                },
+                function (start, end, label) {
+                    console.log(start, end, label);
+                }
+            );
+
+            $FIX_START_DATE.daterangepicker(
+                {
+                    opens: "right",
+                    locale: { format: "YYYY-MM-DD" },
+                    singleDatePicker: true,
+                },
+                function (start, end, label) {
+                    console.log(start, end, label);
+                }
+            );
+
+            $FIX_END_DATE.daterangepicker(
+                {
+                    opens: "right",
+                    locale: { format: "YYYY-MM-DD" },
+                    singleDatePicker: true,
+                },
+                function (start, end, label) {
+                    console.log(start, end, label);
+                }
+            );
+
+            $PROVISION_START_DATE.daterangepicker(
+                {
+                    opens: "right",
+                    locale: { format: "YYYY-MM-DD" },
+                    singleDatePicker: true,
+                },
+                function (start, end, label) {
+                    console.log(start, end, label);
+                }
+            );
+
+            $PROVISION_END_DATE.daterangepicker(
+                {
+                    opens: "right",
+                    locale: { format: "YYYY-MM-DD" },
+                    singleDatePicker: true,
+                },
+                function (start, end, label) {
+                    console.log(start, end, label);
+                }
+            );
+            });
+
+            //accordion 펼침 접기
+            function accordionFunc(props) {
+                $("#accordionView" + props).toggleClass("show");
+                var $a = $(".ui.button.icon.acc").eq(props);
+                var b = $a.data("attr");
+
+                if ($("#accordionView" + props).attr("id") === b) {
+                    $a.toggleClass("rotate");
+                } else {
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>

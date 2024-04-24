@@ -1,0 +1,61 @@
+// width percent
+@for $i from 1 through 100 {
+  .pw-#{$i} {
+    width: percentage($i/100) !important;
+  }
+
+  .pdr#{$i} {
+    padding-right: $i * 1px;
+  }
+
+  .pdl#{$i} {
+    padding-left: $i * 1px;
+  }
+
+  .mgl#{$i} {
+    margin-left: $i * 1px !important;
+  }
+
+  .mgt#{$i} {
+    margin-top: $i * 1px !important;
+  }
+
+  .mgr#{$i} {
+    margin-right: $i * 1px !important;
+  }
+
+  .mgb#{$i} {
+    margin-bottom: $i * 1px !important;
+  }
+}
+
+// width px 10 ~ 1500px 5픽셀 단위로 증감
+@for $i from 5 through 1000 {
+  @if ($i) {
+    .pxw-#{$i} {
+      width: $i + px !important;
+    }
+  }
+
+  @if ($i) {
+    .pxh-#{$i} {
+      height: $i + px !important;
+    }
+  }
+}
+
+.show {
+  display: none;
+}
+
+.left {
+  text-align: left!important;
+}
+
+.right {
+  text-align: right!important;
+}
+
+.center {
+  text-align: center!important;
+}

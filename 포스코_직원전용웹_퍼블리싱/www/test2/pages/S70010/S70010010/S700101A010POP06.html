@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--jquery import-->
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+	<!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+	<link rel="stylesheet" href="../../../css/laylab.css" />
+
+	<script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+	<!--jqGrid import-->
+	<script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+	<script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+	<script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+	<!--datepicker import-->
+	<script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+	<!-- jQuery Modal -->
+	<script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+	<script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+	<!--font awesome-->
+	<script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+	<!--DEXT5 -->
+	<script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="../../../js/common_util.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+	<script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+	<script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+	<script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+	<script type="text/javascript" src="../../../js/common.js"></script>
+	<title>비재무 배점표 환경</title>
+	<style>
+		.ui-widget.ui-widget-content {border: none;}
+		.ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top: 0; height: auto;}
+	</style>
+</head>
+<body id="popup">
+	<div id="root">
+		<div class="ly-container">
+			<!--ifram include sidebar -->
+			<div class="ly-wrapper">
+				<main class="ly-contents">
+					<div class="ly-contents-boxed">
+						<div class="contents-wrapper" id="accordionView2">
+							<!-- 비재무배점표 환경 기준표  -->
+							<div class="table-row" id="S700201A010_jqGrid_container2">
+								<table id="S700201A010_jqGrid_view2" style="width: 100%"></table>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+	</div>
+	<script src="../../../js/common.js"></script>
+	<script src="../../../js/components/panel/tab.js"></script>
+	<script src="../../../js/components/renderer/render.js"></script>
+	<script src="../../../js/components/pagenate/pager.js"></script>
+	<script>
+		var chkcell = {
+			cellId: undefined,
+			chkval: undefined
+		}; //cell rowspan 중복 체크
+
+		var fileTarget = $("#input-file");
+		fileTarget.on("change", function() {
+			// 값이 변경되면
+			var cur = $("input[type='file']").val();
+			$("input[name='upload']").val(cur);
+		});
+
+		// <script src="../../../js/common.js">
+	</script>
+	<script src="../../../js/components/panel/tab.js"></script>
+	<script src="../../../js/components/renderer/render.js"></script>
+	<script src="../../../js/components/pagenate/pager.js"></script>
+	<script>
+		var linkText = ["작업표준", "변경관리", "위험성평가"];
+		var arr = ["#none", "#none", "#none"];
+		var arr2 = ["필요", "불필요", "불필요사유"];
+
+		//sample
+		var setting =
+			"<div class='ui renderer-wrp left mgb4'>" +
+			"<a class='mgr10 pxw-80 left' href='" +
+			arr[0] +
+			"'>" +
+			linkText[0] +
+			"</a>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+			"<label for='chk1'>" +
+			arr2[0] +
+			"</label>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+			"<label for='chk2'>" +
+			arr2[1] +
+			"</label>" +
+			"<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+			arr2[2] +
+			" id='001'></input>" +
+			"</div>" +
+			"<div class='ui renderer-wrp left mgb4'>" +
+			"<a class='mgr10 pxw-80 left' href='" +
+			arr[1] +
+			"'>" +
+			linkText[1] +
+			"</a>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+			"<label for='chk3'>" +
+			arr2[0] +
+			"</label>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+			"<label for='chk4'>" +
+			arr2[1] +
+			"</label>" +
+			"<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+			arr2[2] +
+			" id='003'></input>" +
+			"</div>" +
+			"<div class='ui renderer-wrp left mgb4'>" +
+			"<a class='mgr10 pxw-80 left' href='" +
+			arr[2] +
+			"'>" +
+			linkText[2] +
+			"</a>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+			"<label for='chk5'>" +
+			arr2[0] +
+			"</label>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+			"<label for='chk6'>" +
+			arr2[1] +
+			"</label>" +
+			"<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+			arr2[2] +
+			" id='005'></input>" +
+			"</div>";
+
+		var setting2 =
+			"<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+
+		function arrtSetting(rowId, val, rawObject, cm) {
+
+			var attr = rawObject.attr[cm.name],
+				result = "";
+			// console.log(rowId);
+			if (attr.rowspan) {
+				result = ' rowspan=' + '"' + attr.rowspan + '"';
+			} else if (attr.display) {
+				result = ' style="display:' + attr.display + '"';
+			} else if (attr.colspan) {
+				result = ' colspan=' + '"' + attr.colspan + '"';
+			} else {
+				result = ' ';
+			}
+			return result;
+		}
+
+
+		//비재무배점표 환경 기준표 디스플레이
+		$("#S700201A010_jqGrid_view2").jqGrid({
+			datatype: "local", //json
+			colModel: [{
+					label: "평가항목",
+					name: "col1",
+					width: `100`,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+				},
+				{
+					label: "3점",
+					name: "col2",
+					width: 50,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+					classes:'none_border',
+				},
+				{
+					label: "2점",
+					name: "col3",
+					width: 50,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+					classes:'left_border',
+				},
+				{
+					label: "1점",
+					name: "col4",
+					width: 50,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+					classes: 'none_border',
+				},
+				{
+					label: "",
+					name: "col5",
+					width: 50,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+				},
+				{
+					label: "",
+					name: "col6",
+					width: 50,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+					classes:'none_border',
+				},
+				{
+					label: "",
+					name: "col7",
+					width: 50,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+				},
+				{
+					label: "",
+					name: "col8",
+					width: 50,
+					align: "center",
+					sortable: false,
+					cellattr: arrtSetting,
+				},
+			],
+
+			data: [{
+					col1: "①영향정도",
+					col2: "영향 큼",
+					col3: "영향 중간",
+					col4: "영향 없음",
+					attr: {
+						col1: {},
+						col2: {
+							colspan: "2"
+						},
+						col3: {
+							colspan: "3"
+						},
+						col4: {
+							colspan: "2"
+						},
+						col5: {},
+						col6: {},
+						col7: {},
+						col8: {},
+					},
+				},
+				{
+					col1: "②민원건수",
+					col2: "있음",
+					col3: "-",
+					col4: "없음",
+					attr: {
+						col1: {},
+						col2: {
+							colspan: "2"
+						},
+						col3: {
+							colspan: "3"
+						},
+						col4: {
+							colspan: "2"
+						},
+						col5: {},
+						col6: {},
+						col7: {},
+						col8: {},
+					},
+				},
+				{
+					col1: "③법적규제",
+					col2: "대상",
+					col3: "-",
+					col4: "비 대상",
+					attr: {
+						col1: {},
+						col2: {
+							colspan: "2"
+						},
+						col3: {
+							colspan: "3"
+						},
+						col4: {
+							colspan: "2"
+						},
+						col5: {},
+						col6: {},
+						col7: {},
+						col8: {},
+					},
+				},
+				{
+					col1: "점수 산출식",
+					col2: "① + ② + ③",
+					attr: {
+						col1: {},
+						col2: {
+							colspan: "7"
+						},
+						col3: {},
+						col4: {},
+						col5: {},
+						col6: {},
+						col7: {},
+						col8: {},
+					},
+				},
+				{
+					col1: "영향평가 점수",
+					col2: "9점",
+					col3: "8점",
+					col4: "7~6점",
+					col5: "5~4점",
+					col6: "3점",
+					attr: {
+						col1: {},
+						col2: {},
+						col3: {
+							colspan: "2"
+						},
+						col4: {},
+						col5: {
+							colspan: "2"
+						},
+						col6: {},
+						col7: {},
+						col8: {},
+					},
+				},
+				{
+					col1: "중요도 등급",
+					col2: "1등급",
+					col3: "2등급",
+					col4: "3등급",
+					col5: "4등급",
+					col6: "5등급",
+					attr: {
+						col1: {},
+						col2: {},
+						col3: {
+							colspan: "2"
+						},
+						col4: {},
+						col5: {
+							colspan: "2"
+						},
+						col6: {},
+						col7: {},
+						col8: {},
+					},
+				},
+				{
+					col1: "가산점수",
+					col2: "5점",
+					col3: "4점",
+					col4: "3점",
+					col5: "2점",
+					col6: "1점",
+					attr: {
+						col1: {},
+						col2: {},
+						col3: {
+							colspan: "2"
+						},
+						col4: {},
+						col5: {
+							colspan: "2"
+						},
+						col6: {},
+						col7: {},
+						col8: {},
+					},
+				},
+			],
+			viewrecords: true,
+			height: "auto",
+			autowidth: false,
+			shrinkToFit: false,
+			rowNum: 100,
+			scrollOffset: "auto",
+			loadComplete: function() {
+				var bg = {
+					"background-color": "#dbebfb"
+				};
+				var bold = {
+					"font-weight": "bold"
+				};
+				var ids = $("#S700201A010_jqGrid_view2").jqGrid("getDataIDs");
+				var gridData = $("#S700201A010_jqGrid_view2").jqGrid("getRowData");
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col1", "가산점수", bold);
+				$("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col2", "5점", bold);
+				$("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col3", "4점", bold);
+				$("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col4", "3점", bold);
+				$("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col5", "2점", bold);
+				$("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col6", "1점", bold);
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col1", "", "", {
+					style: "width: auto!important",
+					colspan: "1",
+				});
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col2", "", "", {
+					style: "width: auto!important",
+					colspan: "2",
+				});
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col3", "", "", {
+					style: "width: auto!important",
+					colspan: "3",
+				});
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col4", "", "", {
+					style: "width: auto!important",
+					colspan: "3",
+				});
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col5", "", "", {
+					style: "display: none",
+				});
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col6", "", "", {
+					style: "display: none",
+				});
+
+				$("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col7", "", "", {
+					style: "display: none",
+					// colspan: "2",
+				});
+				$("#S700201A010_jqGrid_view2").setGroupHeaders({
+					useColSpanStyle: true,
+					groupHeaders: [
+
+					]
+				});
+
+				var grid = this;
+
+				$('td[name="cellRowspan"]', grid).each(function() {
+					var spans = $('td[rowspanid="' + this.id + '"]', grid).length + 1;
+					if (spans > 1) {
+						$(this).attr('rowspan', spans);
+					}
+				});
+
+				var newWidth = $("#S700201A010_jqGrid_view2_col2").width() + $("#S700201A010_jqGrid_view2_col3").width();
+				jQuery("#S700201A010_jqGrid_view2").jqGrid("setLabel", "col2", "3점", "", {
+					style: "width: " + newWidth + "px;",
+					colspan: "2"
+				});
+			},
+		});
+
+
+		function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+			//같은값 기준으로
+
+			var data = setting;
+
+			if (
+				rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+			) {
+				return "colspan=2;";
+			}
+
+			if (rowObject.col2 == data) {
+				return "colspan=6;";
+			}
+
+
+			if (rowObject.col2 == setting2) {
+				return "colspan=6;";
+			}
+
+
+			if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+				return "colspan=6;"
+			}
+			if (rowObject.col1 == '노력등급') {
+				return "colspan=2;";
+			}
+		}
+
+		function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+			//같은값 기준으로
+			if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+				return "colspan=3;";
+			}
+		}
+
+		function jsFormatterCell(rowid, val, rowObject, cm, rdata) {
+			var result = "";
+
+			if (chkcell.chkval != val) { //check 값이랑 비교값이 다른 경우
+				var cellId = this.id + '_row_' + rowid + '-' + cm.name;
+				result = ' rowspan="5" id ="' + cellId + '" + name="cellRowspan"';
+				// alert(result);
+				chkcell = {
+					cellId: cellId,
+					chkval: val
+				};
+			} else {
+				result = 'style="display:none"  rowspanid="' + chkcell.cellId + '"'; //같을 경우 display none 처리
+				// alert(result);
+			}
+			return result;
+		}
+
+		$(window)
+			.bind("resize", function() {
+				$("#S700201A010_jqGrid_view2").setGridWidth($("#S700201A010_jqGrid_container2").width(), true);
+			})
+			.trigger("resize");
+	</script>
+</body>
+</html>

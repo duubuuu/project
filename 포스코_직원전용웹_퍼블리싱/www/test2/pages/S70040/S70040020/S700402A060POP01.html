@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+        <link href="../../../icon/iconfont/material-icons.css" rel="stylesheet">
+        <!--jquery import-->
+        <script src="../../../js/vendor/jquery/jquery.min.js"></script>
+
+        <script src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <!--datepicker import-->
+        <script src="../../../js/vendor/util/moment.js"></script>
+        <script src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <script src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+
+        <!-- jQuery Modal -->
+        <script src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script src="../../../js/components/modal/modal.js"></script>
+        <link rel="stylesheet" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+
+        <!--font awesome-->
+        <script src="../../../js/vendor/fontawesome/all.js"></script>
+
+        <!--style-->
+        <link rel="stylesheet" href="../../../css/default.css" />
+
+        <link rel="stylesheet" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" href="../../../js/vendor/datepicker/datepicker.css" />
+        <link rel="stylesheet" href="../../../css/laylab.css" />
+
+        <title>등급기준관리캐릭터(Point Character)기준</title>
+    </head>
+    <body id="popup">
+        <div id="root">
+          <div class="bg_S700402A060POP01" style="display: flex; justify-content: center; align-items: center; background-image: url(../../../images/ui-icons-bg.png); background-repeat: no-repeat; width: 1600px; height: 794px; background-size: 100%; position: relative;">
+            <!-- 캐릭터 시작-->
+            <div style="margin-left: 15px; position: absolute; display: flex; transform: translate(-50%, -50%); left: 50%; top: 45%; justify-content: space-between; width: 85%;">
+              <div class="chracter-box_S700402A060POP01">
+                <div class="chracter-name_S700402A060POP01">
+                  <span>Lv.1</span><br>견습생(신인)
+                </div>
+                <!-- 캐릭터 이미지 들어갈 곳 -->
+                <div class="chracter_S700402A060POP01">
+                  <img src="../../../images/mypage_img/character01.png" alt="레벨1캐릭터">
+                </div>
+                <div class="gague-bar-set_S700402A060POP01" style="">
+                  <div class="gauge-bar_S700402A060POP01">
+                    <div class="gauge-inner-bar_S700402A060POP01">
+                    </div>
+                  </div>
+                  <div class="level_S700402A060POP01">
+                    <span>하</span>
+                    <span>중</span>
+                    <span>상</span>
+                  </div>
+                  <div  class="point_S700402A060POP01">
+                    <label>1단계 : <span id="">999</span>점</label>
+                    <label>2단계 : <span id="">999</span>점</label>
+                    <label>3단계 : <span id="">999</span>점</label>
+                  </div>
+                </div>
+              </div>
+              <div class="chracter-box_S700402A060POP01">
+                <div class="chracter-name_S700402A060POP01">
+                  <span>Lv.2</span><br>수련생(초인)
+                </div>
+                <!-- 캐릭터 이미지 들어갈 곳 -->
+                <div class="chracter_S700402A060POP01">
+                  <img src="../../../images/mypage_img/character02.png" alt="레벨2캐릭터">
+                </div>
+                <div class="gague-bar-set_S700402A060POP01" style="">
+                  <div class="gauge-bar_S700402A060POP01">
+                    <div class="gauge-inner-bar_S700402A060POP01">
+                    </div>
+                  </div>
+                  <div class="level_S700402A060POP01">
+                    <span>하</span>
+                    <span>중</span>
+                    <span>상</span>
+                  </div>
+                  <div  class="point_S700402A060POP01">
+                    <label>1단계 : <span id="">999</span>점</label>
+                    <label>2단계 : <span id="">999</span>점</label>
+                    <label>3단계 : <span id="">999</span>점</label>
+                  </div>
+                </div>
+              </div>
+              <div class="chracter-box_S700402A060POP01">
+                <div class="chracter-name_S700402A060POP01">
+                  <span>Lv.3</span><br>후보생(중인)
+                </div>
+                <!-- 캐릭터 이미지 들어갈 곳 -->
+                <div class="chracter_S700402A060POP01">
+                  <img src="../../../images/mypage_img/character03.png" alt="레벨3캐릭터">
+                </div>
+                <div class="gague-bar-set_S700402A060POP01" style="">
+                  <div class="gauge-bar_S700402A060POP01">
+                    <div class="gauge-inner-bar_S700402A060POP01">
+                    </div>
+                  </div>
+                  <div class="level_S700402A060POP01">
+                    <span>하</span>
+                    <span>중</span>
+                    <span>상</span>
+                  </div>
+                  <div  class="point_S700402A060POP01">
+                    <label>1단계 : <span id="">999</span>점</label>
+                    <label>2단계 : <span id="">999</span>점</label>
+                    <label>3단계 : <span id="">999</span>점</label>
+                  </div>
+                </div>
+              </div>
+              <div class="chracter-box_S700402A060POP01">
+                <div class="chracter-name_S700402A060POP01">
+                  <span>Lv.4</span><br>장인(장인)
+                </div>
+                <!-- 캐릭터 이미지 들어갈 곳 -->
+                <div class="chracter_S700402A060POP01">
+                  <img src="../../../images/mypage_img/character04.png" alt="레벨4캐릭터">
+                </div>
+                <div class="gague-bar-set_S700402A060POP01" style="">
+                  <div class="gauge-bar_S700402A060POP01">
+                    <div class="gauge-inner-bar_S700402A060POP01">
+                    </div>
+                  </div>
+                  <div class="level_S700402A060POP01">
+                    <span>하</span>
+                    <span>중</span>
+                    <span>상</span>
+                  </div>
+                  <div  class="point_S700402A060POP01">
+                    <label>1단계 : <span id="">999</span>점</label>
+                    <label>2단계 : <span id="">999</span>점</label>
+                    <label>3단계 : <span id="">999</span>점</label>
+                  </div>
+                </div>
+              </div>
+              <div class="chracter-box_S700402A060POP01">
+                <div class="chracter-name_S700402A060POP01">
+                  <span>Lv.5</span><br>명인(명인)
+                </div>
+                <!-- 캐릭터 이미지 들어갈 곳 -->
+                <div class="chracter_S700402A060POP01">
+                  <img src="../../../images/mypage_img/character05.png" alt="레벨5캐릭터">
+                </div>
+                <div class="gague-bar-set_S700402A060POP01" style="">
+                  <div class="gauge-bar_S700402A060POP01">
+                    <div class="gauge-inner-bar_S700402A060POP01">
+                    </div>
+                  </div>
+                  <div class="level_S700402A060POP01">
+                    <span>하</span>
+                    <span>중</span>
+                    <span>상</span>
+                  </div>
+                  <div  class="point_S700402A060POP01">
+                    <label>1단계 : <span id="">999</span>점</label>
+                    <label>2단계 : <span id="">999</span>점</label>
+                    <label>3단계 : <span id="">999</span>점</label>
+                  </div>
+                </div>
+              </div>
+              <div class="chracter-box_S700402A060POP01">
+                <div class="chracter-name_S700402A060POP01">
+                  <span>Lv.6</span><br>달인(달인)
+                </div>
+                <!-- 캐릭터 이미지 들어갈 곳 -->
+                <div class="chracter_S700402A060POP01">
+                  <img src="../../../images/mypage_img/character06.png" alt="레벨6캐릭터">
+                </div>
+                <div class="gague-bar-set_S700402A060POP01" style="">
+                  <div class="gauge-bar_S700402A060POP01">
+                    <div class="gauge-inner-bar_S700402A060POP01">
+                    </div>
+                  </div>
+                  <div class="level_S700402A060POP01">
+                    <span>하</span>
+                    <span>중</span>
+                    <span>상</span>
+                  </div>
+                  <div  class="point_S700402A060POP01">
+                    <label>1단계 : <span id="">999</span>점</label>
+                    <label>2단계 : <span id="">999</span>점</label>
+                    <label>3단계 : <span id="">999</span>점</label>
+                  </div>
+                </div>
+              </div>
+              <div class="chracter-box_S700402A060POP01">
+                <div class="chracter-name_S700402A060POP01">
+                  <span>Lv.7</span><br>제안의 신
+                </div>
+                <!-- 캐릭터 이미지 들어갈 곳 -->
+                <div class="chracter_S700402A060POP01">
+                  <img src="../../../images/mypage_img/character07.png" alt="레벨7캐릭터">
+                </div>
+                <div class="gague-bar-set_S700402A060POP01" style="">
+                  <div class="gauge-bar_S700402A060POP01">
+                    <div class="gauge-inner-bar_S700402A060POP01">
+                    </div>
+                  </div>
+                  <div class="level_S700402A060POP01">
+                    <span>하</span>
+                    <span>중</span>
+                    <span>상</span>
+                  </div>
+                  <div  class="point_S700402A060POP01">
+                    <label>1단계 : <span id="">999</span>점</label>
+                    <label>2단계 : <span id="">999</span>점</label>
+                    <label>3단계 : <span id="">999</span>점</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+            var fileTarget = $("#input-file");
+            fileTarget.on("change", function () {
+                // 값이 변경되면
+                var cur = $("input[type='file']").val();
+                $("input[name='upload']").val(cur);
+            });
+        </script>
+    </body>
+</html>

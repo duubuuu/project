@@ -1,0 +1,26 @@
+{
+  "background_color": "#ffffff",
+  "description": "강남콩의 pwa 다운로드 설치하십니까?",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "강남콩 배송조회앱",
+  "orientation": "any",
+  "scope": "https://softer097.cafe24.com/delivery",
+  "short_name": "강남콩 배송조회앱",
+  "start_url": "https://softer097.cafe24.com/delivery",
+  "theme_color": "#ffdbdb",
+  "categories": [],
+  "screenshots": [{
+    "src": "/delivery/icons/screenshot1.png",
+    "sizes": "720x1080",
+    "type": "image/webp"
+  }],
+  "shortcuts": [],
+  "icons": [
+        {
+            "src": "/delivery/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

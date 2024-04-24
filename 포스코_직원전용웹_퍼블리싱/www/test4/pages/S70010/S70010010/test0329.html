@@ -1,0 +1,4223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+    <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+    <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+    <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/vendor/daterangepicker.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+
+    <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+    <!--jqGrid import-->
+    <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+    <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+    <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+    <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+    <!--datepicker import-->
+    <script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+
+    <script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+    <script type="text/javascript" src="../../../js/vendor/datepicker/date.js"></script>
+    <script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+    <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+    <!--font awesome-->
+    <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+ <!--DEXT5 -->
+    <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+   <script type="text/javascript" src="../../../js/common_util.js"></script>
+   <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+   <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+   <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+   <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+   <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+   <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+   <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+   <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+   <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+   <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+   <script type="text/javascript" src="../../../js/common.js"></script>
+
+    <script>
+        function dext_editor_loaded_event(DEXT5Editor){
+            if (DEXT5Editor.ID === "editor0"){
+                DEXT5.ShowStatusbar("0", "editor0");
+                DEXT5.showToolbar("2", "editor0");
+                DEXT5.showTopMenu("0", "editor0");
+                var tr = document.querySelector("#dext_frame_editor0").contentDocument || document.querySelector("#dext_frame_editor0").contentWindow.document;
+                var result = tr.body.querySelector("#dext_tab_tool2_editor0");
+                result.style.position = "absolute";
+                result.style.bottom = "0";
+                result.style.top = "unset";
+                result.style.width = "100%";
+                $("#dext_frame_holdereditor0").css("height", "300px");
+            }
+            if (DEXT5Editor.ID != "" && DEXT5Editor.ID != "editor0") {
+              DEXT5.ShowStatusbar("0", DEXT5Editor.ID);
+              DEXT5.showToolbar("2", DEXT5Editor.ID);
+              DEXT5.showTopMenu("0", DEXT5Editor.ID);
+              var tr6 = document.querySelector("#dext_frame_"+DEXT5Editor.ID).contentDocument || document.querySelector("#dext_frame_"+DEXT5Editor.ID).contentWindow.document;
+              var result = tr6.body.querySelector("#dext_tab_tool2_"+DEXT5Editor.ID);
+              result.style.position = "absolute";
+              result.style.bottom = "0";
+              result.style.width = "100%";
+              $("#dext_frame_holder"+DEXT5Editor.ID).css("height", "300px");
+            }
+            if(DEXT5Editor.ID.indexOf("editor1_") != -1) {
+
+            }
+        }
+        DEXT5.config.Width = "100%";
+        DEXT5.config.Height = "300px";
+        function accordionView(asd){
+            $(asd).toggle()
+        }
+        function accordionView4(){
+            $('#accordionView4').toggle();
+        }
+        function accordionView5(){
+            $('#accordionView5').toggle();
+        }
+
+    </script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>제안서등록</title>
+    <style>
+      .table_bnt{
+        position: absolute;
+        top:20px;
+        left:20px;
+        z-index:99999;
+        width:50px;
+        height:50px;
+        background-color:#000;
+      }
+      #TB_S70_SUGK170 tbody tr:nth-child(2){
+          display: none;
+      }
+
+      /* 메뉴 음영처리 */
+      .txt_grad{
+        text-shadow: 1px 1px 6px #5a4cc3;
+      }
+
+        /* 박스 안쪽 간격 */
+      .ly-contents-boxed{
+      /* .doc_css{ */
+          padding: 15px 26px 25px 29px;
+      }
+
+      /* 박스 상단 하단 17px 간격 */
+      .ly-contents-boxed + .ly-contents-boxed{
+        margin-top:17px;
+      }
+
+      .title_lab{
+          padding-left:33px;
+          /* margin-right:15px; */
+      }
+
+      .right_title_css{
+          margin-right: 13px;
+      }
+
+      #date_pos{
+          margin-left: 95px;
+      }
+      .colorcc{
+        color:#fff !important;
+      }
+
+      .btn_del{
+        display: inline-block;
+        margin-left: 4px;
+        background-color: #91a1c2;
+        color:white;
+        padding:7px 15px;
+        width: 100px;
+        border-radius:5px;
+      }
+
+    .text_pos{
+      padding-left:33px;
+    }
+
+    .box_title{
+      font-size:19px;
+    }
+
+    .mwd-125{
+      min-width:125px;
+    }
+
+    .mw-522{
+      max-width:522px;
+    }
+    .mw-528{
+      max-width: 528px;
+    }
+    .mw-548{
+      max-width: 548px;
+    }
+    .mw-564{
+      /* max-width: 564px; */
+      max-width: 78.5%;
+    }
+    .mw-142{
+      max-width: 142px;
+    }
+
+    .ccl_btn{
+      /* padding:0px 30px; */
+      margin-left:14px;
+      font-size: 17px;
+      height: 36px;
+      width: 100px;
+      padding-bottom: 4px;
+    }
+
+    .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{
+      background:#d9deec;
+      border-right: 1px solid #c5c5c5;
+      border-bottom: 0px ;
+    }
+
+    #TB_S70_SUGT001 .ui-state-hover,#TB_S70_SUGK170 .ui-state-hover,#TB_S70_SUGT030 .ui-state-hover{
+      background:#dbebfb !important;
+    }
+
+    .jqgrid-multibox{
+      background:#e8f2fc;
+    }
+
+    #mw-125{
+      min-width: 125px;
+    }
+
+    .upload_hide{
+      display:none;
+    }
+    /* 상단 메뉴 폰트 */
+    .ly-gnb > ul > li a{
+      font-size: 18px;
+    }
+
+    /* 제안개요 박스 input 폰트 */
+    #accordionView0 input{
+      font-size:17px;
+    }
+
+    /* 프로필 메시지 폰트  */
+    .ly-user-timeset p{
+      font-size: 17px;
+    }
+
+    /* 박스 대주제 폰트 */
+    .big_title{
+      font-size:27px;
+    }
+
+    /* 제안개요 체크 박스 */
+    .ly-contents-head{
+      position:relative;
+      z-index:999;
+    }
+    .ly-contents-head > .field .radioset div.ui.radio label{
+      font-size:19px;
+    }
+
+    /* 제안개요 항목명 폰트 */
+    .summary-info > dl > dt, .summary-info > dl dd{
+      font-size:17px;
+    }
+
+    /* 제안개요 라벨 폰트 */
+    .search-box > .rows .column.depth-2 label{
+      font-size:17px;
+      padding-right: 10px;
+    }
+
+    /* 왼쪽 사이드 메뉴 폰트  */
+    .ly-side > ul > li a{
+      font-size:18px;
+    }
+
+    /* 개선내용 버튼 폰트 */
+    .control_box .control-column button{
+      font-size:17px;
+      padding-bottom : 3px;
+      height: 36px;
+    }
+
+    /* 개선 전 내용 */
+    .sec_text{
+      font-size:19px;
+    }
+
+    /* 하단 타이틀 폰트 */
+    .sub_big_title{
+      font-size:19px;
+    }
+
+    /* 관련 도면 라벨 폰트 */
+    .search-box > .rows .column .drawing{
+      font-size:17px;
+    }
+
+    /* 관련 도면 인풋 폰트 */
+    .search-box > .rows .column .drawing_input{
+      font-size:17px;
+    }
+
+    /* 관련 도면 selectbox font */
+    .select2 select{
+      font-size:17px;
+    }
+
+    /* 위험성 평가 라벨 폰트 */
+    .dc-radio{
+      font-size:17px;
+    }
+
+    /* 추가/삭제/ + / - 버튼 폰트 */
+    .control-column.item-right button{
+      font-size:17px;
+    }
+
+    /* 6번째 박스 td,th 폰트 */
+    #accordionView6 th,td{
+      font-size:17px;
+    }
+
+    /* 7번째 박스 td,th 폰트 */
+    #accordionView7 th,td{
+      font-size:17px;
+    }
+
+    /* table th 크기 조절 */
+    .ui-jqgrid .ui-jqgrid-htable .ui-th-div{
+      height:25px;
+    }
+
+    /* 체크박스 css */
+    [name='chk_input']:checked, [name='chk_input']:not(:checked){
+      position: static;
+      left:0px;
+      border:1px solid black;
+      border-radius: 3px;
+      width:16px;
+      height:16px;
+    }
+
+    .gh_tb{
+      width:100%;
+      margin: 10px 0;
+    }
+
+    .gh_tb tr th:first-child{
+      width:4%;
+    }
+
+    .gh_tb tr{
+      height: 22px;
+      border-collapse: separate;
+      font-family: 'Noto Sans KR', 'sans-self';
+    }
+
+    .gh_tb tr th{
+      height:25px;
+      background: #d9deec;
+      border-right: 0px !important;
+      border-bottom: 1px solid #e5e5e5;
+      font-weight: bold;
+    }
+
+    /* 하단 인포 폰트 */
+    .infor{
+      font-size:19px;
+    }
+
+    /* 하단 인포 버튼 폰트 */
+    .form-submit .bottom_btn{
+      font-size:17px;
+      padding-bottom:3px;
+    }
+    .side-toggle{
+      position:absolute;
+    }
+    .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td{
+      font-size:15px;
+      /* border-bottom: 0px; */
+    }
+    .renderer-wrp .input + span{
+      font-size: 17px;
+    }
+    .ranges{
+      display:none;
+    }
+    .daterangepicker.opensright .ranges, .daterangepicker.opensright .calendar{
+      width:48%;
+      max-width:48%;
+    }
+    .daterangepicker .calendar th, .daterangepicker .calendar td{
+      padding:5px;
+    }
+    .dis_flex{
+      display: flex;
+    }
+    .button.search.slong_btn{
+      font-size: 17px;
+      padding-bottom: 3px;
+      margin-right: 36px;
+      width: 214px;
+      height: 36px;
+    }
+    .inbtn{
+      font-size: 17px;
+      height: 30px;
+      padding-bottom: 2px;
+      box-shadow: none !important;
+    }
+
+    .title_same{
+      margin-right:17px;
+    }
+
+    .title_same2{
+      margin-right:17px;
+    }
+    .select2:after{
+     right: 46px;
+    }
+    .ui-jqgrid tr.jqgrow td, .ui-jqgrid tr.jqgroup td{
+      height: 43px;
+    }
+
+    .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td input[type=text]{
+      height: 36px;
+    }
+
+    .ck_btn{
+      box-shadow: none !important;
+      height:36px;
+      font-size: 17px;
+    }
+    /*select3 적용 -> 관련 도면 첨부 */
+    .select3{
+      position: relative;
+      display: inline-block;
+      height: 30px;
+    }
+    .select3 select{
+      padding: 0 22px 0 14px;
+      width: inherit;
+      height: inherit;
+      outline: 0;
+      border: 1px solid #cacaca;
+      border-radius: 3px;
+      color: #666;
+      font-size: 14px;
+      line-height: 28px;
+      -webkit-appearance: none;
+      box-shadow: inset 0 1px 12px 3px #f3f3f8;
+    }
+    .select3:after{
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      z-index: 1;
+      color: #585858;
+      content: '\f107';
+      font-weight: 900;
+      font-size: 14px;
+      font-family: 'FontAwesome';
+    }
+    .ui-jqgrid td input, .ui-jqgrid td select, .ui-jqgrid td textarea{
+      min-width: 57px;
+    }
+    .table-row{
+      margin-top: 15px;
+    }
+
+    #jqgh_S700101A010_jqGrid_view4_col1{
+      top:0px !important;
+    }
+    #jqgh_S700101A010_jqGrid_view4_col2{
+      top:0px !important;
+    }
+
+    /* 텍스트박스 */
+        .ui input, .select2, .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td input[type=text] {height: 36px; min-width: 59px;}
+        .select3 select {height: 36px; font-size: 17px;}
+
+    /*Media queries*/
+    @media screen and (min-width:1349px) and (max-width:1912px) {
+          .button.search.slong_btn {width: 80%;}
+    }
+    .radioset .input{min-width: 120px;}
+
+    .infor{
+      color:#333
+    }
+    .ui-jqgrid .button.blue{
+      box-shadow:none;
+    }
+    .text_in_sum{
+      font-size: 17px;font-weight: bold;
+    }
+    /* Radio 버튼 이미지 선명도 향상 */
+		[type='radio']:checked + label:after,
+		[type='radio']:not(:checked) + label:after {
+			top: 10px;
+			left: 7px;
+			width: 8px;
+			height: 8px;
+		}
+
+		[type='radio']:checked + label:before,
+		[type='radio']:not(:checked) + label:before {
+			border: 2px solid #cccccc;
+		}
+    /* point색상 제외한 폰트 색상 #333333 통일 2021-03-09 */
+    /* 라벨 */
+    .search-box > .rows .column label,
+    /* 인풋 text */
+    .search-box > .rows .column .input,
+    /* 셀렉트 */
+    .select2 select,
+    /* 일반그리드 폰트 */
+    .table-row .table th, .table-row .table td,
+    /* 큰타이틀 */
+    .contents-title,
+    .text2,
+    .tabs-inner-title,
+    .radio label,
+    .summary-info > dl > dt, .summary-info > dl dd,
+    .box_title,
+    .select3 select
+    {color: #333333 !important;}
+
+    .button.icon.date2 {height: 36px;}
+
+    .set_error, .infor {
+      color: #ea0000;
+    }
+    </style>
+</head>
+<!-- class를 select2로 입력시 셀렉트가 네이티브로 바뀝니다.-->
+<body>
+<div id="root">
+    <!--ifram include header -->
+    <article>
+        <header>
+            <div class="ly-user-header">
+                <h1 class="logo">
+                    <a href="#none"><img src="../../../images/com/logo.png" alt="with posco 전자 제안관리 system" /></a>
+                </h1>
+                <nav class="ly-gnb">
+                    <ul class="ft_center_top">
+                        <li>
+                            <a href="#none" alt="HOME" class="txt_grad" data-target="true">HOME</a>
+                        </li>
+                        <li>
+                            <a href="#none" alt="마이페이지" class="txt_grad" data-target="true">MyPage</a>
+                        </li>
+                        <li class="on">
+                            <a href="#none" alt="제안하기" class="txt_grad" data-target="true">제안작성</a>
+                            <ul>
+                                <li><a href="#none" alt="제안서등록" id="S700101A010">제안등록</a></li>
+                                <li><a href="#none" alt="제안서임시저장" id="S700101A020">제안 임시저장</a></li>
+                                <li><a href="#none" alt="제안서수정" id="S700101A030">제안 수정</a></li>
+                                <!-- <li><a href="#none" alt="제안서 양식 다운로드" id="S700101A030">제안 양식 다운로드</a></li> -->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#none" alt="검색하기" class="txt_grad" data-target="true">검색하기</a>
+                        </li>
+                        <li>
+                            <a href="#none" alt="심사하기" class="txt_grad" data-target="true">심사하기</a>
+                        </li>
+                        <li>
+                            <a href="#none" alt="명예의 전당" class="txt_grad" data-target="true">명예의 전당</a>
+                        </li>
+                        <li>
+                            <a href="#none" alt="기준정보" class="txt_grad" data-target="true">기준정보</a>
+                        </li>
+                        <li>
+                            <a href="#none" alt="DashBoard" class="txt_grad" data-target="true">DashBoard</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="ly-user-timeset">
+                    <p class="ft_right_top">안녕하세요 <span>홍길동</span> 님</p>
+                    <span class="ic-member">
+                                <a href="#none"><span class="material-icons set_top_identity">perm_identity</span></a>
+                            </span>
+                    <span class="ic-change">
+                                <a href="#none"><img src="../../../images/com/head-icon01.png" /></a>
+                            </span>
+                    <span class="ic-helper">
+                                <a href="#none"><span class="material-icons set_top_icon">help</span></a>
+                            </span>
+                    <span class="ic-logout">
+                                <a href="#none"><span class="material-icons set_top_icon">power_settings_new</span></a>
+                            </span>
+                </div>
+                <div class="nav-bar"></div>
+            </div>
+        </header>
+    </article>
+    <section class="ly-box">
+        <h1>제안하기</h1>
+        <h3>이제 보여줄 때입니다. 스카이 팩토리에서 당신의 놀라운 상상력을 현실로 바꿔보세요!</h3>
+        <div class="box-toggle">
+            <button class="ui button icon"><i class="fas fa-chevron-up"></i></button>
+        </div>
+    </section>
+    <div class="ly-container">
+        <!--ifram include sidebar -->
+        <!--개발적용시 ly-side만 쓰시면 됩니다-->
+        <div class="ly-side">
+            <ul>
+                <li class="active">
+                    <a href="#child1" rel="child1" onclick="return false"><span class="material-icons material-icons-outlined set_icon">article</span>제안서등록</a>
+                </li>
+                <li>
+                    <a href="#child2" rel="child2" onclick="return false"><span class="material-icons material-icons-outlined set_icon">save</span>제안서 임시저장</a>
+                </li>
+                <li>
+                    <a href="#child3" rel="child3" onclick="return false"><span class="material-icons material-icons-outlined set_icon">create</span>제안서 수정</a>
+                </li>
+                <li>
+                    <!-- <a href="#child3" rel="child3" onclick="return false"><span class="material-icons set_icon">system_update_alt</span>제안서양식 다운로드</a> -->
+                </li>
+            </ul>
+            <div class="side-toggle">
+                <button class="ui button icon"><i class="fas fa-chevron-left"></i></button>
+            </div>
+        </div>
+        <div class="ly-wrapper">
+            <main class="ly-contents">
+                <div class="ly-contents-boxed doc_css">
+                    <div class="flex">
+                        <!--// 제안서 등록 시작-->
+                        <div class="ly-contents-head">
+                            <button class="ui button icon blue acc" onclick="accordionFunc(0)" data-attr="accordionView0">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <h1 class="contents-title big_title">제안개요</h1>
+                            <div class="field ml30">
+                                <!--제안개요 : 일반제안/우수제안 radio-->
+                                <div class="radioset" style="display: flex">
+                                    <div class="ui radio checkbox">
+                                        <!--disabled입력시 체크불가-->
+                                        <input type="radio" name="radio0" id="change0" value="General" checked />
+                                        <label for="change0" class="chk_title">일반제안</label>
+                                    </div>
+                                    <div class="ui radio checkbox ml50">
+                                        <input type="radio" name="radio0" id="change1" value="Excellent" />
+                                        <label for="change1" class="chk_title">우수제안</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- table ID setting : TB_S70_SUGB020-->
+                        <div class="ly-contents-head-rt" id="TB_S70_SUGB020">
+                            <div class="summary-info">
+                                <dl>
+                                    <dt><span class="material-icons set_identity">perm_identity</span><span id="FULL_NAME" name="성명">선행평가자</span></dt>
+                                    <dd><span>이순신</span> 님</dd>
+                                </dl>
+                                <dl>
+                                    <dt><span class="material-icons set_identity">perm_identity</span><span id="FULL_NAME" name="성명">1차 Helper</span></dt>
+                                    <dd><span>홍길동</span> 님</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-content mgt25" id="accordionView0">
+                        <!-- table ID setting : TB_S70_SUGT010-->
+                        <form class="ui form" id="TB_S70_SUGT010">
+                            <div class="search-box">
+                                <div class="rows">
+                                    <div class="column depth-2">
+                                        <div class="fields">
+                                            <div class="field mr20">
+                                                <label class="title_lab title_same">제안번호</label>
+                                                <input type="text" class="ui input pw-100" maxlength="13" id="SUGGESTION_NUMBER" name="직원제안등록번호" style="max-width: 245px;"/>
+                                            </div>
+
+                                            <div class="field">
+                                                <label>굴리기 No</label>
+                                                <input type="text" class="ui input pw-100 right_title_css" maxlength="13" name="" style="max-width: 170px;"/>
+                                                <button class="ui button search mgr20" style="width: auto; height: 36px; background: #91a1c2; font-size: 17px; padding: 0 5px; line-height: 34px; border-radius: 5px;">
+                                                  시그마로 가져오기
+                                                </button>
+                                                <label class="now_date_num" style="line-height: 36px; width: 190px; margin-left: 24px;">
+                                                  등록일자
+                                                  <span id="CREATION_DATE" class="cration_date" style="margin-left: 15px;"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rows">
+                                    <div class="column depth-2">
+                                        <div class="fields">
+                                            <div class="field pw-100">
+                                                <label class="title_lab title_same">제안명</label>
+                                                <input type="text" placeholder="설비명 + 개선수단방법 + 효과" class="ui input pw-100" maxlength="200" id="PROPOSE_NM" />
+                                            </div>
+                                            <div class="column top">
+                                                <button class="ui button search slong_btn" type="submit">중복 제안명 검색</button>
+                                            </div>
+                                        </div>
+                                        <div class="fields">
+                                            <div class="field mr20">
+                                                <label class="title_lab title_same">제안효과</label>
+                                                <div class="radio_box">
+                                                    <div class="dis_flex">
+                                                        <div class="ui radio checkbox">
+                                                            <!--disabled입력시 체크불가-->
+                                                            <input type="radio" name="PROPOSE_FINN_TP" id="chk1" value="FIN" disabled />
+                                                            <label for="chk1">재무성과</label>
+                                                        </div>
+                                                        <div class="ui radio checkbox ml50">
+                                                            <input type="radio" name="PROPOSE_FINN_TP" id="chk2" value="NIN" checked />
+                                                            <label for="chk2">비재무성과</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <label class="">제안유형</label>
+                                                <div class="ui select2 pw-94">
+                                                    <select id="PROPOSE_TP_NM">
+                                                        <!-- 첫번째는 선택하세요.-->
+                                                        <option selected disabled hidden id="">선택하세요</option>
+                                                        <option value="원가절감">원가절감</option>
+                                                        <option value="품질향상">품질향상</option>
+                                                        <option value="생산성향상">생산성향상</option>
+                                                        <option value="안전향상">안전향상</option>
+                                                        <option value="설비개선">설비개선</option>
+                                                        <option value="환경개선">환경개선</option>
+                                                        <option value="기타">기타</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fields">
+                                            <div class="field mr20">
+                                                <label class="title_lab title_same">활동기간</label>
+                                                <div class="ui type">
+                                                    <input type="text" class="ui input" id="SSC_ACTIVITY_PRD_START_DAY" name="daterangepicker_start" autocomplete="off" />
+                                                </div>
+                                                <div class="ui type dpi">
+                                                    <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                                        <span class="material-icons material-icons-outlined set_date">date_range</span>
+                                                    </button>
+                                                </div>
+                                                <span class="text">~</span>
+                                                <div class="ui type">
+                                                    <input type="text" class="ui input" id="SSC_ACTIVITY_PRD_END_DAY" autocomplete="off" />
+                                                </div>
+                                                <div class="ui type dpi">
+                                                    <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                                        <span class="material-icons material-icons-outlined set_date">date_range</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <label>개선전 기간</label>
+                                                <div class="ui type">
+                                                    <input type="text" class="ui input" id="PRPC_IMPV_A_CCND_PRD_STD" autocomplete="off" />
+                                                </div>
+                                                <div class="ui type dpi">
+                                                    <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                                        <span class="material-icons material-icons-outlined set_date">date_range</span>
+                                                    </button>
+                                                </div>
+                                                <span class="text">~</span>
+                                                <div class="ui type">
+                                                    <input type="text" class="ui input" id="PRPC_IMPV_A_CCND_PRD_ED" autocomplete="off" />
+                                                </div>
+                                                <div class="ui type dpi">
+                                                    <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                                        <span class="material-icons material-icons-outlined set_date">date_range</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--우수제안/비재무성과 노출 fields-->
+                                        <div class="fields" style="display: none" id="002">
+                                            <div class="field mr20">
+                                                <label class="title_lab title_same2">개선지표명</label>
+                                                <input type="text" class="ui input pw-100 mw-548" maxlength="1000" id="PINDEX_NAME" />
+                                            </div>
+                                            <div class="field">
+                                                <label>비재무효과</label>
+                                                <!--I/O정의서 ID없음-->
+                                                <div class="radioset" style="display: flex">
+                                                    <div class="ui radio checkbox">
+                                                        <!--disabled입력시 체크불가-->
+                                                        <input type="radio" name="radio3" id="chk3" value="per" />
+                                                        <label for="chk3" class="pxw-138">향상율(%)</label>
+                                                    </div>
+                                                    <input type="text" class="ui input pxw-80" id="INPUT_PER" disabled />
+
+                                                    <div class="ui radio checkbox mgl48">
+                                                        <input type="radio" name="radio3" id="chk4" checked value="per2" onkeyup="inputNumberFormat(this)" />
+                                                        <label for="chk4" class="pxw-138" id="mw-125" >기대금액(원)</label>
+                                                    </div>
+                                                    <input type="text" class="ui input pxw-80" id="INPUT_PER2" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--우수제안/재무성과 노출 fields-->
+                                        <div class="fields" style="display: none" id="001">
+                                            <div class="field">
+                                                <label class="title_lab" style="width:22.1%">성과측정기간</label>
+                                                <div class="radio_box ">
+                                                    <div class="radioset" style="display: flex">
+                                                        <div class="ui radio checkbox">
+                                                            <!--disabled입력시 체크불가-->
+                                                            <input type="radio" name="radio4" id="chk5" value="6" />
+                                                            <label for="chk5">6개월</label>
+                                                        </div>
+
+                                                        <div class="ui radio checkbox ml20">
+                                                            <input type="radio" name="radio4" id="chk6" value="12" checked />
+                                                            <label for="chk6">1년</label>
+                                                        </div>
+
+                                                        <div class="inputgroup">
+                                                            <div class="ui type">
+                                                                <input type="text" class="ui input mw-142" id="NONE_START_ID" value="2020-11-30" />
+                                                            </div>
+                                                            <span class="text">~</span>
+                                                            <div class="ui type">
+                                                                <input type="text" class="ui input mw-142" id="NONE_END_ID" value="2020-12-30" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <label>효과금액(원)</label>
+                                                <input type="text" class="ui input pw-100 mw-564" onkeyup="inputNumberFormat(this)" />
+                                            </div>
+                                        </div>
+                                        <div class="fields">
+                                            <div class="field ">
+                                                <label class="title_lab">시그마로연계</label>
+                                                <input type="text" class="ui input pw-100 mw-548" maxlength="15" id="PROJECTCODE" />
+                                            </div>
+                                            <div class="field">
+                                                <label>활동구분</label>
+                                                <div class="ui select2 pw-94">
+                                                    <select id="PRPC_MGT_PRPC_SRCE_TP">
+                                                        <option selected disabled hidden>선택하세요</option>
+                                                        <option value="위드마이머신">위드마이머신</option>
+                                                        <option value="일상과제">일상과제</option>
+                                                        <option value="개선리더과제">개선리더과제</option>
+                                                        <option value="본인업무">본인업무</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class=" ly-contents-boxed">
+                    <!--// 개선내용 시작-->
+                    <div class="ly-contents-head">
+                        <button class="ui button icon blue acc" onclick="accordionFunc(1)" data-attr="accordionView1">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <h1 class="contents-title big_title">개선내용</h1>
+                    </div>
+
+                    <div class="contents-wrapper" id="accordionView1">
+                        <!--컨트롤러-->
+
+                        <div class="control_box control">
+                            <div class="control-column item-left">
+                                <button class="ui button blue act pointer colorcc" size="large" onclick="buttonToggle(0)" data-toggle="buttonToggle0" id="PROPOSE_CUR_COND_PROB_PNT">1. 현상 및 문제점</button>
+                                <button class="ui button blue act pointer active" size="large" onclick="buttonToggle(1)" data-toggle="buttonToggle1" id="">2. 제안내용</button>
+                                <button class="ui button blue act pointer active" size="large" onclick="buttonToggle(2)" data-toggle="buttonToggle2" id="PROPOSE_EXPECTA_EFCT">3. 제안효과</button>
+                            </div>
+                        </div>
+                        <div class="editor-look">
+                            <div id="buttonToggle0">
+                                <div class="buttonToggle0_box">
+                                    <div class="box_title text_pos" >
+                                        <span>1. 현상 및 문제점</span>
+                                    </div>
+                                    <div class="editor-look-group-btn" style="width: 100%">
+                                        <script type="text/javascript">
+                                            DEXT5.config.DefaultMessage =
+                                                "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; font-weight:bold'>1. 현상 및 문제점 TAB을 클릭할 경우 작성법<br/> 1) 개요설명 및 현상 & 문제점 서술 <br/ >※ TEXT 박스에 현행과 동일하게 작성</span>";
+                                            new Dext5editor("editor0");
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="buttonToggle1" class="show buttonToggle1">
+                                <!-- 개선1 ~ 개선5 추가 ID:PROPOSE_IMP_AF_CONT 어디에 기입해야할지 미구분 -->
+                                <div class="box_title text_pos" >
+                                    <span>2. 제안 내용</span>
+                                </div>
+                                <div id="tabs">
+                                    <ul>
+                                        <li class="tabs-child">
+                                            <a href="#child1" rel="child1" onclick="return false">개선1</a>
+                                        </li>
+                                        <li class="tabs-child">
+                                            <a href="#child2" rel="child2" onclick="return false">개선2</a>
+                                        </li>
+                                        <li class="tabs-child">
+                                            <a href="#child3" rel="child3" onclick="return false">개선3</a>
+                                        </li>
+                                        <li class="tabs-child">
+                                            <a href="#child4" rel="child4" onclick="return false">개선4</a>
+                                        </li>
+                                        <li class="tabs-child">
+                                            <a href="#child5" rel="child5" onclick="return false">개선5</a>
+                                        </li>
+                                    </ul>
+                                    <button class="ui button blue" onclick="addTabsElementUpdate()"><i class="fas fa-plus mgr4"></i>추가</button>
+                                    <button class="ui button blue ccl_btn" onclick="delTabsElementUpdate()" > － 삭제</button>
+                                </div>
+                                <div class="tabs-view">
+                                    <div class="tabs-view-target" id="child1">
+                                        <h1 class="tabs-inner-title">개선명 : <span class="ml30">Dust 발생으로 집진기 배관 막힘현상 발생1</span></h1>
+                                        <div class="imp-conatiner">
+                                            <div class="imp-left">
+                                                <h5 class="sec_text">개선 전 내용</h5>
+                                                <div class="images-box">시그마로 사진 (이미지)</div>
+                                                <div class="content-box" style="text-align: center;height: 100px; lien-height: 100px; font-size: 17px; border-left: 1px solid #a1abb9; border-right: 1px solid #a1abb9; background-color: #fff; color: #cccccc;">
+                                                  시그마로 내용
+                                                </div>
+                                                <div class="editor-box">
+                                                    <script>
+                                                    DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>1. 개선전 내용기술 <br />2. 사진(이미지) 및 참고도면 삽입<br />3. 사진 및 도면 상세설명</span>";
+                                                    new Dext5editor("editor1_1");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="imp-right">
+                                                <h5 class="sec_text">개선 후 내용</h5>
+                                                <div class="images-box">시그마로 사진 (이미지)</div>
+                                                <div class="content-box" style="text-align: center; height: 100px; line-height: 100px; font-size: 17px; border-left: 1px solid #a1abb9; border-right: 1px solid #a1abb9; background-color: #fff; color: #cccccc;">
+                                                  시그마로 내용
+                                                </div>
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>1. 개선전 내용기술 <br />2. 사진(이미지) 및 참고도면 삽입<br />3. 사진 및 도면 상세설명</span>";
+                                                        new Dext5editor("editor1_2");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-view-target" id="child2">
+                                        <h1 class="tabs-inner-title">개선명 : <span class="ml30">Dust 발생으로 집진기 배관 막힘현상 발생2</span></h1>
+                                        <div class="imp-conatiner">
+                                            <div class="imp-left">
+                                                <h5 class="sec_text">개선 전 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역</div> -->
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor2_1");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="imp-right">
+                                                <h5 class="sec_text">개선 후 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역</div> -->
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor2_2");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-view-target" id="child3">
+                                        <h1 class="tabs-inner-title">개선명 : <span class="ml30">Dust 발생으로 집진기 배관 막힘현상 발생3</span></h1>
+                                        <div class="imp-conatiner">
+                                            <div class="imp-left">
+                                                <h5 class="sec_text">개선 전 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역</div> -->
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor3_1");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="imp-right">
+                                                <h5 class="sec_text">개선 후 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역</div> -->
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor3_2");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-view-target" id="child4">
+                                        <h1 class="tabs-inner-title">개선명 : <span class="ml30">Dust 발생으로 집진기 배관 막힘현상 발생4</span></h1>
+                                        <div class="imp-conatiner">
+                                            <div class="imp-left">
+                                                <h5 class="sec_text">개선 전 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역</div> -->
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor4_1");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="imp-right">
+                                                <h5 class="sec_text">개선 후 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역</div> -->
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor4_2");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-view-target" id="child5">
+                                        <h1 class="tabs-inner-title">개선명 : <span class="ml30">Dust 발생으로 집진기 배관 막힘현상 발생5</span></h1>
+                                        <div class="imp-conatiner">
+                                            <div class="imp-left">
+                                                <h5 class="sec_text">개선 전 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역</div> -->
+                                                <div class="editor-box top_none">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor5_1");
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="imp-right">
+                                                <h5 class="sec_text">개선 후 내용</h5>
+                                                <!-- <div class="images-box">사진 이미지영역22</div> -->
+
+                                                <div class="editor-box">
+                                                    <script>
+                                                        DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+                                                        new Dext5editor("editor5_2");
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="buttonToggle2" class="show buttonToggle2">
+                                <div class="box_title text_pos" >
+                                    <span>3. 제안 효과</span>
+                                </div>
+                                <div class="editor-look-group-textArea">
+                                  <div class="editor-look-group-btn" style="width: 100%">
+                                      <script type="text/javascript">
+                                          DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; font-weight:bold'>3. 제안효과 TAB을 클릭할 경우 작성법&#13;&#10;   <br />1) 직접효과 (재무성과)&#13;&#10;   <br />2) 간접효과(비재무성과)&#13;&#10;<br /><br />※ 제안효과&#13;&#10;   <br />○ 직접효과 (재무성과 가이드 참조하여 작성)&#13;&#10;   <br />○ 비재무성과(향상율 공식기입)&#13;&#10;   <br />○ 간접효과 (정성적 내용 기입)</span>";
+                                          new Dext5editor("editor6");
+
+                                      </script>
+                                  </div>
+                                  <!-- <textarea
+                                          placeholder="3. 제안효과 TAB을 클릭할 경우 작성법&#13;&#10;   1) 직접효과 (재무성과)&#13;&#10;   2) 간접효과(비재무성과)&#13;&#10;※ 제안효과&#13;&#10;   ○ 직접효과 (재무성과 가이드 참조하여 작성)&#13;&#10;   ○ 비재무성과(향상율 공식기입)&#13;&#10;   ○ 간접효과 (정성적 내용 기입)
+                                    "
+                                  ></textarea> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ly-contents-boxed">
+                    <!--// 관련 도면 첨부-->
+                    <div class="ly-contents-head">
+                        <button class="ui button icon blue acc" onclick="accordionFunc(2)" data-attr="accordionView2">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <h1 class="contents-title sub_big_title">관련 도면 첨부</h1>
+                    </div>
+                    <div class="search-content" id="accordionView2">
+                        <form class="ui form">
+                            <div class="search-box">
+                                <div class="rows">
+                                    <div class="column">
+                                        <div class="fields">
+                                            <div class="field field-box1">
+                                                <label class="pxmw-110 drawing">도면(프로그램)</label>
+                                                <div class="ui select3 pxw-90">
+                                                    <select id="PROPOSE_IMP_PLAN_NUM_OF_CASE">
+                                                        <option value="0" selected>없음</option>
+                                                        <option value="1">1건</option>
+                                                        <option value="2">2건</option>
+                                                        <option value="3">3건</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="field-box2">
+                                                <div class="field field-box2-a">
+                                                    <label class="mr10 drawing">NO.1</label>
+                                                    <input type="text" class="ui input drawing_input" maxlength="15" id="PO_DRAWING_NO_VS1" />
+                                                    <button class="ui button blue long_btn">확인</button>
+                                                </div>
+                                                <div class="field field-box2-a">
+                                                    <label class="mr10 drawing">NO.2</label>
+                                                    <input type="text" class="ui input drawing_input" maxlength="15" id="PO_DRAWING_NO_VS2" />
+                                                    <button class="ui button blue long_btn">확인</button>
+                                                </div>
+                                                <div class="field field-box2-a">
+                                                    <label class="mr10 drawing">NO.3</label>
+                                                    <input type="text" class="ui input drawing_input" maxlength="15" id="PO_DRAWING_NO_VS3" />
+                                                    <button class="ui button blue long_btn">확인</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="ly-contents-boxed" id="dangerchecked" style="display:block">
+                    <!--// 위험성 평가 확인-->
+                    <div class="danger-checked">
+                        <button class="ui button icon blue acc" onclick="accordionFunc(3)" data-attr="accordionView3">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <h1 class="contents-title dc-title sub_big_title">*위험성 평가 확인</h1>
+
+                        <div class="field ml30 dc-cont" id="accordionView3">
+                            <!--위험성 평가 확인 radio-->
+                            <div class="radioset" style="display: contents">
+                                <div class="ui radio checkbox dc-radio">
+                                    <!--disabled입력시 체크불가-->
+                                    <input type="radio" name="radio1" id="change2" value="">
+                                    <label for="change2">실시</label>
+                                </div>
+                                <div class="ui radio checkbox dc-radio">
+                                    <input type="radio" name="radio1" id="change3" value="">
+                                    <label for="change3">미실시</label>
+                                </div>
+                                <div class="ui radio checkbox dc-radio">
+                                    <input type="radio" name="radio1" id="change4" value="" checked="">
+                                    <label for="change4">해당사항 없음</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="ly-contents-boxed" id="fileDrop">
+                    <!--// 참고자료 첨부-->
+                    <div class="flex">
+                        <div class="ly-contents-head">
+                            <button class="ui button icon blue acc" onclick="accordionFunc(4)" data-attr="accordionView4">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <h1 class="contents-title sub_big_title">참고자료 첨부</h1>
+                        </div>
+                        <div class="ly-contents-head-rt" id="TB_S70_SUGB002">
+                            <div class="control">
+                                <div class="control-column item-right">
+                                    <input type="file" value="" class="upload_hide"/>
+                                    <!-- <button class="ui button blue" onclick="addRowUrl('#TB_S70_SUGT001');">참고추가</button> -->
+                                    <button class="ui button blue" onclick="file_popup();">추가</button>
+                                    <button class="ui button blue" onclick="removeRowUrl('#TB_S70_SUGT001')">삭제</button>
+                                    <button type="button" class="ui button icon" id="data_up" onclick="data_up('#TB_S70_SUGT001')" >
+                                        <i class="fa fa-chevron-up"></i>
+                                    </button>
+                                    <button type="button" class="ui button icon" id="data_down" onclick="data_down('#TB_S70_SUGT001')">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contents-wrapper" id="accordionView4">
+                          <!-- 참고자료 첨부 jqgrid start-->
+                          <div class="table-row" id="TB_S70_SUGT001_CONTAINER">
+                              <table id="TB_S70_SUGT001" style="width:100%">
+
+                              </table>
+                          </div>
+                    </div>
+                </div>
+                <div class="ly-contents-boxed">
+                    <!--// 참고 URL-->
+                    <div class="flex">
+                        <div class="ly-contents-head">
+                            <button class="ui button icon blue acc" onclick="accordionFunc(5)" data-attr="accordionView5">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <h1 class="contents-title sub_big_title">참고 URL</h1>
+                        </div>
+                        <div class="ly-contents-head-rt">
+                            <div class="control">
+                                <div class="control-column item-right">
+                                    <button class="ui button blue" id="add_chk" onclick="addRowUrl('#TB_S70_SUGK170')"><i></i>추가</button>
+                                    <button class="ui button blue" onclick="removeRowUrl('#TB_S70_SUGK170')"><i></i>삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contents-wrapper" id="accordionView5">
+                        <!--참고자료 jqgrid start-->
+                        <div class="table-row" id="TB_S70_SUGK170_CONTAINER">
+                            <table id="TB_S70_SUGK170" style="width: 100%">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ly-contents-boxed">
+                    <!--// 직번과 지분율(10% 단위)을 입력하세요 URL-->
+                    <div class="flex">
+                        <div class="ly-contents-head">
+                            <button class="ui button icon blue acc" onclick="accordionFunc(6)" data-attr="accordionView6">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <h1 class="contents-title sub_big_title">직번과 지분율(10% 단위)을 입력하세요</h1>
+                        </div>
+                        <div class="ly-contents-head-rt">
+                            <div class="control">
+                                <div class="control-column item-right">
+                                    <button class="ui button blue" onclick="addRowList('#TB_S70_SUGT030')"><i></i>추가</button>
+                                    <button class="ui button blue" onclick="removeRowList_2('#TB_S70_SUGT030')"><i></i>삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contents-wrapper" id="accordionView6">
+                        <!--직번과 지분율(10% 단위)을 입력하세요 jqgrid start-->
+                        <div class="table-row" id="TB_S70_SUGT030_CONTAINER">
+                            <table id="TB_S70_SUGT030" style="width: 100%"></table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ly-contents-boxed" id="003" style="visibility: hidden; width: 100%; position: fixed">
+                    <!--// Self 평가-->
+                    <div class="ly-contents-head">
+                        <button class="ui button icon blue acc" onclick="accordionFunc(7)" data-attr="accordionView7">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <h1 class="contents-title sub_big_title">Self 평가</h1>
+                    </div>
+                    <div class="contents-wrapper" id="accordionView7">
+                        <!--Self 평가-->
+                        <div class="table-row" id="S700101A010_jqGrid_container4">
+                            <table id="S700101A010_jqGrid_view4" style="width: 100%"></table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ly-contents-boxed" id="004" style="visibility: hidden; width: 100%; position: fixed">
+                    <!--// Self 평가-->
+                    <div class="ly-contents-head">
+                        <button class="ui button icon blue acc" onclick="accordionFunc(8)" data-attr="accordionView8">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <h1 class="contents-title sub_big_title">Self 평가</h1>
+                    </div>
+                    <div class="contents-wrapper" id="accordionView8">
+                        <!--Self 평가-->
+                        <div class="table-row" id="S700101A010_jqGrid_container5">
+                            <table id="S700101A010_jqGrid_view5" style="width: 100%"></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="infor"><span class="material-icons set_error">error</span>중복 검색을 먼저 하신 후 등록하시기 바랍니다.</div>
+                <div class="form-submit">
+                    <button class="ui button blue bottom_btn" size="large">중복검색</button>
+                    <button class="ui button blue bottom_btn" size="large">임시저장</button>
+                    <button class="ui button blue bottom_btn" size="large" onclick="save()">등록</button>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<script src="../../../js/common.js"></script>
+<script src="../../../js/components/panel/tab.js"></script>
+<script src="../../../js/components/renderer/render.js"></script>
+
+<script>
+
+    function upload(){
+      $(".upload_hide").click();
+    }
+    function data_up(props){
+      var selectionID = $(props).jqGrid("getGridParam", "selarrrow");
+      var rows = selectionID.length;
+      // var test_row = $(props).closest("tr.jqgrow");
+      // console.log("rows : "+rows);
+      // console.log("selectionID : "+selectionID);
+
+      if (selectionID.length ===0) {
+        alert("이동할 데이터 행을 선택해주세요");
+      } else {
+        for (var i = 0; i < rows; i++) {
+          // $(props).jqGrid('delRowData', selectionID[i]);
+          // var test_row = $(selectionID[i]).closest("tr.jqgrow");
+          $("#"+selectionID[i]).insertBefore($("#"+selectionID[i]).prev());
+          console.log(selectionID[i]);
+
+        }
+      }
+    }
+    function data_down(props){
+      var selectionID = $(props).jqGrid("getGridParam", "selarrrow");
+      var rows = selectionID.length;
+      if (selectionID.length ===0) {
+        alert("이동할 데이터 행을 선택해주세요");
+      } else {
+        for (var i = rows - 1; i >= 0; i--) {
+
+          $("#"+selectionID[i]).insertAfter($("#"+selectionID[i]).next());
+
+        }
+      }
+    }
+
+    function removeRowList_2(props){
+        //id, data, position, srcRowId 순서
+        var rows = $(props).getGridParam("selrow");
+        var selectionID = $(props).jqGrid("getGridParam", "selrow");
+        console.log($(props).jqGrid("getRowData"));
+        console.log(selectionID);
+        if (!selectionID) {
+            alert("삭제할 데이터 행을 선택해주세요");
+        } else {
+            if (selectionID == 1) {
+                alert("대표제안자는 삭제할 수 없습니다.");
+                return;
+            } else {
+                $(props).jqGrid("delRowData", selectionID);
+            }
+        }
+    }
+    function sum_all_div(){
+      var poi1 = $('#PROPOSER_EVALU_POI1').text();
+      var poi2 = $('#PROPOSER_EVALU_POI2').text();
+      var poi2_1 = $('#PROPOSER_EVALU_POI2_1').text();
+      var poi3 = $('#PROPOSER_EVALU_POI3').text();
+      var poi3_1 = $('#PROPOSER_EVALU_POI3_1').text();
+      var poi4 = $('#PROPOSER_EVALU_POI4').text();
+      var all_sum = Number(poi1) + Number(poi2) + Number(poi2_1) + Number(poi3) + Number(poi3_1) + Number(poi4);
+
+      $('#sum_all').text(all_sum);
+
+    }
+
+    function in_int(id , e ){
+      var value = $(e).attr("value");
+      var result;
+      var another_val;
+      var sum;
+      // console.log(id);
+      // console.log(value);
+      //
+      var ck = $('#'+id).is(':disabled');
+      // console.log(ck);
+      // console.log(id);
+      // if(ck){
+      //   alert("창의성,노력도,전파성 기준 도움말을 참조해주세요");
+      // }else{
+        if(id == 'PROPOSER_EVALU_POI2'){
+            if( value > 8){
+              result = confirm("획기적인 업무의 변화를 통한 전사(양제철소, 연구원) 최초의 Idea 수준으로 평가합니다.");
+                if(result){
+                  $('#'+id).text(value);
+                  another_val = $('#PROPOSER_EVALU_POI2_1').text();
+                  sum = Number(value) + Number(another_val);
+                  $('#sum_poi2').text(sum);
+                  sum_all_div();
+                }
+            }else if(value >6){
+              result = confirm("업무의 변화를 통한 제철소 내 최초의 Idea 수준으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }else if (value>4){
+              result = confirm("기존 방법에 아이디어를 추가하여 성과를 창출한 수준으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }
+            else if(value>2){
+              result = confirm("업무,프로세스 개선 폭이 크지 않아 업무의 변화 정도가 작음으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }else{
+              result = confirm("기존 업무와 뚜렷한 차이점이 없음으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }
+          }else if(id == 'PROPOSER_EVALU_POI2_1'){
+            if( value > 8){
+              result = confirm("전사(양제철소, 연구원) 최고 기술 보유가 가능한 기술전문가 기술 개선으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }else if(value >6){
+              result = confirm("사내(제철소, 기술연구원) 우수직무기술 보유가 가능한 기술 개선으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }else if(value>4){
+              result = confirm("주임/파트장 조직 내 순환근무 및 돌발조치 가능한 기술개선으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }else if(value>2){
+              result = confirm("주임/파트장 조직 내 타업무 지원 가능한 기술개선으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }else{
+              result = confirm("선배사원 조언을 통해 일상업무 수행할 수 있는 기술개선으로 평가합니다. ");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI2').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi2').text(sum);
+                sum_all_div();
+              }
+            }
+        }else if(id == 'PROPOSER_EVALU_POI3'){
+
+            if(value > 8){
+              result = confirm("Team work 활동으로 적절하고 효과적으로 문제점을 완벽하게 해결한 개선활동으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else if(value >6){
+              result = confirm("Team work 활동으로 적절하고 효과적인 해결방법으로 문제재발을 최소화 시킨 개선활동으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else if(value>4){
+              result = confirm("적절한 해결방안으로 외부(Benefit Sharing 과제, 외주사, 공사성 등)의 도움에 의한 문제점을 최소화시킨 개선으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else if(value>2){
+              result = confirm("초보적 수준의 미흡한 해결방안으로 외부(Benefit Sharing 과제, 외주사, 공사성 등)의 도움에 의한 개선으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else{
+              result = confirm("외부(Benefit Sharing 과제, 외주사, 공사성 등)의 도움에 전적으로 의존한 개선활동으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3_1').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }
+        }else if(id == 'PROPOSER_EVALU_POI3_1'){
+            if(value > 8){
+              result = confirm("리더수준의 개선과제 2개 수준의 노력으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else if(value >6){
+              result = confirm("리더수준의 개선과제 1개 수준의 노력으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else if(value>4){
+              result = confirm("팀원수준의 개선과제 1개 수준의 노력으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else if(value>2){
+              result = confirm("즉실천활동 2개 수준의 노력으로 평가합니다.");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }else{
+              result = confirm("즉실천활동 1개 수준의 노력으로 평가합니다");
+              if(result){
+                $('#'+id).text(value);
+                another_val = $('#PROPOSER_EVALU_POI3').text();
+                sum = Number(value) + Number(another_val);
+                $('#sum_poi3').text(sum);
+                sum_all_div();
+              }
+            }
+        }else{
+          $('#'+id).text(value);
+          sum_all_div();
+        }
+      // }
+    }
+    // function addRowUrl(props) {
+    //     //id, data, position, srcRowId 순서
+    //     $(props).jqGrid("addRow", {
+    //         rowId: _rowId(props).id + 1,
+    //         rowdata: _rowData(props).data,
+    //         position: "last",
+    //     });
+    // }
+    //
+    // function removeRowUrl(props) {
+    //     //id, data, position, srcRowId 순서
+    //     console.log("prop : "+props);
+    //
+    //     var selectionID = $(props).jqGrid("getGridParam", "selarrrow");
+    //     var rows = selectionID.length;
+    //     console.log("rows : "+rows);
+    //     console.log("selectionID : "+selectionID);
+    //
+    //     if (selectionID.length ===0) {
+    //         alert("삭제할 데이터 행을 선택해주세요");
+    //     } else {
+    //         for (var i = rows - 1; i >= 0; i--) {
+    //             $(props).jqGrid('delRowData', selectionID[i]);
+    //         }
+    //     }
+    // }
+
+    //daterangepicker
+    //https://www.daterangepicker.com/
+
+    $(function () {
+
+
+        var DateTarget = $("#CREATION_DATE");
+        var d = new Date();
+        var fmt1 = "YYYY-MM-DD";
+        var now = moment(d).format(fmt1);
+        DateTarget.append(now);
+        var $SSC_ALL_ACTIVITY_PRD = $('#SSC_ALL_ACTIVITY_PRD');
+        var $PRPC_ALL_IMPV_A_CCND_PRD = $('input[id="PRPC_ALL_IMPV_A_CCND_PRD"]');
+        var $SSC_ACTIVITY_PRD_START_DAY = $('input[id="SSC_ACTIVITY_PRD_START_DAY"]');
+        var $SSC_ACTIVITY_PRD_END_DAY = $('input[id="SSC_ACTIVITY_PRD_END_DAY"]');
+        var $PRPC_IMPV_A_CCND_PRD_STD = $('input[id="PRPC_IMPV_A_CCND_PRD_STD"]');
+        var $PRPC_IMPV_A_CCND_PRD_ED = $('input[id="PRPC_IMPV_A_CCND_PRD_ED"]');
+
+        var $NONE_START_ID = $('#NONE_START_ID');
+        var $NONE_END_ID = $('#NONE_END_ID');
+        //활동기간 DATE PICKER BUTTON
+        $SSC_ALL_ACTIVITY_PRD.daterangepicker(
+            {
+              autoApply: true, //default value 제거
+              format: "yyyy-MM-dd",
+              maxDate: moment().subtract(1, "days").toDate(),
+              do_date:true,
+              startDate: moment().subtract(6, "days").toDate(),
+            },
+        );
+
+        //활동기간 왼쪽 input
+
+        $SSC_ACTIVITY_PRD_START_DAY.daterangepicker(
+          {
+            opens: "right",
+            locale: { format: "YYYY-MM-DD" },
+            singleDatePicker: true,
+
+          }
+        );
+        console.log($SSC_ACTIVITY_PRD_START_DAY);
+
+        $SSC_ACTIVITY_PRD_END_DAY.daterangepicker(
+          {
+              autoApply: false, //default value 제거
+              format: "yyyy-MM-dd",
+              maxDate: moment().subtract(1, "days").toDate(),
+              do_date:true,
+              startDate: moment().subtract(6, "days").toDate(),
+              singleDatePicker: true,
+
+          }
+        )
+
+        function do_date(picker) {
+          console.log(picker);
+        }
+
+        var PRD_START_DAY;
+        $SSC_ACTIVITY_PRD_START_DAY.on("change", function (ev, picker) {
+            $SSC_ACTIVITY_PRD_START_DAY.val(picker.startDate.format("YYYY-MM-DD"));
+            $PRPC_IMPV_A_CCND_PRD_STD.val(moment(picker.startDate).add("-1", "y").format("YYYY-MM-DD"));
+            $PRPC_IMPV_A_CCND_PRD_ED.val(moment($PRPC_IMPV_A_CCND_PRD_STD.val()).add("+365","d").format("YYYY-MM-DD"));
+            PRD_START_DAY = $SSC_ACTIVITY_PRD_START_DAY.val();
+            // $SSC_ACTIVITY_PRD_END_DAY.daterangepicker(
+            //     {
+            //
+            //         autoUpdateInput: false, //default value 제거
+            //         singleDatePicker: true,
+            //         locale: { format: "YYYY-MM-DD" },
+            //         minDate:  $SSC_ACTIVITY_PRD_START_DAY.val(),
+            //     }
+            //
+            // )
+        });
+
+        $SSC_ACTIVITY_PRD_END_DAY.on("apply.daterangepicker", function (ev, picker) {
+            $SSC_ACTIVITY_PRD_END_DAY.val(picker.endDate.format("YYYY-MM-DD"));
+            // $PRPC_IMPV_A_CCND_PRD_STD.val(moment(picker.startDate).add("-1", "y").format("YYYY-MM-DD"));
+            // $PRPC_IMPV_A_CCND_PRD_ED.val(moment($PRPC_IMPV_A_CCND_PRD_STD.val()).endOf("year").format("YYYY-MM-DD"));
+            $NONE_START_ID.val(picker.endDate.format("YYYY-MM-DD"))
+            $NONE_END_ID.val(picker.endDate.add("+365","d").format("YYYY-MM-DD"))
+            console.log($SSC_ACTIVITY_PRD_START_DAY.val());
+        });
+
+        //활동기간 오른쪽 input
+
+        // $SSC_ALL_ACTIVITY_PRD.on("apply.daterangepicker", function (ev, picker) {
+        //     $SSC_ACTIVITY_PRD_START_DAY.val(picker.startDate.format("YYYY-MM-DD"));
+        //     $SSC_ACTIVITY_PRD_END_DAY.val(picker.endDate.format("YYYY-MM-DD"));
+        //
+        //     $PRPC_IMPV_A_CCND_PRD_STD.val(moment(picker.startDate).add("-1", "y").format("YYYY-MM-DD"));
+        //     $PRPC_IMPV_A_CCND_PRD_ED.val(moment($PRPC_IMPV_A_CCND_PRD_STD.val()).endOf("year").format("YYYY-MM-DD"));
+        //
+        //     var start = new Date($SSC_ACTIVITY_PRD_START_DAY.val());
+        //     var end = new Date($SSC_ACTIVITY_PRD_END_DAY.val());
+        //
+        //     $SSC_ACTIVITY_PRD_START_DAY.daterangepicker({
+        //         singleDatePicker: true,
+        //         startDate: moment(start),
+        //         locale: { format: "YYYY-MM-DD" },
+        //         maxDate: moment(end).subtract(0, "days").toDate(),
+        //     });
+        //
+        //     $SSC_ACTIVITY_PRD_END_DAY.daterangepicker({
+        //         singleDatePicker: true,
+        //         startDate: moment(end),
+        //         locale: { format: "YYYY-MM-DD" },
+        //         maxDate: moment().subtract(1, "days").toDate(),
+        //     });
+        //
+        //     $PRPC_IMPV_A_CCND_PRD_STD.daterangepicker({
+        //         singleDatePicker: true,
+        //         startDate: moment(start).add("-1", "y").format("YYYY-MM-DD"),
+        //         locale: { format: "YYYY-MM-DD" },
+        //         maxDate: moment(start).add("-1", "y"), //1년전 기준으로 maxD
+        //     });
+        //
+        //     $PRPC_IMPV_A_CCND_PRD_ED.daterangepicker({
+        //         //start 기준 1년
+        //         singleDatePicker: true,
+        //         startDate: moment($SSC_ACTIVITY_PRD_START_DAY.val()).add("1", "y").subtract(1, "days").format("YYYY-MM-DD"),
+        //         locale: { format: "YYYY-MM-DD" },
+        //         maxDate: moment($PRPC_IMPV_A_CCND_PRD_STD.val()).endOf("year").format("YYYY-MM-DD"),
+        //     });
+        // });
+
+        $SSC_ALL_ACTIVITY_PRD.on(
+            //취소시 리셋
+            "cancel.daterangepicker",
+            function (ev, picker) {
+                if ($(this).val()) {
+                    $(this).val();
+                } else {
+                    $(this).val("");
+                }
+            }
+        );
+        //
+
+        $PRPC_ALL_IMPV_A_CCND_PRD.daterangepicker(
+            {
+                autoUpdateInput: false, //default value 제거
+                opens: "left",
+                locale: { format: "YYYY-MM-DD" },
+                maxDate: moment().subtract(1, "days").toDate(),
+                autoApply: true,
+                showDropdowns: true,
+            },
+
+            function (start, end, label) {
+                console.log("@@@@", start.format("YYYY-MM-DD") + "~" + end.format("YYYY-MM-DD"));
+            }
+        );
+
+        $PRPC_ALL_IMPV_A_CCND_PRD.on("apply.daterangepicker", function (ev, picker) {
+            if ($SSC_ACTIVITY_PRD_START_DAY.val() === "" || $SSC_ACTIVITY_PRD_END_DAY.val() === "") {
+                alert("활동기간을 우선 기입해주세요");
+                return false;
+            } else {
+                $PRPC_IMPV_A_CCND_PRD_STD.val(moment(picker.startDate).add("-1", "y").format("YYYY-MM-DD"));
+                $PRPC_IMPV_A_CCND_PRD_ED.val(moment($PRPC_IMPV_A_CCND_PRD_STD.val()).endOf("year").format("YYYY-MM-DD"));
+                /*
+
+                var start = new Date($SSC_ACTIVITY_PRD_START_DAY.val());
+                $PRPC_IMPV_A_CCND_PRD_STD.daterangepicker({
+                    singleDatePicker: true,
+                    startDate: moment(picker.startDate.format("YYYY-MM-DD")),
+                    locale: { format: "YYYY-MM-DD" },
+                    maxDate: moment(picker.endDate.format("YYYY-MM-DD")).subtract(1, "days").format("YYYY-MM-DD"),
+                });
+
+                $PRPC_IMPV_A_CCND_PRD_ED.daterangepicker({
+                    //start 기준 1년
+                    singleDatePicker: true,
+                    startDate: moment(picker.endDate.format("YYYY-MM-DD")),
+                    locale: { format: "YYYY-MM-DD" },
+                    maxDate: moment($PRPC_IMPV_A_CCND_PRD_STD.val()).endOf("year").format("YYYY-MM-DD"),
+                });
+                */
+            }
+        });
+
+        // 재무성과 라디오 버튼 동작
+        $('input[name="radio4"]').change(function() {
+            // 모든 radio를 순회한다.
+            var value = $(this).val();
+            if(value == 6){
+                $NONE_END_ID.val(moment($SSC_ACTIVITY_PRD_END_DAY.val()).add("+180","d").format("YYYY-MM-DD"))
+            }else{
+                $NONE_END_ID.val(moment($SSC_ACTIVITY_PRD_END_DAY.val()).add("+1", "y").format("YYYY-MM-DD"))
+            }
+        });
+
+        /*
+        //활동기간 이전 날짜
+        $SSC_ACTIVITY_PRD_START_DAY.daterangepicker(
+            {
+                autoUpdateInput: false, //default value 제거
+                opens: "right",
+                locale: { format: "YYYY-MM-DD" },
+                singleDatePicker: true,
+                maxDate: moment().subtract(1, "days").toDate(),
+            },
+            function (start, label) {}
+        );
+        //디폴트를 업데이트 못함으로 apply 와 cancel를 클릭시 데이터를 업데이트 해줌
+        $SSC_ACTIVITY_PRD_START_DAY.on("apply.daterangepicker", function (ev, picker) {
+            $(this).val(picker.startDate.format("YYYY-MM-DD"));
+            $PRPC_IMPV_A_CCND_PRD_STD.val(moment($SSC_ACTIVITY_PRD_START_DAY.val()).add("-1", "y").format("YYYY-MM-DD"));
+        });
+
+        $SSC_ACTIVITY_PRD_START_DAY.on(
+            //취소시 리셋
+            "cancel.daterangepicker",
+            function (ev, picker) {
+                if ($(this).val()) {
+                    $(this).val();
+                } else {
+                    $(this).val("");
+                }
+            }
+        );
+
+        //활동기간 이후 날짜
+        $SSC_ACTIVITY_PRD_END_DAY.daterangepicker(
+            {
+                autoUpdateInput: false, //default value 제거
+                opens: "right",
+                locale: { format: "YYYY-MM-DD" },
+                singleDatePicker: true,
+                maxDate: moment().subtract(1, "days").toDate(),
+            },
+            function (end, label) {}
+        );
+
+        $SSC_ACTIVITY_PRD_END_DAY.on("apply.daterangepicker", function (ev, picker) {
+            if (!$SSC_ACTIVITY_PRD_START_DAY.val()) {
+                alert("날짜를 처음부터 기입해주세요"); //임시
+                return $(this).val("");
+            } else {
+                $(this).val(picker.endDate.format("YYYY-MM-DD"));
+                var start = new Date($SSC_ACTIVITY_PRD_START_DAY.val());
+                var end = new Date($SSC_ACTIVITY_PRD_END_DAY.val());
+
+                if (start - end > 0) {
+                    alert("올바른 날짜를 기입해주세요"); //임시
+                    $(this).val("");
+                } else {
+                    $(this).val(picker.endDate.format("YYYY-MM-DD"));
+                    //1년전 셋팅
+
+                    $PRPC_IMPV_A_CCND_PRD_STD.daterangepicker({
+                        singleDatePicker: true,
+                        startDate: moment(start).add("-1", "y").format("YYYY-MM-DD"),
+                        locale: { format: "YYYY-MM-DD" },
+                    });
+
+                    $PRPC_IMPV_A_CCND_PRD_ED.daterangepicker({
+                        //start 기준 1년
+                        singleDatePicker: true,
+                        startDate: moment($PRPC_IMPV_A_CCND_PRD_STD.val()).endOf("year").format("YYYY-MM-DD"),
+                        locale: { format: "YYYY-MM-DD" },
+                        maxDate: moment($PRPC_IMPV_A_CCND_PRD_STD.val()).endOf("year").format("YYYY-MM-DD"),
+                    });
+
+                    //개선전 기간 END 확인버튼
+                    $PRPC_IMPV_A_CCND_PRD_ED.on("apply.daterangepicker", function (ev, picker) {
+                        $(this).val(picker.endDate.format("YYYY-MM-DD"));
+                        var start = new Date($PRPC_IMPV_A_CCND_PRD_STD.val());
+                        var end = new Date($PRPC_IMPV_A_CCND_PRD_ED.val());
+
+                        if (start - end > 0) {
+                            alert("올바른 날짜를 기입해주세요"); //임시
+                            $(this).val("");
+                        } else {
+                            $(this).val();
+                        }
+                    });
+                    //개선전 기간 END 캔슬버튼
+                    $PRPC_IMPV_A_CCND_PRD_STD.on("cancel.daterangepicker", function (ev, picker) {
+                        if ($(this).val()) {
+                            $(this).val();
+                        } else {
+                            $(this).val("");
+                        }
+                    });
+                }
+            }
+        });
+
+        $SSC_ACTIVITY_PRD_END_DAY.on(
+            //취소시 리셋
+            "cancel.daterangepicker",
+            function (ev, picker) {
+                if ($(this).val()) {
+                    $(this).val();
+                } else {
+                    $(this).val("");
+                }
+            }
+        );
+
+        $PRPC_IMPV_A_CCND_PRD_STD.daterangepicker(
+            {
+                autoUpdateInput: false, //default value 제거
+                opens: "right",
+                locale: { format: "YYYY-MM-DD" },
+                singleDatePicker: true,
+            },
+            function (start, end, label) {}
+        );
+
+        //개선전 기간 START 확인버튼
+        $PRPC_IMPV_A_CCND_PRD_STD.on("apply.daterangepicker", function (ev, picker) {
+            if ($SSC_ACTIVITY_PRD_START_DAY.val() === "" || $SSC_ACTIVITY_PRD_END_DAY.val() === "") {
+                alert("활동기간을 우선 기입해주세요");
+                return false;
+            } else {
+                $(this).val(picker.startDate.format("YYYY-MM-DD"));
+            }
+        });
+
+        //개선전 기간 START 캔슬버튼
+        $PRPC_IMPV_A_CCND_PRD_STD.on("cancel.daterangepicker", function (ev, picker) {
+            if ($(this).val()) {
+                $(this).val();
+            } else {
+                $(this).val("");
+            }
+        });
+
+        $PRPC_IMPV_A_CCND_PRD_ED.daterangepicker(
+            {
+                autoUpdateInput: false, //default value 제거
+                opens: "right",
+                locale: { format: "YYYY-MM-DD" },
+                singleDatePicker: true,
+                maxDate: moment().subtract(1, "days").toDate(),
+            },
+            function (start, end, label) {}
+        );
+
+        //개선전 기간 END 확인버튼
+        $PRPC_IMPV_A_CCND_PRD_ED.on("apply.daterangepicker", function (ev, picker) {
+            if ($SSC_ACTIVITY_PRD_START_DAY.val() === "" || $SSC_ACTIVITY_PRD_END_DAY.val() === "") {
+                alert("활동기간을 우선 기입해주세요");
+                return false;
+            } else {
+                $(this).val(picker.endDate.format("YYYY-MM-DD"));
+            }
+
+            var start = new Date($PRPC_IMPV_A_CCND_PRD_STD.val());
+            var end = new Date($PRPC_IMPV_A_CCND_PRD_ED.val());
+
+            if (start - end > 0) {
+                alert("올바른 날짜를 기입해주세요"); //임시
+                $(this).val("");
+            } else {
+                $(this).val();
+            }
+        });
+
+        //개선전 기간 END 캔슬버튼
+        $PRPC_IMPV_A_CCND_PRD_ED.on("cancel.daterangepicker", function (ev, picker) {
+            if ($(this).val()) {
+                $(this).val();
+            } else {
+                $(this).val("");
+            }
+        });
+
+        */
+        $('input[id="NONE_START_ID"]').daterangepicker(
+            {
+                opens: "right",
+                locale: { format: "YYYY-MM-DD" },
+                singleDatePicker: true,
+            },
+            function (start, end, label) {
+                console.log(start, end, label);
+            }
+        );
+
+        $('input[id="NONE_END_ID"]').daterangepicker(
+            {
+                opens: "right",
+                locale: { format: "YYYY-MM-DD" },
+                singleDatePicker: true,
+            },
+            function (start, end, label) {
+                console.log(start, end, label);
+            }
+        );
+
+        $('input[name="daterange3"]').daterangepicker({
+            opens: "right",
+            locale: { format: "YYYY-MM-DD" },
+        });
+
+        $('input[name="daterange4"]').daterangepicker({
+            opens: "right",
+            locale: { format: "YYYY-MM-DD" },
+        });
+    });
+
+    new panes({
+        id: "child",
+        tabElement: "tabs",
+        tabsChildren: ".tabs-child",
+        tabsContents: ".tabs-view-target",
+        tabsActive: "active",
+        switching: true,
+        callback: true,
+    });
+
+    function upDateCheckedFunc(props) {
+        //callback true 설정후 upDateCheckedFunc 현재체크된 id를 보여줌
+        var slicer = props.replace("child", "");
+
+        if (props === "child" + slicer) {
+            DEXT5.StartUpEditor("editor" + slicer + "_" + 1);
+            DEXT5.StartUpEditor("editor" + slicer + "_" + 2);
+        }
+
+        //setTimeout(function () {
+            // DEXT5.ShowStatusbar("0", "editor" + slicer + "_" + 1);
+            // DEXT5.ShowStatusbar("0", "editor" + slicer + "_" + 2);
+            // DEXT5.showToolbar("2", "editor" + slicer + "_" + 1);
+            // DEXT5.showToolbar("2", "editor" + slicer + "_" + 2);
+            // DEXT5.showTopMenu("0", "editor" + slicer + "_" + 1);
+            // DEXT5.showTopMenu("0", "editor" + slicer + "_" + 2);
+            //ue_editor_main_editor1_1 dext_div_tool_bar_grouping_box2
+
+            var tr1 =
+                document.querySelector("#dext_frame_" + "editor" + slicer + "_" + 1).contentDocument ||
+                document.querySelector("#dext_frame_" + "editor" + slicer + "_" + 1).contentWindow.document;
+
+            var result = tr1.body.querySelector("#dext_tab_tool2_" + "editor" + slicer + "_" + 1);
+            var group = tr1.body.querySelector("#ue_toolbar_" + "editor" + slicer + "_" + 1 + " #dext_div_tool_bar_grouping_box2");
+            //group.classList.add("custom-group");
+            // result.style.position = "absolute";
+            // result.style.bottom = "0";
+            // result.style.width = "calc(100% - 10px)";
+            var tr2 =
+                document.querySelector("#dext_frame_" + "editor" + slicer + "_" + 2).contentDocument ||
+                document.querySelector("#dext_frame_" + "editor" + slicer + "_" + 2).contentWindow.document;
+
+            var result = tr2.body.querySelector("#dext_tab_tool2_" + "editor" + slicer + "_" + 2);
+            var group = tr2.body.querySelector("#ue_toolbar_" + "editor" + slicer + "_" + 2 + " #dext_div_tool_bar_grouping_box2");
+            //group.classList.add("custom-group");
+            // result.style.position = "absolute";
+            // result.style.bottom = "0";
+            // result.style.width = "calc(100% - 10px)";
+        //}, 600);
+    }
+</script>
+
+<script type="text/javascript">
+  function test(){
+      $('TB_S70_SUGK170').find("td:eq(2)").css("display","none");
+  }
+  function test2(){
+    console.log('aaa');
+  }
+  var cnt = 1;
+  var add_cnt = 1;
+
+  // $("#add_chk").on("click",function(){
+  //     $("#jqg_TB_S70_SUGK170_jqg"+cnt).attr("checked",false);
+  //     $("#jqg"+cnt).attr("aria-selected",false);
+  //     cnt++;
+  // });
+
+
+    $(document).ready(function () {
+
+      // function checkBox(cellvalue, options, rowObject){
+      //     var name = rowObject['name'];
+      //     var str = "<input role=\"checkbox\" type=\"checkbox\" id=\"jqg_TB_S70_SUGT001_jqg"+add_cnt+"\" class=\"cbox\" >";
+      //     add_cnt++;
+      //     return str;
+      // }
+
+        $("#TB_S70_SUGT001").jqGrid({
+            datatype: "local", //json
+            colModel: [
+                {
+                    label: "상태",
+                    name: "col1",
+                    width: 200,
+                    align: "center",
+                    sortable: false,
+                    // formatter: singleInput,
+                },
+                {
+                    label: "파일명",
+                    name: "col2",
+                    width: 600,
+                    align: "center",
+                    sortable: false,
+                    // formatter: singleInput,
+                },
+                {
+                    label: "파일크기",
+                    name: "col3",
+                    width: 200,
+                    align: "center",
+                    sortable: false,
+                    // formatter: singleInput,
+                },
+            ],
+            // data: [
+            //     {
+            //         col1: "추가",
+            //         col2: "test1.jpg",
+            //         col3: "100MB",
+            //     },
+            //
+            //     {
+            //         col1: "추가",
+            //         col2: "test2.jpg",
+            //         col3: "200MB",
+            //     },
+            //
+            //     {
+            //         col1: "추가",
+            //         col2: "test3.jpg",
+            //         col3: "300MB",
+            //     },
+            //
+            //     {
+            //         col1: "추가",
+            //         col2: "test4.jpg",
+            //         col3: "400MB",
+            //     },
+            //
+            //     {
+            //         col1: "추가",
+            //         col2: "test5.jpg",
+            //         col3: "500MB",
+            //     },
+            //
+            //
+            //     {
+            //         col1: "추가",
+            //         col2: "test6.jpg",
+            //         col3: "600MB",
+            //     },
+            //
+            //     {
+            //         col1: "추가",
+            //         col2: "test7.jpg",
+            //         col3: "700MB",
+            //     },
+            //
+            //     {
+            //         col1: "추가",
+            //         col2: "test8.jpg",
+            //         col3: "800MB",
+            //     },
+            // ],
+            viewrecords: true,
+            loadonce: true,
+            height: "auto",
+            autowidth: true,
+            shrinkToFit: true,
+            hidegrid: true,
+            // beforeSelectRow: function (rowid, e) {
+            //   console.log("event : "+e.target+" \nid : "+rowid);
+            //     var $myGrid = $(this),
+            //         i = $.jgrid.getCellIndex($(e.target).closest("td")[0]),
+            //         cm = $myGrid.jqGrid("getGridParam", "colModel");
+            //
+            //     return cm[i].name === "cb";
+            // },
+            loadComplete: function(columnName, columnIndex, sortOrder) {
+                $("#data_up").on("click",function(){
+
+                });
+            },
+            multiselect: true,
+        });
+
+      function data_up(){
+
+      }
+
+      function data_down(){
+
+      }
+
+
+
+        $("#TB_S70_SUGK170").jqGrid({
+            datatype: "local", //json
+            colModel: [
+                {
+                    label: "URL 화면명",
+                    name: "col1",
+                    width: 200,
+                    align: "center",
+                    sortable: false,
+                    formatter: singleInput,
+                },
+                {
+                    label: "URL",
+                    name: "col2",
+                    width: 600,
+                    align: "center",
+                    sortable: false,
+                    formatter: buttonInput,
+                    classes:"border_right_e",
+                },
+            ],
+            data: [
+                {
+                    col1: "첨부",
+                    col2: "",
+                },
+            ],
+            viewrecords: true,
+            loadonce: true,
+            height: "auto",
+            autowidth: true,
+            shrinkToFit: true,
+            hidegrid: true,
+            beforeSelectRow: function (rowid, e) {
+                var $myGrid = $(this),
+                    i = $.jgrid.getCellIndex($(e.target).closest("td")[0]),
+                    cm = $myGrid.jqGrid("getGridParam", "colModel");
+
+                return cm[i].name === "cb";
+            },
+            multiselect: true,
+        });
+
+
+        $("#TB_S70_SUGT030").jqGrid({
+            datatype: "local", //json
+            colModel: [
+                {
+                    label: "제안자",
+                    name: "col1",
+                    width: 80,
+                    align: "center",
+                    sortable: false,
+                    classes : "col1_class",
+                    // formatter: checkbox,
+                },
+                {
+                    label: "성명",
+                    name: "col2",
+                    width: 100,
+                    align: "center",
+                    sortable: false,
+                    formatter: PROPOSER_EMP_NO,
+                },
+                {
+                    label: "직번",
+                    name: "col3",
+                    width: 100,
+                    align: "center",
+                    sortable: false,
+                    formatter: FULL_NAME,
+                },
+                {
+                    label: "부서",
+                    name: "col4",
+                    width: 100,
+                    align: "center",
+                    sortable: false,
+                    formatter: NAME,
+                },
+                {
+                    label: "전화번호",
+                    name: "col5",
+                    width: 100,
+                    align: "center",
+                    sortable: false,
+                    formatter: OFFICE_PHONE,
+                },
+                {
+                    label: "지분율",
+                    name: "col6",
+                    width: 100,
+                    align: "center",
+                    sortable: false,
+                    formatter: SSC_EXPECTA_RT,
+                    classes:"border_right_e",
+
+                },
+            ],
+            data: [
+                {
+                    col1: "대표 제안자",
+                    col2: "123456",
+                    col3: "홍길동",
+                    col4: "(광양)제강부 슬라브정정",
+                    col5: "054-220-1234",
+                    col6: "100",
+                },
+                // {
+                //     col1: "공동 제안자",
+                //     col2: "",
+                //     col3: "",
+                //     col4: "",
+                //     col5: "",
+                //     col6: "",
+                // },
+                // {
+                //     col1: "공동 제안자",
+                //     col2: "",
+                //     col3: "",
+                //     col4: "",
+                //     col5: "",
+                //     col6: "",
+                // },
+                // {
+                //     col1: "공동 제안자",
+                //     col2: "",
+                //     col3: "",
+                //     col4: "",
+                //     col5: "",
+                //     col6: "",
+                // },
+                // {
+                //     col1: "공동 제안자",
+                //     col2: "",
+                //     col3: "",
+                //     col4: "",
+                //     col5: "",
+                //     col6: "",
+                // },
+            ],
+            viewrecords: true,
+            height: "auto",
+            autowidth: true,
+            shrinkToFit: true,
+            loadComplete: function () {
+              // var mydata = data;
+              // console.log(mydata);
+              // for(var i=0;i<=mydata.length;i++)
+	            // $("#TB_S70_SUGT030").jqGrid('addRowData',i+1,mydata[i]);
+            },
+        });
+
+        function PROPOSER_EMP_NO(cellValue, options, rowObject) {
+            var uniqeID = options.rowId;
+            var result =
+                '<div class="ui renderer-wrp">' +
+                '<input class="ui input1 pw-100 " type="text" maxLength="6" id="PROPOSER_EMP_NO_' +
+                options.rowId +
+                '">' +
+                '<button class="ui button blue inbtn" onclick="opendModal()">확인</button>' +
+                "</div>";
+            return result;
+        }
+
+        function FULL_NAME(cellValue, options, rowObject) {
+            var uniqeID = options.rowId;
+            var result = '<div class="ui renderer-wrp"><input class="ui input1 pw-100" type="text" maxLength="15" id="FULL_NAME_' + uniqeID + '"></div>';
+            return result;
+        }
+
+        function NAME(cellValue, options, rowObject) {
+            var uniqeID = options.rowId;
+            var result = '<div class="ui renderer-wrp"><input class="ui input1 pw-100" type="text" maxLength="135" id="NAME_' + uniqeID + '"></div>';
+            return result;
+        }
+
+        function OFFICE_PHONE(cellValue, options, rowObject) {
+            var uniqeID = options.rowId;
+            var result = '<div class="ui renderer-wrp"><input class="ui input1 pw-100" type="text" maxLength="20" id="OFFICE_PHONE_' + uniqeID + '"></div>';
+            return result;
+        }
+
+        function SSC_EXPECTA_RT(cellValue, options, rowObject) {
+            var uniqeID = options.rowId;
+            var result = '<div class="ui renderer-wrp"><input class="ui input1 pw-100" type="text" maxLength="5" id="SSC_EXPECTA_RT_' + uniqeID + '"></div>';
+            return result;
+        }
+
+        //self재무성과 평가 항목별 디스플레이
+        $("#S700101A010_jqGrid_view5").jqGrid({
+            datatype: "local", //json
+            colModel: [
+                {
+                    label: "평가항목",
+                    name: "col1",
+                    width: 100,
+                    align: "center",
+                    sortable: false,
+                    classes : "col1_class",
+                    cellattr : arrtSetting,
+                },
+                {
+                    label: "배점기준",
+                    name: "col2",
+                    width: 120,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col3",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col4",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col5",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col6",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col7",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col8",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col9",
+                    width: 75,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col10",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col11",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col12",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col13",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col14",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col15",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col16",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col17",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col18",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+            ],
+            data: [
+                {
+                    col1: "재무성과<br/>(60점)",
+                    col2: "Cash Cost<br>(원)",
+                    col3: "2.5억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='60'>60</button>",
+                    col4: "1.5억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='55'>55</button>",
+                    col5: "5천 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='50'>50</button>",
+                    col6: "8백 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='45'>45</button>",
+                    col7: "4백 이하 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='40'>40</button>",
+                    col8: "",
+                    col9: "<div class='ui renderer-wrp'><div class='ui pw-10 right' id='PROPOSER_EVALU_POI11' name='PROPOSER_EVALU_POI1'></div></div>",
+                    attr:{
+                      col1:{rowspan:"5"},
+                      col2:{rowspan:"5"},
+                      col3:{colspan:"3"},
+                      col4:{colspan:"3"},
+                      col5:{colspan:"3"},
+                      col6:{colspan:"3"},
+                      col7:{colspan:"2"},
+                      col8:{rowspan:"5"},
+                      col9:{rowspan:"5"},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//2
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "2.3억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='59'>59</button>",
+                    col4: "1.3억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='54'>54</button>",
+                    col5: "4천 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='49'>49</button>",
+                    col6: "7백 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='44'>44</button>",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"3"},
+                      col4:{colspan:"3"},
+                      col5:{colspan:"3"},
+                      col6:{colspan:"3"},
+                      col7:{rowspan:"4",colspan:"2"},
+                      col8:{display:"none"},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//3
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "2.1억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='58'>58</button>",
+                    col4: "1.1억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='53'>53</button>",
+                    col5: "3천 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='48'>48</button>",
+                    col6: "6백 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='43'>43</button>",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"3"},
+                      col4:{colspan:"3"},
+                      col5:{colspan:"3"},
+                      col6:{colspan:"3"},
+                      col7:{display:"none"},
+                      col8:{display:"none"},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//4
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "1.9억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='57'>57</button>",
+                    col4: "9천 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='52'>52</button>",
+                    col5: "2천 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='47'>47</button>",
+                    col6: "5백 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='42'>42</button>",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"3"},
+                      col4:{colspan:"3"},
+                      col5:{colspan:"3"},
+                      col6:{colspan:"3"},
+                      col7:{display:"none"},
+                      col8:{display:"none"},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//5
+
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "1.7억 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='56'>56</button>",
+                    col4: "7천 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='51'>51</button>",
+                    col5: "1천 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='46'>46</button>",
+                    col6: "4백 이상 : <button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='41'>41</button>",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"3"},
+                      col4:{colspan:"3"},
+                      col5:{colspan:"3"},
+                      col6:{colspan:"3"},
+                      col7:{display:"none"},
+                      col8:{display:"none"},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//6
+                {
+                    col1: "창의성<br>(20점)",
+                    col2: "아이디어독창성(10점)",
+                    col3: "S급",
+                    col4: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='10'>10</button>",
+                    col5: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='9'>9</button>",
+                    col6: "A급",
+                    col7: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='8'>8</button>",
+                    col8: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='7'>7</button>",
+                    col9: "B급",
+                    col10: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='6'>6</button>",
+                    col11: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='5'>5</button>",
+                    col12: "C급",
+                    col13: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='4'>4</button>",
+                    col14: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='3'>3</button>",
+                    col15: "D급",
+                    col16: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='2'>2</button>",
+                    col17: "<div class='ui renderer-wrp' style='padding-top:3px'><input class='ui input pw-10 right' type='text' value='0' maxLength='3' id='PROPOSER_EVALU_POI21' name='PROPOSER_EVALU_POI2' readonly></div><div class='ui renderer-wrp' style='padding-bottom:3px'><input class='ui input pw-10 right' type='text' value='0' maxLength='3' id='PROPOSER_EVALU_POI2_11' readonly></div>",
+                    col18: "<div class='ui renderer-wrp' style='padding-top:3px'><input class='ui input pw-10 right' type='text' value='0' maxLength='3'></div>",
+                    attr:{
+                      col1:{rowspan:"2"},
+                      col2:{},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{rowspan:"2"},
+                      col18:{rowspan:"2"},
+                    },
+                },//7
+                {
+                    col1: "",
+                    col2: "기술수준(10점)",
+                    col3: "5",
+                    col4: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='10'>10</button>",
+                    col5: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='9'>9</button>",
+                    col6: "4",
+                    col7: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='8'>8</button>",
+                    col8: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='7'>7</button>",
+                    col9: "3",
+                    col10: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='6'>6</button>",
+                    col11: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='5'>5</button>",
+                    col12: "2",
+                    col13: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='4'>4</button>",
+                    col14: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='3'>3</button>",
+                    col15: "1",
+                    col16: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='2'>2</button>",
+                    // col17: "<div class='ui renderer-wrp'><input class='ui input pw-10' type='text' value='0' maxLength='3' id='PROPOSER_ONESELF_EVALU_POI3_1' disabled></div>",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{}
+                    },
+                },//8
+
+                {
+                    col1: "노력도(15점)",
+                    col2: "참여도(10점)",
+                    col3: "S급",
+                    col4: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='10'>10</button>",
+                    col5: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='9'>9</button>",
+                    col6: "A급",
+                    col7: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='8'>8</button>",
+                    col8: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='7'>7</button>",
+                    col9: "B급",
+                    col10: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='6'>6</button>",
+                    col11: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='5'>5</button>",
+                    col12: "C급",
+                    col13: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='4'>4</button>",
+                    col14: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='3'>3</button>",
+                    col15: "D급",
+                    col16: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='2'>2</button>",
+                    col17:
+                        "<div class='ui renderer-wrp' style='padding-top:3px;padding-bottom:3px;'><input class='ui input pw-10 right' type='text' value='0' name='PROPOSER_EVALU_POI3' id='PROPOSER_EVALU_POI31' maxLength='3' readonly></div><div class='ui renderer-wrp' style='padding-top:3px;padding-bottom:3px'><input class='ui input pw-10 right' type='text' value='0' name='PROPOSER_EVALU_POI3_1' id='PROPOSER_EVALU_POI3_11' maxLength='3' readonly></div>",
+                    col18:"<div class='ui renderer-wrp' style='padding-top:3px'><input class='ui input pw-10 right' type='text' value='0' maxLength='3' ></div>",
+                    attr:{
+                      col1:{rowspan:"2"},
+                      col2:{rowspan:"1"},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{rowspan:"2"},
+                      col18:{rowspan:"2"},
+                    },
+                },//9
+                {
+                    col1: "노력도(15점)",
+                    col2: "노력등급(5점)",
+                    col3: "5",
+                    col4: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='5'>5</button>",
+                    col5: "4",
+                    col6: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='4'>4</button>",
+                    col7: "3",
+                    col8: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='3'>3</button>",
+                    col9: "2",
+                    col10: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='2'>2</button>",
+                    col11: "1",
+                    col12: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='1'>1</button>",
+                    // col13:
+                    //     "<div class='ui renderer-wrp'><input class='ui input pw-10' type='text' value='0' id='PROPOSER_EVALU_POI3_1' maxLength='3' disabled></div>",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{rowspan:"1"},
+                      col3:{},
+                      col4:{colspan:"2"},
+                      col5:{},
+                      col6:{colspan:"2"},
+                      col7:{},
+                      col8:{colspan:"2"},
+                      col9:{},
+                      col10:{colspan:"2"},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//10
+                {
+                    col1: "전파성(5점)",
+                    col2: "전파기준(5점)",
+                    col3: "전사",
+                    col4: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='5'>5</button>",
+                    col5: "소내",
+                    col6: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='4'>4</button>",
+                    col7: "부/그룹",
+                    col8: "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='3'>3</button>",
+                    col9: "공장/섹션",
+                    col10 : "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='2'>2</button>",
+                    col11 : "파트/주임",
+                    col12 : "<button class='ui button none' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='1'>1</button>",
+                    col13: "",
+                    col14: "<div class='ui renderer-wrp'><input class='ui input pw-10 right' name='PROPOSER_EVALU_POI4' id='PROPOSER_EVALU_POI41' maxLength='3' type='text' value='0' readonly></div>",
+                    attr:{
+                      col1:{rowspan:"1"},
+                      col2:{rowspan:"1"},
+                      col3:{},
+                      col4:{colspan:"2"},
+                      col5:{},
+                      col6:{colspan:"2"},
+                      col7:{},
+                      col8:{colspan:"2"},
+                      col9:{},
+                      col10:{colspan:"2"},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//11
+                {
+                    col1: "합계",
+                    col2:
+                        "<a class='' onclick='windowOpen2()'><button class='button blue ck_btn' type='button'>창의성,노력도,전파성 기준 도움말</button></a><div style='display:inline-block;float: right;font-size:15px;' class='ui renderer-wrp right'><input class='ui input pxw-100 right' id='PROPOSE_EVALU_POI_1' readonly maxLength='3' type='text'><div style='display: inline-block;padding: 0px 5px;'>점</div><input class='ui input pxw-100 right' type='text' id='PROPOSE_LST_GD_1' maxLength='1' readonly>등급</div>",
+                    attr:{
+                      col1:{row:"1"},
+                      col2:{colspan:"17"},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                      col18:{},
+                    },
+                },//12
+            ],
+            viewrecords: true,
+            height: "531px",
+            autowidth: true,
+            shrinkToFit: true,
+            loadComplete: function () {
+                var bg = { "background-color": "#dbebfb" };
+
+                var ids = $("#S700101A010_jqGrid_view5").jqGrid("getDataIDs");
+
+                var gridData = $("#S700101A010_jqGrid_view5").jqGrid("getRowData");
+
+                $("#S700101A010_jqGrid_view5").jqGrid("setCell", 1, "col1", "", bg);
+                $("#S700101A010_jqGrid_view5").jqGrid("setCell", 2, "col1", "창의성<br/>(아이디어독창성<br/> +<br/> 기술수준)<br/>(20점)", bg);
+                $("#S700101A010_jqGrid_view5").jqGrid("setCell", 3, "col1", "노력도<br/>(참여도 <br/>+<br/> 노력등급(건수))<br/>(15점)", bg);
+                $("#S700101A010_jqGrid_view5").jqGrid("setCell", 4, "col1", "전파성<br/>(5점)", bg);
+                $("#S700101A010_jqGrid_view5").jqGrid("setCell", 5, "col1", "합계", bg);
+
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col2", "", "", {
+                    style: "width:auto!important",
+                    colspan: "15",
+                });
+                var table = $(".ui-jqgrid .ui-jqgrid-htable");
+                table.css("table-layout", "auto");
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col3", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col4", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col5", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col6", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col7", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col8", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col9", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col10", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col11", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col12", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col13", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col14", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col15", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col16", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col17", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view5").jqGrid("setLabel", "col18", "", "", {
+                    style: "display: none",
+                });
+            },
+        });
+
+        function arrtSetting(rowId, val, rawObject, cm) {
+
+          var attr = rawObject.attr[cm.name], result="";
+          // console.log(rowId);
+          if (attr.rowspan) {
+              result = ' rowspan=' + '"' + attr.rowspan + '"';
+              if (attr.colspan) {
+      					result += ' colspan=' + '"' + attr.colspan + '"';
+      				}
+          } else if (attr.display) {
+              result = ' style="display:' + attr.display + '"';
+          }
+          else if (attr.colspan) {
+              result = ' colspan=' + '"' + attr.colspan + '"';
+          }else{
+            result = ' ';
+          }
+          return result;
+        }
+
+        //self비재무성과 평가 항목별 디스플레이
+        $("#S700101A010_jqGrid_view4").jqGrid({
+            datatype: "local", //json
+            colModel: [
+                {
+                    label: "평가항목",
+                    name: "col1",
+                    width: 100,
+                    align: "center",
+                    sortable: false,
+                    classes : "col1_class",
+                    cellattr : arrtSetting,
+                },
+                {
+                    label: "배점기준",
+                    name: "col2",
+                    width: 150,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col3",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col4",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col5",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col6",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col7",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col8",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col9",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col10",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col11",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col12",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col13",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col14",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col15",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col16",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+                {
+                    label: "",
+                    name: "col17",
+                    width: 50,
+                    align: "center",
+                    sortable: false,
+                    cellattr: arrtSetting,
+                },
+
+            ],
+            data: [
+                {
+                    col1: "비재무성과<br/>(40점)",
+                    col2: "개선향상율(%)",
+                    col3: "90~100",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='40'>40</button>",
+                    col5: "80~90",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='35'>35</button>",
+                    col7: "70~80",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='30'>30</button>",
+                    col9: "60~70",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='25'>25</button>",
+                    col11: "~60",
+                    col12: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='20'>20</button>",
+                    col13: "<div class='ui pw-30 text_in_sum' style='margin:auto' name='PROPOSER_EVALU_POI1' id='PROPOSER_EVALU_POI1'>0</div>",
+                    attr:{
+                      col1:{rowspan:"6"},
+                      col2:{rowspan:"1"},
+                      col3:{colspan:"2"},
+                      col4:{},
+                      col5:{colspan:"2"},
+                      col6:{},
+                      col7:{colspan:"2"},
+                      col8:{},
+                      col9:{colspan:"2"},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{rowspan:"6"},
+                      col14:{rowspan:"6"},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+
+                    },
+                },//1
+                {
+                    col1: "",
+                    col2: "기대효과(원)",
+                    col3: "2.5억 이상",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='40'>40</button>",
+                    col5: "1.5억 이상",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='35'>35</button>",
+                    col7: "5천 이상",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='30'>30</button>",
+                    col9: "8백 이상",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='25'>25</button>",
+                    col11: "4백 이하",
+                    col12: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='20'>20</button>",
+                    // col8: "<div class='ui renderer-wrp'><input class='ui input pw-10' id='PROPOSER_ONESELF_EVALU_POI2' maxLength='3' type='text' value='0' disabled></div>",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{rowspan:"5"},
+                      col3:{colspan:"2"},
+                      col4:{},
+                      col5:{colspan:"2"},
+                      col6:{},
+                      col7:{colspan:"2"},
+                      col8:{},
+                      col9:{colspan:"2"},
+                      col10:{},
+                      col11:{rowspan:"5"},
+                      col12:{rowspan:"5"},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+
+                    },
+                },//2
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "2.3억 이상",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='39'>39</button>",
+                    col5: "1.3억 이상",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='34'>34</button>",
+                    col7: "4천 이상",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='29'>29</button>",
+                    col9: "7백 이상 ",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='24'>24</button>",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"2"},
+                      col4:{},
+                      col5:{colspan:"2"},
+                      col6:{},
+                      col7:{colspan:"2"},
+                      col8:{},
+                      col9:{colspan:"2"},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+
+                    },
+                },//3
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "2.1억 이상",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='38'>38</button>",
+                    col5: "1.1억 이상",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='33'>33</button>",
+                    col7: "3천 이상",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='28'>28</button>",
+                    col9: "6백 이상",
+                    col10 : "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='23'>23</button>",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"2"},
+                      col4:{},
+                      col5:{colspan:"2"},
+                      col6:{},
+                      col7:{colspan:"2"},
+                      col8:{},
+                      col9:{colspan:"2"},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+
+                    },
+                },//4
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "1.9억 이상 ",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='37'>37</button>",
+                    col5: "9천 이상",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='32'>32</button>",
+                    col7: "2천 이상",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='27'>27</button>",
+                    col9: "5백 이상",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='22'>22</button>",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"2"},
+                      col4:{},
+                      col5:{colspan:"2"},
+                      col6:{},
+                      col7:{colspan:"2"},
+                      col8:{},
+                      col9:{colspan:"2"},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+
+                    },
+                },//5
+
+                {
+                    col1: "",
+                    col2: "",
+                    col3: "1.7억 이상",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='36'>36</button>",
+                    col5: "7천 이상",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='31'>31</button>",
+                    col7: "1천 이상",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='26'>26</button>",
+                    col9: "4백 이상",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI1`,this)' value='21'>21</button>",
+                    col11: "",
+                    col12: "",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{display:"none"},
+                      col3:{colspan:"2"},
+                      col4:{},
+                      col5:{colspan:"2"},
+                      col6:{},
+                      col7:{colspan:"2"},
+                      col8:{},
+                      col9:{colspan:"2"},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+
+                    },
+                },//6
+                {
+                    col1: "창의성<br>(20점)",
+                    col2: "아이디어독창성(10점)",
+                    col3: "S급",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='10'>10</button>",
+                    col5: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='9'>9</button>",
+                    col6: "A급",
+                    col7: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='8'>8</button>",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='7'>7</button>",
+                    col9: "B급",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='6'>6</button>",
+                    col11: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='5'>5</button>",
+                    col12: "C급",
+                    col13: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='4'>4</button>",
+                    col14: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='3'>3</button>",
+                    col15: "D급",
+                    col16: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2`,this)' value='2'>2</button>",
+                    col17: "<div class='ui pw-30 ' style='margin:auto' name='PROPOSER_EVALU_POI2' id='PROPOSER_EVALU_POI2'>0</div><div class='ui text_in_sum' style='width: 80%;padding-top:7px;padding-bottom:7px;margin: auto;' name='sum_poi2' id='sum_poi2'>0</div><div class='ui pw-30 ' style='margin:auto' name='PROPOSER_EVALU_POI2_1' id='PROPOSER_EVALU_POI2_1'>0</div>",
+
+                    attr:{
+                      col1:{rowspan:"2"},
+                      col2:{},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{rowspan:"2"},
+                    },
+                },//7
+                {
+                    col1: "",
+                    col2: "기술수준(10점)",
+                    col3: "5",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='10'>10</button>",
+                    col5: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='9'>9</button>",
+                    col6: "4",
+                    col7: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='8'>8</button>",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='7'>7</button>",
+                    col9: "3",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='6'>6</button>",
+                    col11: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='5'>5</button>",
+                    col12: "2",
+                    col13: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='4'>4</button>",
+                    col14: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='3'>3</button>",
+                    col15: "1",
+                    col16: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI2_1`,this)' value='2'>2</button>",
+                    // col17: "<div class='ui renderer-wrp'><input class='ui input pw-10' type='text' value='0' maxLength='3' id='PROPOSER_ONESELF_EVALU_POI2_1' disabled></div>",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                    },
+                },//8
+
+                {
+                    col1: "노력도(15점)",
+                    col2: "참여도(10점)",
+                    col3: "S급",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='10'>10</button>",
+                    col5: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='9'>9</button>",
+                    col6: "A급",
+                    col7: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='8'>8</button>",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='7'>7</button>",
+                    col9: "B급",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='6'>6</button>",
+                    col11: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='5'>5</button>",
+                    col12: "C급",
+                    col13: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='4'>4</button>",
+                    col14: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='3'>3</button>",
+                    col15: "D급",
+                    col16: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3`,this)' value='2'>2</button>",
+                    col17: "<div class='ui pw-30 ' style='margin:auto' name='PROPOSER_EVALU_POI3' id='PROPOSER_EVALU_POI3'>0</div><div class='ui pw-30 text_in_sum' style='margin:auto;padding-top: 7px;padding-bottom: 7px;' name='sum_poi3' id='sum_poi3'>0</div><div class='ui pw-30 ' style='margin:auto' name='PROPOSER_EVALU_POI3_1' id='PROPOSER_EVALU_POI3_1'>0</div>",
+                    // col18: "<div class='ui renderer-wrp' style='padding-top:3px'><input class='ui input pw-10 right' type='text' id='sum_poi3' value='0' maxLength='3' ></div>",
+                    attr:{
+                      col1:{rowspan:"2"},
+                      col2:{rowspan:"1"},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{rowspan:"2"},
+
+                    },
+                },//9
+                {
+                    col1: "노력도(15점)",
+                    col2: "노력등급(5점)",
+                    col3: "5",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='5'>5</button>",
+                    col5: "4",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='4'>4</button>",
+                    col7: "3",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='3'>3</button>",
+                    col9: "2",
+                    col10: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='2'>2</button>",
+                    col11: "1",
+                    col12: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI3_1`,this)' value='1'>1</button>",
+                    // col13:
+                    //     "<div class='ui renderer-wrp'><input class='ui input pw-10' type='text' value='0' id='PROPOSER_ONESELF_EVALU_POI3_1' maxLength='3' disabled></div>",
+                    attr:{
+                      col1:{display:"none"},
+                      col2:{rowspan:"1"},
+                      col3:{},
+                      col4:{colspan:"2"},
+                      col5:{},
+                      col6:{colspan:"2"},
+                      col7:{},
+                      col8:{colspan:"2"},
+                      col9:{},
+                      col10:{colspan:"2"},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                    },
+                },//10
+                {
+                    col1: "전파성(5점)",
+                    col2: "전파기준(5점)",
+                    col3: "전사",
+                    col4: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='5'>5</button>",
+                    col5: "소내",
+                    col6: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='4'>4</button>",
+                    col7: "부/<br>그룹",
+                    col8: "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='3'>3</button>",
+                    col9: "공장/<br>섹션",
+                    col10 : "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='2'>2</button>",
+                    col11 : "파트/<br>주임",
+                    col12 : "<button class='ui button blue' onclick='in_int(`PROPOSER_EVALU_POI4`,this)' value='1'>1</button>",
+                    col13: "<div class='ui pw-30 text_in_sum' style='margin:auto' name='PROPOSER_EVALU_POI4' id='PROPOSER_EVALU_POI4'>0</div>",
+                    // col14: "",
+                    attr:{
+                      col1:{rowspan:"1"},
+                      col2:{rowspan:"1"},
+                      col3:{},
+                      col4:{colspan:"2"},
+                      col5:{},
+                      col6:{colspan:"2"},
+                      col7:{},
+                      col8:{colspan:"2"},
+                      col9:{},
+                      col10:{colspan:"2"},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                    },
+                },//11
+                {
+                    col1: "합계",
+                    col2:
+                        "<div style='display:inline-block;float: left;'><a class='' onclick='windowOpen3()'><button class='button blue ck_btn' type='button'>창의성,노력도,전파성 기준 도움말</button></a></div><div style='display:inline-block;font-size:15px;float:right;padding-top: 6px;' class='ui renderer-wrp right'>귀하께서 입력하신 점수는 \"<div class='ui' style='display:inline-block;' id='PROPOSE_EVALU_POI'>0</div>점\"으로 \"<div class='ui' style='display:inline-block;font-size:15px;' id='PROPOSE_LST_GD'>0</div>등급\" 대상입니다.</div>",
+                    col3:"<div id='sum_all' class='text_in_sum'>0</div>",
+                    attr:{
+                      col1:{row:"1"},
+                      col2:{colspan:"15"},
+                      col3:{},
+                      col4:{},
+                      col5:{},
+                      col6:{},
+                      col7:{},
+                      col8:{},
+                      col9:{},
+                      col10:{},
+                      col11:{},
+                      col12:{},
+                      col13:{},
+                      col14:{},
+                      col15:{},
+                      col16:{},
+                      col17:{},
+                    },
+                },//12
+            ],
+
+            // autoencode: true,
+            // ignoreCase: true,
+
+            viewrecords: true,
+            height: "518px",
+            autowidth: false,
+            shrinkToFit: true,
+            loadComplete: function () {
+                var bg = { "background-color": "#dbebfb" };
+                var ids = $("#S700101A010_jqGrid_view4").jqGrid("getDataIDs");
+                var gridData = $("#S700101A010_jqGrid_view4").jqGrid("getRowData");
+
+                // $("#S700101A010_jqGrid_view4").jqGrid("setCell", 1, "col1", "비재무성과<br/>40점", bg);
+                // $("#S700101A010_jqGrid_view4").jqGrid("setCell", 2, "col1", "창의성<br/>(20점)", bg);
+                // $("#S700101A010_jqGrid_view4").jqGrid("setCell", 3, "col1", "노력도<br/>(15점)", bg);
+                // $("#S700101A010_jqGrid_view4").jqGrid("setCell", 4, "col1", "전파성<br/>(5점)", bg);
+                // $("#S700101A010_jqGrid_view4").jqGrid("setCell", 5, "col1", "합계", bg);
+
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col2", "", "", {
+                    style: "width: auto!important",
+                    colspan: "18",
+                });
+                //
+                // var table = $(".ui-jqgrid .ui-jqgrid-htable");
+                // table.css("table-layout", "auto");
+                //
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col3", "", "", {
+                    style: "display: none",
+                });
+
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col4", "", "", {
+                    style: "display: none",
+                });
+
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col5", "", "", {
+                    style: "display: none",
+                });
+
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col6", "", "", {
+                    style: "display: none",
+                });
+
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col7", "", "", {
+                    style: "display: none",
+                });
+
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col8", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col9", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col10", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col11", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col12", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col13", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col14", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col15", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col16", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col17", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").jqGrid("setLabel", "col18", "", "", {
+                    style: "display: none",
+                });
+                $("#S700101A010_jqGrid_view4").setGroupHeaders({
+                  useColSpanStyle : true,
+                  groupHeaders : [
+
+                  ]
+                });
+            },
+        });
+
+        $(".button[name='int']").on("click", function () {
+            var value = $(this).attr("value");
+            $('input[id="PROPOSER_ONESELF_EVALU_POI1"]').val(value);
+        });
+
+        $(".button[name='int2']").on("click", function () {
+            var value = $(this).attr("value");
+            $('input[id="PROPOSER_ONESELF_EVALU_POI1_1"]').val(value);
+        });
+
+
+
+        function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+            //같은값 기준으로
+            var coltwo = rowObject.col2;
+            if (
+                coltwo ==
+                "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text' id='PROPOSE_EVALU_POI_1' maxLength='3'>점<input class='ui input pxw-100' type='text' id='PROPOSE_LST_GD_1' maxLength='1'></div>"
+            ) {
+                return "colspan=7;";
+            }
+
+            if (
+                coltwo ==
+                "<div class='ui renderer-wrp right'><input class='ui input pxw-120' id='PROPOSE_EVALU_POI' maxLength='3' type='text'>점<input class='ui input pxw-100' type='text' id='PROPOSE_LST_GD' maxLength='1'></div>"
+            ) {
+                return "colspan=7;";
+            }
+        }
+
+
+        $(window)
+            .bind("resize", function () {
+                $("#TB_S70_SUGT001").setGridWidth($("#TB_S70_SUGT001_CONTAINER").width(), true);
+                $("#TB_S70_SUGK170").setGridWidth($("#TB_S70_SUGK170_CONTAINER").width(), true);
+                $("#TB_S70_SUGT030").setGridWidth($("#TB_S70_SUGT030_CONTAINER").width(), true);
+                $("#S700101A010_jqGrid_view4").setGridWidth($("#S700101A010_jqGrid_container4").width(), true);
+                $("#S700101A010_jqGrid_view5").setGridWidth($("#S700101A010_jqGrid_container5").width(), true);
+            })
+            .trigger("resize");
+    });
+
+    function opendModal() {
+        event.preventDefault();
+        $.popup({
+            url: "./S700101A010POP02.html",
+
+            // 모달창 호출할때 넘길 파라메터들
+            /*
+                    data: {
+                    param_name1: value_1,
+                    param_name2: value_2,
+                },
+                */
+            //animation : "bounce",
+            close: function (result) {
+                // 모달창에서 넘어온 값
+                console.log(result);
+            },
+        });
+    }
+
+
+    function file_popup() {
+        event.preventDefault();
+        $.popup({
+            url: "./fileupload.html",
+
+            // 모달창 호출할때 넘길 파라메터들
+            /*
+                    data: {
+                    param_name1: value_1,
+                    param_name2: value_2,
+                },
+                */
+            //animation : "bounce",
+            close: function (result) {
+                // 모달창에서 넘어온 값
+                console.log("result : "+result);
+            },
+        });
+    }
+
+    function windowOpen3(){
+      window.open(
+          "./S700101A010POP04.html",
+          "07_pop",
+          "width=1477, height=600, left=50%, top=50%, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no"
+      );
+      // $("#PROPOSER_EVALU_POI1").attr('disabled', false);
+      // $("#PROPOSER_EVALU_POI2").attr('disabled', false);
+      // $("#PROPOSER_EVALU_POI2_1").attr('disabled', false);
+      // $("#PROPOSER_EVALU_POI3").attr('disabled', false);
+      // $("#PROPOSER_EVALU_POI3_1").attr('disabled', false);
+      // $("#PROPOSER_EVALU_POI4").attr('disabled', false);
+      // $("#PROPOSER_ONESELF_EVALU_POI7").attr('disabled', false);
+      // $("#PROPOSE_EVALU_POI").attr('disabled', false);
+      // $("#PROPOSE_LST_GD").attr('disabled', false);
+    }
+
+    function windowOpen2(){
+      window.open(
+          "./S700101A010POP04.html",
+          "07_pop",
+          "width=1477, height=600, left=50%, top=50%, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no"
+      );
+      $("#PROPOSER_EVALU_POI1").attr('disabled', false);
+      $("#PROPOSER_EVALU_POI2").attr('disabled', false);
+      $("#PROPOSER_EVALU_POI2_1").attr('disabled', false);
+      $("#PROPOSER_EVALU_POI3").attr('disabled', false);
+      $("#PROPOSER_EVALU_POI3_1").attr('disabled', false);
+      $("#PROPOSER_EVALU_POI4").attr('disabled', false);
+      $("#PROPOSE_EVALU_POI_1").attr('disabled', false);
+      $("#PROPOSE_LST_GD_1").attr('disabled', false);
+    }
+
+    function save() {
+        event.preventDefault();
+        var $SUGGESTION_NUMBER = $("#SUGGESTION_NUMBER");
+        var $PROPOSE_NM = $("#PROPOSE_NM");
+        var $PROPOSE_TP_NM = $("#PROPOSE_TP_NM");
+        var $PROPOSE_FINN_TP = $('input[type="radio"][name="PROPOSE_FINN_TP"][checked]');
+
+        var $SSC_ACTIVITY_PRD_START_DAY = $("#SSC_ACTIVITY_PRD_START_DAY");
+        var $SSC_ACTIVITY_PRD_END_DAY = $("#SSC_ACTIVITY_PRD_END_DAY");
+        var $PRPC_IMPV_A_CCND_PRD_STD = $("#PRPC_IMPV_A_CCND_PRD_STD");
+        var $PRPC_IMPV_A_CCND_PRD_ED = $("#PRPC_IMPV_A_CCND_PRD_ED");
+        var $PRPC_MGT_PRPC_SRCE_TP = $("#PRPC_MGT_PRPC_SRCE_TP");
+        var parameter = [];
+
+        //제안번호
+        if ($SUGGESTION_NUMBER.val().length <= 0) {
+            alert("제안번호를 기입해 주세요");
+            $SUGGESTION_NUMBER.focus();
+            return false;
+        } else {
+            if ($SUGGESTION_NUMBER.val().length < 13) {
+                alert("제안번호를 13자리 까지 입력해주세요");
+                $SUGGESTION_NUMBER.focus();
+                return false;
+            } else {
+                parameter.push($SUGGESTION_NUMBER.val());
+            }
+        }
+
+        //제안명
+        if ($PROPOSE_NM.val().length <= 0) {
+            alert("제안명을 기입해 주세요");
+            $PROPOSE_NM.focus();
+            return false;
+        } else {
+            if ($PROPOSE_NM.val().length < 2) {
+                alert("제안명은 최소 2자리 이상을 입력해주세요");
+                $PROPOSE_NM.focus();
+                return false;
+            } else {
+                parameter.push($PROPOSE_NM.val());
+            }
+        }
+
+        //제안유형
+        if ($PROPOSE_TP_NM.val() === null) {
+            alert("제안유형을 선택하세요");
+            $PROPOSE_TP_NM.focus();
+            return false;
+        } else {
+            parameter.push($PROPOSE_TP_NM.val());
+        }
+
+        //제안효과
+        if ($PROPOSE_FINN_TP) {
+            parameter.push($PROPOSE_FINN_TP.val());
+        } else {
+            return false;
+        }
+
+        //활동기간 + 개선전 기간
+        if ($SSC_ACTIVITY_PRD_START_DAY.val() === "") {
+            alert("활동기간을 입력해주세요");
+            $SSC_ACTIVITY_PRD_START_DAY.focus();
+            return false;
+        } else {
+            if ($SSC_ACTIVITY_PRD_END_DAY.val() === "") {
+                alert("활동기간을 입력해주세요");
+                $SSC_ACTIVITY_PRD_END_DAY.focus();
+                return false;
+            } else {
+                var resultDate1 = $SSC_ACTIVITY_PRD_START_DAY.val() + "~" + $SSC_ACTIVITY_PRD_END_DAY.val();
+
+                var resultDate2 = $PRPC_IMPV_A_CCND_PRD_STD.val() + "~" + $PRPC_IMPV_A_CCND_PRD_ED.val();
+
+                parameter.push(resultDate1);
+                parameter.push(resultDate2);
+            }
+        }
+        //활동구분
+        if ($PRPC_MGT_PRPC_SRCE_TP.val() === null) {
+            alert("활동구분을 선택하세요");
+            $PRPC_MGT_PRPC_SRCE_TP.focus();
+            return false;
+        } else {
+            parameter.push($PRPC_MGT_PRPC_SRCE_TP.val());
+        }
+
+        $.popup({
+            url: "./S700101A010POP03.html",
+
+            // 모달창 호출할때 넘길 파라메터들
+
+            data: {
+                params: parameter,
+            },
+
+            //animation : "bounce",
+            close: function (result) {
+                // 모달창에서 넘어온 값
+                console.log(result);
+            },
+        });
+    }
+
+    //accordion 펼침 접기
+    function accordionFunc(props) {
+        $("#accordionView" + props).toggleClass("show");
+        var $a = $(".ui.button.icon.acc").eq(props);
+        var b = $a.data("attr");
+        // console.log($a);
+        // console.log(b);
+        if ($("#accordionView" + props).attr("id") === b) {
+          // console.log('확인');
+            $a.toggleClass("rotate");
+        } else {
+
+            return false;
+        }
+    }
+
+    function buttonToggle(props){
+        if(!load_ck){
+          alert("에디터가 로드중입니다... 잠시기다려 주세요");
+          return false;
+        }
+        $("#buttonToggle" + props).toggleClass("show");
+        document.getElementById('buttonToggle'+props).scrollIntoView();
+        var $a = $(".ui.button.blue.act").eq(props);
+        var b = $a.data("toggle");
+        // console.log($("#buttonToggle" + props).attr("id")+" "+b);
+        if ($("#buttonToggle" + props).attr("id") === b) {
+
+            $a.toggleClass("active");
+
+            if(props==1){
+              DEXT5.StartUpEditor("editor1_1");
+              DEXT5.StartUpEditor("editor1_2");
+            }
+            if(props==2){
+
+               DEXT5.StartUpEditor("editor6");
+             }
+            setTimeout(function () {
+                if(props==1){
+                  // 이거 풀면 에디터 에러지옥...
+                  // DEXT5.ShowStatusbar("0", "editor1_1");
+                  // DEXT5.ShowStatusbar("0", "editor1_2");
+                  // DEXT5.showToolbar("2", "editor1_1");
+                  // DEXT5.showToolbar("2", "editor1_2");
+                  // DEXT5.showTopMenu("0", "editor1_1");
+                  // DEXT5.showTopMenu("0", "editor1_2");
+
+                  var tr1 = document.querySelector("#dext_frame_" + "editor1_1").contentDocument || document.querySelector("#dext_frame_" + "editor1_1").contentWindow.document;
+
+                  var result = tr1.body.querySelector("#dext_tab_tool2_" + "editor1_1");
+                  var group = tr1.body.querySelector("#ue_toolbar_" + "editor1_1" + " #dext_div_tool_bar_grouping_box2");
+                  group.classList.add("custom-group");
+                  result.style.position = "absolute";
+                  result.style.bottom = "0";
+                  result.style.width = "calc(100% - 10px)";
+
+                  var tr2 = document.querySelector("#dext_frame_" + "editor1_2").contentDocument || document.querySelector("#dext_frame_" + "editor1_2").contentWindow.document;
+
+                  var result = tr2.body.querySelector("#dext_tab_tool2_" + "editor1_2");
+                  var group = tr2.body.querySelector("#ue_toolbar_" + "editor1_2" + " #dext_div_tool_bar_grouping_box2");
+                  group.classList.add("custom-group");
+                  result.style.position = "absolute";
+                  result.style.bottom = "0";
+                  result.style.width = "calc(100% - 10px)";
+
+                }
+                if(props===2){
+
+                  DEXT5.ShowStatusbar("0", "editor6");
+                  DEXT5.showToolbar("2", "editor6");
+                  DEXT5.showTopMenu("0", "editor6");
+
+                  var tr6 = document.querySelector("#dext_frame_editor6").contentDocument || document.querySelector("#dext_frame_editor6").contentWindow.document;
+                  var result = tr6.body.querySelector("#dext_tab_tool2_editor6");
+                  result.style.position = "absolute";
+                  result.style.bottom = "0";
+                  result.style.width = "100%";
+
+                  $("#dext_frame_holdereditor6").css("height", "300px");
+                }
+
+
+
+            }, 600);
+        } else {
+            return false;
+        }
+    }
+
+
+    // 삭제 버튼
+    function delTabsElementUpdate(){
+      var maxLength = $(".tabs-child").length;
+      // console.log(maxLength);
+
+      if(maxLength>5){
+        $(".tabs-child")[maxLength-1].remove();
+      }else{
+        alert("항목을 5개 이하일 때 지울 수 없습니다.");
+        return false;
+      }
+
+    }
+
+    //버튼추가
+    function addTabsElementUpdate() {
+        //ex) 해당함수는 예시이며 개발시 참고하여 개발을 하여야합니다.
+        var DOMTabs = $("#tabs > ul"); //클릭할 탭을 뿌려줄 돔
+        var DomTabsView = $(".tabs-view");
+        var maxLength = $("#tabs > ul > li").length;
+        var add = Number(maxLength) + 1;
+        var settingsLI = '<li class="tabs-child">' + '<a href="#child' + add + '" rel="child' + add + '" onclick="return false">개선' + add;
+        +1 + "</a>" + "</li>";
+
+        var settingsDIV =
+            '<div class="tabs-view-target" id="child' +
+            add +
+            '">' +
+            '<h1 class="tabs-inner-title">개선명 : <span class="ml30">Dust 발생으로 집진기 배관 막힘현상 발생</span>' +
+            add +
+            "</h1>" +
+            '<div class="imp-conatiner">' +
+            '<div class="imp-left">' +
+            '<h5 class="sec_text">개선 전 내용</h5>' +
+            //'<div class="images-box">사진 이미지영역</div>' +
+            '<div class="editor-box" id="editor' +
+            add +
+            "_" +
+            1 +
+            '">' +
+            "</div>" +
+            "</div>" +
+            '<div class="imp-right">' +
+            '<h5 class="sec_text">개선 후 내용</h5> ' +
+            //'<div class="images-box">사진 이미지영역</div> ' +
+            '<div class="editor-box" id="editor' +
+            add +
+            "_" +
+            2 +
+            '">' +
+            "</div> " +
+            "</div> " +
+            "</div> " +
+            "</div> ";
+
+        if (maxLength < 10) {
+            DOMTabs.append(settingsLI);
+            DomTabsView.append(settingsDIV);
+        } else {
+            alert("더 이상 추가 할 수 없습니다.");
+        }
+
+        var addTabs = $("#child" + add);
+
+        if (addTabs) {
+            var _parent = $("#child" + add + " .editor-box");
+            DEXT5.config.DefaultMessage = "<span class='ui placeholder' style='font-size:17px; color:#ccc; line-height:1.5; text-align:center; font-weight:bold'>2. 제안내용 TAB을 클릭할 경우 작성법은 아래 내용 참조 <br />1) 개선 전 내용 ( 개선전 주요구성 또는 기술적 수단 기재 ) <br />※ 개선 전 대표도면 삽입</span>";
+            _parent.each(function (d, x, j) {
+                if (x.id === "editor" + add + "_" + 1) {
+                    DEXT5.config.EditorHolder = "editor" + add + "_" + 1;
+                    new Dext5editor("editor" + add + "_" + 1 + "");
+                }
+
+                if (x.id === "editor" + add + "_" + 2) {
+                    DEXT5.config.EditorHolder = "editor" + add + "_" + 2;
+                    new Dext5editor("editor" + add + "_" + 2 + "");
+                }
+            });
+        }
+
+        new panes({
+            //업데이트 해줌
+            id: "child",
+            tabElement: "tabs",
+            tabsChildren: ".tabs-child",
+            tabsContents: ".tabs-view-target",
+            tabsActive: "active",
+            switching: true,
+            callback: true,
+        });
+
+        function upDateCheckedFunc(props) {
+
+            //callback true 설정후 upDateCheckedFunc 현재체크된 id를 보여줌
+            var slicer = props.replace("child", "");
+            if (props === "child" + slicer) {
+                DEXT5.StartUpEditor("editor" + slicer + "_" + 1);
+                DEXT5.StartUpEditor("editor" + slicer + "_" + 2);
+            }
+        }
+
+    }
+</script>
+<!--search form-->
+<script>
+    $("input[type=radio][name=radio0]").change(function () {
+        var $st = $("input[type=radio][name=PROPOSE_FINN_TP]");
+        var $001 = $("#001"); //재무성과일시 열리는 form
+        var $002 = $("#002"); //비재무성과시 열리는 form
+
+        var $003 = $("#003"); //비재무성과시 열리는 self평가
+        var $004 = $("#004"); //재무성과 열리는 self평가
+
+        if ($(this).val() === "Excellent") {
+
+            $('#PROPOSE_TP_NM').change(function (){
+                $PRPC_IMPV_A_CCND_PRD_STD_CSS = $('#PRPC_IMPV_A_CCND_PRD_STD');
+                $PRPC_IMPV_A_CCND_PRD_ED_CSS = $('#PRPC_IMPV_A_CCND_PRD_ED');
+                $PINDEX_NAME_CSS = $('#PINDEX_NAME');
+                $chk3_CSS = $('#chk3');
+                if(this.value=="안전향상"){
+                    $PRPC_IMPV_A_CCND_PRD_STD_CSS.attr("disabled",true);
+                    $PRPC_IMPV_A_CCND_PRD_ED_CSS.attr("disabled",true);
+                    $PINDEX_NAME_CSS.attr("disabled",true);
+                    $chk3_CSS.attr("disabled",true);
+                }else{
+                    $PRPC_IMPV_A_CCND_PRD_STD_CSS.attr("disabled",false);
+                    $PRPC_IMPV_A_CCND_PRD_ED_CSS.attr("disabled",false);
+                    $PINDEX_NAME_CSS.attr("disabled",false);
+                    $chk3_CSS.attr("disabled",false);
+                }
+
+            })
+
+            $st.removeAttr("disabled");
+            if ($("input[type=radio][name=PROPOSE_FINN_TP]").val() === "FIN") {
+                $002.css("display", "flex");
+                $003.css("visibility", "visible");
+                $003.css("position", "relative");
+                $("#S700101A010_jqGrid_view4").setGridWidth($("#S700101A010_jqGrid_container4").width(), true);
+            } else {
+                return false;
+            }
+            $("input[type=radio][name=PROPOSE_FINN_TP]").change(function () {
+                if ($(this).val() !== "FIN") {
+                    $001.css("display", "none");
+                    $002.css("display", "flex");
+                    $004.css("visibility", "hidden");
+                    $004.css("position", "fixed");
+                    $003.css("visibility", "visible");
+                    $003.css("position", "relative");
+                    $("select option[value*='안전향상']").prop('disabled',false);
+                    $("select option[value*='안전향상']").css('background-color','#fff');
+                    $("#S700101A010_jqGrid_view4").setGridWidth($("#S700101A010_jqGrid_container4").width(), true);
+                } else {
+                    $001.css("display", "flex");
+                    $002.css("display", "none");
+                    $003.css("visibility", "hidden");
+                    $003.css("position", "fixed");
+                    $004.css("visibility", "visible");
+                    $004.css("position", "relative");
+                    $("select option[value*='안전향상']").prop('disabled',true);
+                    $("select option[value*='안전향상']").css('background-color','#e8ebf3');
+                    $("#S700101A010_jqGrid_view5").setGridWidth($("#S700101A010_jqGrid_container5").width(), true);
+                }
+            });
+        } else {
+            $001.css("display", "none");
+            $002.css("display", "none");
+            $004.css("visibility", "hidden");
+            $004.css("position", "fixed");
+            $003.css("visibility", "hidden");
+            $003.css("position", "fixed");
+            var checkedFIN = $('input[type=radio][name="PROPOSE_FINN_TP"][value="FIN"]').is(":checked");
+            var checkedNIN = $('input[type=radio][name="PROPOSE_FINN_TP"][value="NIN"]').is(":checked");
+
+            if (checkedFIN) {
+                $('input[type=radio][name="PROPOSE_FINN_TP"][value="FIN"]').attr("checked", false);
+                $('input[type=radio][name="PROPOSE_FINN_TP"][value="FIN"]').attr("disabled", true);
+                $('input[type=radio][name="PROPOSE_FINN_TP"][value="NIN"]').prop("checked", true);
+            } else {
+                $('input[type=radio][name="PROPOSE_FINN_TP"][value="NIN"]').attr("disabled", false);
+                $('input[type=radio][name="PROPOSE_FINN_TP"][value="FIN"]').attr("disabled", true);
+            }
+        }
+    });
+
+    //비재무효과
+    $("input[type=radio][name=radio3]").change(function () {
+        if ($(this).val() === "per") {
+            $("input[id='INPUT_PER2']").attr("disabled", true);
+            $("input[id='INPUT_PER']").attr("disabled", false);
+            $("input[id='INPUT_PER']").focus();
+        } else {
+            $("input[id='INPUT_PER2']").attr("disabled", false);
+            $("input[id='INPUT_PER2']").focus();
+            $("input[id='INPUT_PER']").attr("disabled", true);
+        }
+    });
+
+    $("#PROPOSE_TP_NM").change(function(){
+        if($("#change0").val() == 'General'){
+            if($(this).val() == '안전향상'){
+                $("#dangerchecked").show()
+            }else{
+                $("#dangerchecked").hide()
+            }
+        }
+    });
+
+    //도면 프로그램
+    var el = $("select[id='PROPOSE_IMP_PLAN_NUM_OF_CASE']");
+    if (el.val() === "0") {
+        $("input[id='PO_DRAWING_NO_VS1']").parent().css("display", "none");
+        $("input[id='PO_DRAWING_NO_VS2']").parent().css("display", "none");
+        $("input[id='PO_DRAWING_NO_VS3']").parent().css("display", "none");
+    }
+
+    el.on("change", function (e) {
+        if ($(e.target).val() === "0") {
+            $("input[id='PO_DRAWING_NO_VS1']").parent().css("display", "none");
+            $("input[id='PO_DRAWING_NO_VS2']").parent().css("display", "none");
+            $("input[id='PO_DRAWING_NO_VS3']").parent().css("display", "none");
+        }
+
+        if ($(e.target).val() === "1") {
+            $("input[id='PO_DRAWING_NO_VS1']").parent().css("display", "inline-flex");
+            $("input[id='PO_DRAWING_NO_VS2']").parent().css("display", "none");
+            $("input[id='PO_DRAWING_NO_VS3']").parent().css("display", "none");
+        }
+
+        if ($(e.target).val() === "2") {
+            $("input[id='PO_DRAWING_NO_VS1']").parent().css("display", "inline-flex");
+            $("input[id='PO_DRAWING_NO_VS2']").parent().css("display", "inline-flex");
+            $("input[id='PO_DRAWING_NO_VS3']").parent().css("display", "none");
+        }
+        if ($(e.target).val() === "3") {
+            $("input[id='PO_DRAWING_NO_VS1']").parent().css("display", "inline-flex");
+            $("input[id='PO_DRAWING_NO_VS2']").parent().css("display", "inline-flex");
+            $("input[id='PO_DRAWING_NO_VS3']").parent().css("display", "inline-flex");
+        }
+    });
+let load_ck = false;
+
+
+window.onload = function() {
+    load_ck = true;
+    $("#SSC_ACTIVITY_PRD_START_DAY").val("");
+    $("#SSC_ACTIVITY_PRD_END_DAY").val("");
+
+}
+
+</script>
+</body>
+</html>

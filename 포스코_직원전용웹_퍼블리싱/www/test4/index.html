@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--jquery import-->
+        <script src="./js/vendor/jquery/jquery.min.js"></script>
+        <script src="./js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script src="./js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script src="./js/vendor/util/grid.locale-kr.js"></script>
+        <!--datepicker import-->
+        <script src="./js/vendor/util/moment.js"></script>
+        <script src="./js/vendor/util/moment.locale-kr.js"></script>
+        <script src="./js/vendor/datepicker/daterangepicker.js"></script>
+        <!--style-->
+        <link rel="stylesheet" href="./css/default.css" />
+        <link rel="stylesheet" href="./js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" href="./js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" href="./js/vendor/datepicker/datepicker.css" />
+
+        <title>전자제안시스템 - 목록</title>
+    </head>
+    <body>
+        <div class="table-row" id="list-table">
+            <div class="ui segment">
+                <h1 class="table-title">전사제안관리시스템 - HTML LIST</h1>
+                <table id="list-main"></table>
+                <div id="jqGridPager"></div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#list-main").jqGrid({
+                    //url: "./index.json",
+                    //mtype: "GET",
+                    datatype: "local", //json
+
+                    data: [
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안서작성",
+                            col3: "S70010",
+                            col4: "제안서 등록",
+                            col5: "S70010010",
+                            col6: "S700101A010",
+                            col7: "등록",
+                            col8: "2020-01-07 ~ 2020-01-09",
+                        },
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안기준정보",
+                            col3: "S70010",
+                            col4: "제안정보 수정",
+                            col5: "S70010010",
+                            col6: "S700101A030",
+                            col7: "목록",
+                            col8: "2020-02-10 ~ 2020-02-10",
+                        },
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안서작성",
+                            col3: "S70010",
+                            col4: "제안서 수정 팝업",
+                            col5: "S70010010",
+                            col6: "S700101A030POP01",
+                            col7: "팝업",
+                            col8: "2020-01-16 ~ 2020-01-16",
+                        },
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안서작성",
+                            col3: "S70010",
+                            col4: "제안서 수정 3등급이상 관련 표준 제개정 여부",
+                            col5: "S70010010",
+                            col6: "S700101A030POP02",
+                            col7: "팝업",
+                            col8: "2020-01-16 ~ 2020-01-16",
+                        },
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안서작성",
+                            col3: "S70040",
+                            col4: "제안서 상세정보 조회",
+                            col5: "S70040020",
+                            col6: "S700402A030POP01",
+                            col7: "팝업",
+                            col8: "2020-02-25 ~ 2020-02-25",
+                        },
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안기준정보",
+                            col3: "S70040",
+                            col4: "제안서 개선 전.후 상세정보 조회",
+                            col5: "S70040020",
+                            col6: "S700402A030POP02",
+                            col7: "팝업",
+                            col8: "2020-03-02~ 2020-03-02",
+                        },
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안서작성",
+                            col3: "S70010",
+                            col4: "시그마로 정보 가져오기",
+                            col5: "S70010010",
+                            col6: "S700101A011POP01",
+                            col7: "팝업",
+                            col8: "2020-03-29~ 2020-03-29",
+                        },
+                        {
+                            col1: "전사제안관리시스템",
+                            col2: "제안서작성",
+                            col3: "S70010",
+                            col4: "굴리기연게번호 선택",
+                            col5: "S70010010",
+                            col6: "S700101A011POP02",
+                            col7: "팝업",
+                            col8: "2020-03-29~ 2020-03-29",
+                        },
+                    ],
+                    height: "auto",
+                    rowNum: 20,
+                    viewrecords: true,
+                    autowidth: true,
+                    shrinkToFit: true,
+                    colModel: [
+                        {
+                            label: "순번",
+                            name: "col0",
+                            formatter: setUpdateNumber,
+                            align: "center",
+                        },
+                        { label: "Process Chain명", name: "col1", align: "center" },
+                        { label: "Process 명", name: "col2", align: "center" },
+                        { label: "Process ID", name: "col3", align: "center" },
+                        { label: "Task", name: "col4", align: "center" },
+                        { label: "Task ID", name: "col5", align: "center" },
+                        {
+                            label: "화면 ID",
+                            name: "col6",
+                            formatter: Link,
+                            align: "center",
+                        },
+                        { label: "구분", name: "col7", align: "center" },
+                        { label: "날짜", name: "col8", align: "center" },
+                    ],
+                    //jsonReader: {
+                    //   //json data로 셋팅
+                    //   root: "rows", // list 이름
+                    //   page: "page",
+                    //   total: "total",
+                    //   records: "records",
+                    //   repeatitems: false,
+                    //   id: "id",
+                    //},
+                    pager: "#jqGridPager",
+                });
+            });
+
+            function setUpdateNumber(cellValue, options, rowObject) {
+                return options.rowId;
+            }
+
+            function Link(cellValue, options, rowObject) {
+                // col3 + col5 + cellValue 기준 .html을 링크 걸어두었습니다.,
+                var baseUrl = "./pages/";
+                var url = '<a href="' + baseUrl + rowObject.col3 + "/" + rowObject.col5 + "/" + cellValue + '.html" target="_blank" class="ui renderer-link">' + cellValue + "</a>";
+                return url;
+            }
+
+            $(window).on("resize.jqGrid", function () {
+                //resize
+                jQuery("#list-main").jqGrid("setGridWidth", $(".segment").width());
+            });
+        </script>
+    </body>
+</html>

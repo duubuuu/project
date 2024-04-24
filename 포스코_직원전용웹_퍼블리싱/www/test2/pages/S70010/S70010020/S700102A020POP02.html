@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <!--jquery import-->
+          <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+          <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+          <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+          <link rel="stylesheet" href="../../../css/laylab.css" />
+
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+          <!--jqGrid import-->
+          <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+          <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+          <!--datepicker import-->
+          <script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+          <!-- jQuery Modal -->
+          <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+          <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+          <!--font awesome-->
+          <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+       <!--DEXT5 -->
+          <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+          <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+          <script type="text/javascript" src="../../../js/common_util.js"></script>
+          <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+          <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+          <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+          <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+          <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+          <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+          <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+          <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+          <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+          <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+          <script type="text/javascript" src="../../../js/common.js"></script>
+          <title>중복 상세비교</title>
+          <style>
+          .ui-widget.ui-widget-content {
+          border: none;}
+
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td:nth-child(2),
+          .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td:nth-child(3) {
+          overflow-y: scroll; white-space: normal; text-overflow: initial;
+          }
+          .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th .ui-jqgrid-sortable {
+          overflow: initial;
+          top: 0px !important;
+          line-height: 38px;
+          padding: 0;
+          margin-top: 0;
+          }
+
+          .ui-jqgrid tr.jqgrow:nth-child(3),
+          .ui-jqgrid tr.jqgrow:nth-child(4),
+          .ui-jqgrid tr.jqgrow:nth-child(5),
+          .ui-jqgrid tr.jqgrow:nth-child(6),
+          .ui-jqgrid tr.jqgrow:nth-child(7) {
+          height: 100px !important;
+          }
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                            <div class="flex">
+                                <div class="ly-contents-head">
+                                    <h1 class="contents-title" style="display: inline-block; height: 30px; color: #333333; font-weight: 400; font-size: 26px; line-height: 30px; margin-bottom: 15px;">중복 상세비교</h1>
+                                </div>
+                            </div>
+                            <div class="ui summary" style= "display: flex; justify-content: space-between; margin: 0 4px;">
+                                <p style="color: blue;">파란색 글자는 중복되는 내용임.</p>
+                                <p style="color: #ea0000;">종합유사도 : 61.10(%)</p>
+                            </div>
+                            <div class="contents-wrapper" id="accordionView1">
+
+                                <!--부서별 제안통계 (상세) jqgrid start-->
+                                <div class="table-row" id="S700201A010_jqGrid_container1">
+                                    <table id="S700201A010_jqGrid_view1" style="width: 100%"></table>
+                                </div>
+                            </div>
+                            <div class="control mgt10" style="justify-content: center; display: flex;">
+                              <button class="ui button blue" size="large" style="height: 36px; font-size: 17px;">확인</button>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+
+                var linkText = ["작업표준", "변경관리", "위험성평가"];
+                var arr = ["#none", "#none", "#none"];
+                var arr2 = ["필요", "불필요", "불필요사유"];
+
+                //sample
+                var setting =
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[0] +
+                    "'>" +
+                    linkText[0] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+                    "<label for='chk1'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+                    "<label for='chk2'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='001'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[1] +
+                    "'>" +
+                    linkText[1] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+                    "<label for='chk3'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+                    "<label for='chk4'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='003'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[2] +
+                    "'>" +
+                    linkText[2] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+                    "<label for='chk5'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+                    "<label for='chk6'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='005'></input>" +
+                    "</div>";
+
+                var setting2 =
+                    "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+                //self재무평가 평가 항목별 디스플레이
+                $("#S700201A010_jqGrid_view1").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                        {
+                            label: "구분",
+                            name: "col1",
+                            width: `100`,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "등록할 제안",
+                            name: "col2",
+                            width: 500,
+                            align: "left",
+                            sortable: true,
+                        },
+                        {
+                            label: "검색된 제안 [2007KS88611]",
+                            name: "col3",
+                            index: "col3",
+                            width: 500,
+                            align: "left",
+                            sortable: false,
+                        },
+                    ],
+
+                    data: [
+                        {
+                        col1: "제안명",
+                        col2: '<a href="#none">(광양)3-1CAL 출축 MILL FUME' + "</a>",
+                        col3: '<a href="#none">(광양)3-1CAL 출축 MILL FUME' + "</a>",
+                        },
+                        {
+                        col1: "현상<br>/<br>문제점",
+                        col2: "3-1CAL 출축 MILL FUME FAN에서 설비점검 및 바닥 누유된 OIL제거작업 중 H-BEAM 기둥 하부측에 불용 돌출 구조물이 있어 폭염이 기승을 부렸던 6월과 달리 7월엔 선선한 날씨가 이어지면서 평년보다 1.4도씨 낮은 평균기온을 기록 중이다. 기상청은 장마철이 끝나는 8월 초부터는 기온이 오르면서 무더위가 기승을 부릴 것으로 내다봤다.",
+                        col3: "3-1CAL 출축 MILL FUME FAN에서 설비점검 및 바닥 누유된 OIL제거작업 중 H-BEAM 기둥 하부측에 불용 돌출 구조물이 있어 설비점검 및 정비작업시 작업자가 이동간에 다리부위를 부딪혀 상해를 입을 위험이 있어 개선이 필요함.",
+                        },
+                        {
+                        col1: "개선전",
+                        col2: "3-1CAL 출축 MILL FUME FAN에서 설비점검 및 바닥 누유된 OIL제거작업 중 H-BEAM 기둥 하부측에 불용 돌출 구조물이 있어 폭염이 기승을 부렸던 6월과 달리 7월엔 선선한 날씨가 이어지면서 평년보다 1.4도씨 낮은 평균기온을 기록 중이다. 기상청은 장마철이 끝나는 8월 초부터는 기온이 오르면서 무더위가 기승을 부릴 것으로 내다봤다.",
+                        col3: "3-1CAL 출축 MILL FUME FAN에서 설비점검 및 바닥 누유된 OIL제거작업 중 H-BEAM 기둥 하부측에 불용 돌출 구조물이 있어 설비점검 및 정비작업시 작업자가 이동간에 다리부위를 부딪혀 상해를 입을 위험이 있어 개선이 필요함.",
+                        },
+                        {
+                        col1: "개선후",
+                        col2: "3-1CAL 출축 MILL FUME FAN에서 설비점검 및 바닥 누유된 OIL제거작업 중 H-BEAM 기둥 하부측에 불용 돌출 구조물이 있어 폭염이 기승을 부렸던 6월과 달리 7월엔 선선한 날씨가 이어지면서 평년보다 1.4도씨 낮은 평균기온을 기록 중이다. 기상청은 장마철이 끝나는 8월 초부터는 기온이 오르면서 무더위가 기승을 부릴 것으로 내다봤다.",
+                        col3: "3-1CAL 출축 MILL FUME FAN에서 설비점검 및 바닥 누유된 OIL제거작업 중 H-BEAM 기둥 하부측에 불용 돌출 구조물이 있어 설비점검 및 정비작업시 작업자가 이동간에 다리부위를 부딪혀 상해를 입을 위험이 있어 개선이 필요함.",
+                        },
+                        {
+                        col1: "산출근거",
+                        col2: "- 안전사고 예방",
+                        col3: "- 안전사고 예방",
+                        },
+                        {
+                        col1: "효과",
+                        col2: "1",
+                        col3: "1",
+                        },
+                        {
+                        col1: "첨부",
+                        col2: "",
+                        col3: "",
+                        },
+                    ],
+
+                    viewrecords: true,
+                    height: "auto",
+                    autowidth: false,
+                    shrinkToFit: false,
+                    rowNum:10,
+                    scrollOffset:"auto",
+                    loadComplete: function () {
+                        var bg = { "background-color": "#dbebfb" };
+                        var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+                        var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+
+                        $("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders",{
+                          useColSpanStyle :true,
+                          groupHeaders : [
+                            // {startColumnName : 'col24',numberOfColumns : 2 , titleText : '제안성과'},
+                          ]
+                        });
+                    },
+                });
+
+                function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+
+                    var data = setting;
+
+                    if (
+                        rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+                    ) {
+                        return "colspan=2;";
+                    }
+
+                    if (rowObject.col2 == data) {
+                        return "colspan=6;";
+                    }
+
+                    if (rowObject.col2 == setting2) {
+                        return "colspan=6;";
+                    }
+
+
+                    if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>"){
+                      return "colspan=6;"
+                    }
+                }
+
+                function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+                    if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+                        return "colspan=3;";
+                    }
+                }
+
+                $(window)
+                    .bind("resize", function () {
+                        $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+                    })
+                    .trigger("resize");
+            </script>
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--jquery import-->
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+          <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+          <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+          <!--jqGrid import-->
+          <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+          <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+          <!-- jQuery Modal -->
+          <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+          <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+          <!--font awesome-->
+          <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+          <!--DEXT5 -->
+          <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+          <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+         <script type="text/javascript" src="../../../js/common_util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+         <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+         <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+         <script type="text/javascript" src="../../../js/common.js"></script>
+
+          <link rel="stylesheet" href="../../../css/laylab.css" />
+
+        <title>분기참여현황 상세조회</title>
+        <style>
+        .ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top: 0;     height: auto;}
+        .ui-widget.ui-widget-content { border-top: none;}
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                          <div class="" style="display : flex; justify-content: space-between;">
+                            <h1 class="contents-title big_title">[분기참여현황 상세조회]</h1>
+                            <h3 style="font-size: 17px; font-weight : 400;color: #333333; line-height : 27px; padding-right: 4px;">[총 <span>14</span>건]</h3>
+                          </div>
+                            <div class="contents-wrapper" id="accordionView0">
+                                <div class="table-row" id="S700201A010_jqGrid_container2">
+                                    <table id="S700201A010_jqGrid_view2" style="width: 100%"></table>
+                                    <div id="jqGridPager"></div>
+                                    <div id="paginate"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+                var linkText = ["작업표준", "변경관리", "위험성평가"];
+                var arr = ["#none", "#none", "#none"];
+                var arr2 = ["필요", "불필요", "불필요사유"];
+
+                //sample
+                var setting =
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[0] +
+                    "'>" +
+                    linkText[0] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+                    "<label for='chk1'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+                    "<label for='chk2'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='001'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[1] +
+                    "'>" +
+                    linkText[1] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+                    "<label for='chk3'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+                    "<label for='chk4'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='003'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[2] +
+                    "'>" +
+                    linkText[2] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+                    "<label for='chk5'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+                    "<label for='chk6'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='005'></input>" +
+                    "</div>";
+
+                var setting2 =
+                    "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+
+                //등급별 제안실적 상세조회
+                $("#S700201A010_jqGrid_view2").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                        {
+                            label: "순번",
+                            name: "col1",
+                            width: `30`,
+                            align: "center",
+                            sortable: false,
+                            // cellattr : arrtSetting,
+                            formatter : setUpdateNumber
+                        },
+                        {
+                            label: "제안번호",
+                            name: "col2",
+                            width: 50,
+                            align: "center",
+                            sortable: false,
+                            // cellattr: arrtSetting,
+                        },
+                        {
+                            label: "제안명",
+                            name: "col3",
+                            width: 100,
+                            align: "left",
+                            sortable: false,
+                            // cellattr: arrtSetting,
+                            formatter: function link(cellValue) {
+                            var result = '<a href="#none">' + cellValue + "</a>";
+                            return result; },
+
+                        },
+                        {
+                            label: "제안등록일",
+                            name: "col4",
+                            width: 50,
+                            align: "center",
+                            sortable: false,
+                            // cellattr: arrtSetting,
+                        },
+                        {
+                            label: "등급확정일",
+                            name: "col5",
+                            width: 50,
+                            align: "center",
+                            sortable: false,
+                            // cellattr: arrtSetting,
+                        },
+                        {
+                            label: "등급",
+                            name: "col6",
+                            width: 30,
+                            align: "center",
+                            sortable: false,
+                            // cellattr: arrtSetting,
+
+                        },
+                        {
+                            label: "제안구분",
+                            name: "col7",
+                            width: 40,
+                            align: "center",
+                            sortable: false,
+                            // cellattr: arrtSetting,
+                            classes:'none_border'
+                        },
+                    ],
+
+                    data: [
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+                        {
+                        col2: "1904KS53473",
+                        col3: "(광양)슬라브정정 2정정 B6 Roller",
+                        col4: "2019-02-11",
+                        col5: "2019-02-11",
+                        col6: "4",
+                        col7: "성과",
+                        },
+
+                    ],
+                    viewrecords: true,
+                    height: "auto",
+                    autowidth: true,
+                    shrinkToFit: false,
+                    pager: "#jqGridPager",
+                    rowNum:10,
+                    scrollOffset:"auto",
+                    loadComplete: function () {
+                        var bg = { "background-color": "#dbebfb" };
+                        var ids = $("#S700201A010_jqGrid_view2").jqGrid("getDataIDs");
+                        var gridData = $("#S700201A010_jqGrid_view2").jqGrid("getRowData");
+
+                        var grid = this;
+
+                       $('td[name="cellRowspan"]', grid).each(function() {
+                           var spans = $('td[rowspanid="'+this.id+'"]',grid).length+1;
+                           if(spans>1){
+                            $(this).attr('rowspan',spans);
+                           }
+                       });
+                    },
+                });
+                $("#S700201A010_jqGrid_view2").setGroupHeaders({
+                  useColSpanStyle : true,
+                  groupHeaders : [
+                    // { numberOfColumns : 2, titleText : "배점", startColumnName : "col4" },
+                  ]
+                });
+
+                function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+
+                    var data = setting;
+
+                    if (
+                        rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+                    ) {
+                        return "colspan=2;";
+                    }
+
+                    if (rowObject.col2 == data) {
+                        return "colspan=6;";
+                    }
+
+
+                    if (rowObject.col2 == setting2) {
+                        return "colspan=6;";
+                    }
+
+
+                    if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>"){
+                      return "colspan=6;"
+                    }
+                    if(rowObject.col1 == '노력등급'){
+                      return "colspan=2;";
+                    }
+                }
+
+                function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+                    if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+                        return "colspan=3;";
+                    }
+                }
+
+                function jsFormatterCell(rowid, val, rowObject, cm, rdata){
+                    var result = "";
+
+                    if(chkcell.chkval != val){ //check 값이랑 비교값이 다른 경우
+                        var cellId = this.id + '_row_'+rowid+'-'+cm.name;
+                        result = ' rowspan="5" id ="'+cellId+'" + name="cellRowspan"';
+                        // alert(result);
+                        chkcell = {cellId:cellId, chkval:val};
+                    }else{
+                        result = 'style="display:none"  rowspanid="'+chkcell.cellId+'"'; //같을 경우 display none 처리
+                        // alert(result);
+                    }
+                    return result;
+                  }
+                 function arrtSetting(rowId, val, rawObject, cm) {
+                      // console.log(rawObject);
+                      // return 0;
+                      var attr = rawObject.attr[cm.name], result;
+                      // console.log(attr);
+                      if (attr.rowspan) {
+                          result = ' rowspan=' + '"' + attr.rowspan + '"';
+                      } else if (attr.display) {
+                          result = ' style="display:' + attr.display + '"';
+                      }else if(attr.colspan){
+                         result = ' colspan=' + '"' + attr.colspan + '"';
+                      }
+                      return result;
+                  };
+
+                $(window)
+                    .bind("resize", function () {
+                        $("#S700201A010_jqGrid_view2").setGridWidth($("#S700201A010_jqGrid_container2").width(), true);
+                    })
+                    .trigger("resize");
+        </script>
+    </body>
+</html>

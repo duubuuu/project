@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--jquery import-->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+	<link href="../../../icon/iconfont/material-icons.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+	<!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+	<link rel="stylesheet" href="../../../css/laylab.css" />
+
+	<script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+	<!--jqGrid import-->
+	<script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+	<script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+	<script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+	<!--datepicker import-->
+	<script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+	<script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+	<!-- jQuery Modal -->
+	<script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+	<script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+	<!--font awesome-->
+	<script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+	<!--DEXT5 -->
+	<script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="../../../js/common_util.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+	<script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+	<script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+	<script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+	<script type="text/javascript" src="../../../js/common.js"></script>
+	<!--monthpicker-->
+	<script type="text/javascript" src="../../../js/monthpicker/jquery.mtz.monthpicker.js"></script>
+
+	<title>제안왕 실적</title>
+	<style>
+		.ui-jqgrid .ui-jqgrid-htable th {
+		height: 0 !important;
+		}
+		.ui-jqgrid .ui-jqgrid-htable th div,
+		.ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+		margin: 0;
+		}
+		.ui-state-default,
+		.ui-widget-content .ui-state-default,
+		.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th {
+		height: 44px;
+		}
+		.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th .ui-jqgrid-sortable {
+		padding: 0;
+		}
+		#jqgh_S700201A010_jqGrid_view1_col5,
+		#jqgh_S700201A010_jqGrid_view1_col6,
+		#jqgh_S700201A010_jqGrid_view1_col7,
+		#jqgh_S700201A010_jqGrid_view1_col8,
+		#jqgh_S700201A010_jqGrid_view1_col9,
+		#jqgh_S700201A010_jqGrid_view1_col10,
+		#jqgh_S700201A010_jqGrid_view1_col11,
+		#jqgh_S700201A010_jqGrid_view1_col12,
+		#jqgh_S700201A010_jqGrid_view1_col13 {
+		top: 0 !important;
+		}
+		.ui-widget.ui-widget-content {
+		border-top: none;
+		border-bottom: none;
+		}
+		.ui-state-default, .ui-widget-content .ui-state-default, .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th {border-bottom: 1px solid #cccccc;}
+
+		/* 사라진 border 추가 */
+		#S700201A010_jqGrid_view1_col13 {
+		border-right: 1px solid #cccccc !important;
+		}
+	</style>
+</head>
+<body id="popup">
+	<div id="root">
+		<div class="ly-container">
+			<div class="ly-wrapper">
+				<main class="ly-contents" style="padding: 40px 40px;">
+					<div class="ly-contents-boxed">
+						<div class="column top" style="display: flex; justify-content: flex-end;">
+							<button class="ui button search mgr4 mgl10" size="small" style="background-color: #91a1c2; height: 36px; font-size: 17px;">저장</button>
+						</div>
+						<div style="display: flex; justify-content: space-evenly;">
+								<div class="top-image-box_S700401C020POP01" style="">
+									<h1 class="contents-title" id="TITLE" style="color: #333333; font-size: 29px; font-weight: 500;">제안왕 사진</h1>
+									<div class="frame-set_S700401C020POP01" style="background-image: url(../../../images/frame.png);">
+										<div class="crown_S700401C020POP01">
+											<img src="../../../images/crown.png" alt="왕관">
+										</div>
+										<div class="clothes_S700401C020POP01">
+											<img src="../../../images/clothes.png" alt="제복">
+										</div>
+										<!-- 사진들어가는 곳 -->
+										<div class="portrait_S700401C020POP01">
+											<img src="../../../images/portrait.png" alt="증명사진" style="width: 100%;">
+										</div>
+									</div>
+								</div>
+								<div class="top-image-box_S700401C020POP01" style="">
+									<h1 class="contents-title" id="TITLE" style="color: #333333; font-size: 29px; font-weight: 500;">인증서</h1>
+									<div class="frame02_S700401C020POP01" style=" ">
+										<div class="certificate_S700401C020POP01" style="">
+											<img src="../../../images/certificate_in_S700401C020POP01.png" alt="인증서">
+										</div>
+									</div>
+								</div>
+						</div>
+						<div class="search-content">
+								<form class="ui form" id="">
+										<div class="search-box">
+												<div class="rows">
+														<div class="column">
+																<div class="fields" style="display: flex; justify-content: space-between;">
+																		<div class="field" style="display: flex; width: 35%;">
+																				<label class="pxw-200" style="min-width: 121px !important; max-width: 121px !important;">
+																					<span class="title-icon-S700401C020POP01"></span>
+																					이름
+																				</label>
+																				<input type="text" class="ui input pw-100" maxlength="15" id="" />
+																		</div>
+																		<div class="field" style="display: flex; width: 50%;">
+																			<label class="pxw-200">
+																				<span class="title-icon-S700401C020POP01"></span>
+																				부서명
+																			</label>
+																			<input type="text" class="ui input pw-100" maxlength="15" id="" />
+																		</div>
+																</div>
+																<div class="fields" style="display: flex; justify-content: space-between;">
+																	<div class="field" style="display: flex; width: 100%;">
+																		<label class="pxw-138"  style="min-width: 121px !important; max-width: 121px !important;">
+																			<span class="title-icon-S700401C020POP01" style="min-width: 10px;"></span>
+																			인증서 내용
+																		</label>
+																		<textarea class="pw-100" style="border-radius: 3px; z-index: 999; min-height: 150px; box-shadow: inset 2px 4px 10px -4px rgb(196 198 220 / 78%);"></textarea>
+																	</div>
+																</div>
+																<div class="fields" style="display: flex; justify-content: space-between;">
+																		<div class="field" style="display: flex; width: 35%;">
+																			<label class="pxw-200" style="min-width: 121px !important; max-width: 121px !important;">
+																				<span class="title-icon-S700401C020POP01"></span>
+																				임원명
+																			</label>
+																				<input type="text" class="ui input pw-100" maxlength="15" id="" />
+																		</div>
+																		<div class="field" style="display: flex; width: 50%;">
+																			<label class="pxw-200">
+																				<span class="title-icon-S700401C020POP01"></span>
+																				임원부서명
+																			</label>
+																				<input type="text" class="ui input pw-100" maxlength="15" id="" />
+																		</div>
+																</div>
+																<div class="fields" style="display: flex; justify-content: space-between;">
+																		<div class="field" style="display: flex;  width: 35%;">
+																			<label class="pxw-200" style="min-width: 121px !important; max-width: 121px !important;">
+																				<span class="title-icon-S700401C020POP01"></span>
+																				선정일
+																			</label>
+																			<input type="text" class="ui input pw-100" maxlength="15" id="CREATION_START_DATE" style="text-align: center;"/>
+																			<div class="ui type dpi" style="position: absolute; transform: translateX(-50%); left: 37%;">
+																					<button type="button" class="ui button icon date2" id="">
+																					<svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"/></svg>
+																					</button>
+																			</div>
+																		</div>
+																		<div class="field" style="display: flex; width: 50%;">
+																			<label class="pxw-200">
+																				<span class="title-icon-S700401C020POP01"></span>
+																				도장
+																			</label>
+																			<div class="stamp-set pw-100" style="display: flex; justify-content: space-between;">
+																				<div class="stamp-position ui" style="width: 33px; height: 33px;">
+														              <img src="../../../images/stamp.png"/ alt="도장" style="width: 100%;">
+														            </div>
+																				<button class="ui button search" size="small">파일열기</button>
+																			</div>
+																		</div>
+																</div>
+														</div>
+												</div>
+										</div>
+								</form>
+						</div>
+						<!--jqgrid start-->
+						<div class="table-row" id="S700201A010_jqGrid_container1" style="margin-top: 0;">
+							<table id="S700201A010_jqGrid_view1" style="width: 100%"></table>
+						</div>
+					</div>
+			</div>
+			</main>
+		</div>
+	</div>
+	</div>
+	<script src="../../../js/common.js"></script>
+	<script src="../../../js/components/panel/tab.js"></script>
+	<script src="../../../js/components/renderer/render.js"></script>
+	<script src="../../../js/components/pagenate/pager.js"></script>
+	<script>
+		var linkText = ["작업표준", "변경관리", "위험성평가"];
+		var arr = ["#none", "#none", "#none"];
+		var arr2 = ["필요", "불필요", "불필요사유"];
+
+		//sample
+		var setting =
+			"<div class='ui renderer-wrp left mgb4'>" +
+			"<a class='mgr10 pxw-80 left' href='" +
+			arr[0] +
+			"'>" +
+			linkText[0] +
+			"</a>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+			"<label for='chk1'>" +
+			arr2[0] +
+			"</label>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+			"<label for='chk2'>" +
+			arr2[1] +
+			"</label>" +
+			"<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+			arr2[2] +
+			" id='001'></input>" +
+			"</div>" +
+			"<div class='ui renderer-wrp left mgb4'>" +
+			"<a class='mgr10 pxw-80 left' href='" +
+			arr[1] +
+			"'>" +
+			linkText[1] +
+			"</a>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+			"<label for='chk3'>" +
+			arr2[0] +
+			"</label>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+			"<label for='chk4'>" +
+			arr2[1] +
+			"</label>" +
+			"<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+			arr2[2] +
+			" id='003'></input>" +
+			"</div>" +
+			"<div class='ui renderer-wrp left mgb4'>" +
+			"<a class='mgr10 pxw-80 left' href='" +
+			arr[2] +
+			"'>" +
+			linkText[2] +
+			"</a>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+			"<label for='chk5'>" +
+			arr2[0] +
+			"</label>" +
+			"<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+			"<label for='chk6'>" +
+			arr2[1] +
+			"</label>" +
+			"<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+			arr2[2] +
+			" id='005'></input>" +
+			"</div>";
+
+		var setting2 =
+			"<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+		//self재무평가 평가 항목별 디스플레이
+		$("#S700201A010_jqGrid_view1").jqGrid({
+			datatype: "local", //json
+			colModel: [{
+					label: "직번",
+					name: "col1",
+					index: "col2",
+					width: 40,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "이름",
+					name: "col2",
+					width: 40,
+					align: "center",
+					sortable: true,
+
+				},
+				{
+					label: "섹션명",
+					name: "col3",
+					width: 100,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "직책",
+					name: "col4",
+					width: 40,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "1",
+					name: "col5",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "2",
+					name: "col6",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "3",
+					name: "col7",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "4",
+					name: "col8",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "5",
+					name: "col9",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "6",
+					name: "col10",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "7",
+					name: "col11",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "8",
+					name: "col12",
+					width: 20,
+					align: "center",
+					sortable: false,
+				},
+				{
+					label: "합계",
+					name: "col13",
+					width: 20,
+					align: "center",
+					sortable: false,
+					frozen: true,
+					formatter: function link(cellValue) {
+						var result = '<a href="#none">' + cellValue + "</a>";
+						return result;
+					},
+				},
+				{
+					label: "총점",
+					name: "col14",
+					width: 40,
+					align: "center",
+					sortable: false,
+					classes: 'none_border'
+				},
+			],
+
+
+			data: [{
+				col1: "549335",
+				col2: "손무정",
+				col3: "(포항)FINEX부 FINEX3공장",
+				col4: "",
+				col5: "",
+				col6: "",
+				col7: "",
+				col8: "",
+				col9: "",
+				col10: "",
+				col11: "",
+				col12: "",
+				col13: "23",
+				col14: "",
+			}, ],
+			loadComplete: function(data) {
+				// 페이지 셋팅
+				// initPage("S700201A010_jqGrid_view0", "paginate", true, "TOT");
+			},
+			rowNum: 10,
+			viewrecords: true,
+			loadonce: true,
+			height: "auto",
+			autowidth: true,
+			shrinkToFit: true,
+		});
+
+		$("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders", {
+			useColSpanStyle: true,
+			groupHeaders: [{
+				startColumnName: 'col5',
+				numberOfColumns: 9,
+				titleText: '등급별 건수'
+			}, ]
+		});
+
+		function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+			//같은값 기준으로
+
+			var data = setting;
+
+			if (
+				rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+			) {
+				return "colspan=2;";
+			}
+
+			if (rowObject.col2 == data) {
+				return "colspan=6;";
+			}
+
+			if (rowObject.col2 == setting2) {
+				return "colspan=6;";
+			}
+
+
+			if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+				return "colspan=6;"
+			}
+		}
+
+		function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+			//같은값 기준으로
+			if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+				return "colspan=3;";
+			}
+		}
+
+		$(window)
+			.bind("resize", function() {
+				$("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+			})
+			.trigger("resize");
+
+		function windowOpen() {
+			window.open(
+				"./S700303A010POP01.html",
+				"07_pop",
+				"width=1040, height=600, left=50%, top=50%, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no"
+			);
+		}
+
+		function width_fix() {
+			// console.log($(".ly-wrapper").width()-153);
+			// console.log($("#gbox_S700201A010_jqGrid_view1").width());
+			// var fix_with = $(".ly-contents-boxed").width()+153;
+			$("#S700201A010_jqGrid_view1").setGridWidth(fix_with, false);
+		}
+	</script>
+	<script type="text/javascript">
+	$(function() {
+		var $CREATION_START_DATE = $('input[id="CREATION_START_DATE"]');
+		var $CREATION_END_DATE = $('input[id="CREATION_END_DATE"]');
+		var $CREATION_ALL_DATE = $('input[id="CREATION_ALL_DATE"]');
+
+		$CREATION_START_DATE.daterangepicker({
+				// showDropdowns: true,
+				opens: "right",
+				locale: {
+					format: "YYYY-MM-DD"
+				},
+				singleDatePicker: true,
+				viewMode: "months",
+				minViewMode: "months"
+			},
+			function(start, end, label) {
+				console.log(start, end, label);
+			}
+		);
+
+		$CREATION_END_DATE.daterangepicker({
+				viewMode: "months",
+				minViewMode: "months",
+				opens: "right",
+				// showDropdowns: true,
+				locale: {
+					format: "YYYY-MM-DD"
+				},
+				singleDatePicker: true,
+			},
+			function(start, end, label) {
+				console.log(start, end, label);
+			}
+		);
+
+		$CREATION_ALL_DATE.daterangepicker({
+				viewMode: "months",
+				minViewMode: "months",
+				opens: "left",
+				// showDropdowns: true,
+				locale: {
+					format: "YYYY-MM-DD"
+				},
+				autoUpdateInput: false, //default value 제거
+			},
+			function(start, end, label) {
+				console.log(start, end, label);
+			}
+		);
+
+		$('input[id="CREATION_ALL_DATE"]').on("apply.daterangepicker", function(ev, picker) {
+			$CREATION_START_DATE.val(picker.startDate.format("YYYY-MM"));
+			$CREATION_END_DATE.val(picker.endDate.format("YYYY-MM"));
+		});
+
+		$('input[id="CREATION_ALL_DATE"]').on(
+			//취소시 리셋
+			"cancel.daterangepicker",
+			function(ev, picker) {
+				if ($(this).val()) {
+					$(this).val();
+				} else {
+					$(this).val("");
+				}
+			}
+		);
+	});
+	</script>
+</body>
+</html>

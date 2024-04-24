@@ -1,0 +1,183 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', serif; */
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font: inherit;
+    vertical-align: baseline;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    color: #212529;
+    font-family: 'Noto Sans KR', '맑은 고딕', 'Nanum Gothic', 'Malgun Gothic', '돋움', 'Ubuntu', dotum, sans-serif;
+}
+
+
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+label, a {
+    /* font-size: 1.4rem;
+    margin-bottom: 0; */
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+p {
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+img, fieldset {
+    border: none;
+    vertical-align: middle
+}
+
+img {
+    width: 100%;
+}
+
+hr {
+    clear: both;
+}
+
+textarea {
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    vertical-align: middle;
+    outline: none;
+    box-sizing: border-box;
+    /* border: 1px solid #dddddd; */
+    /* border-radius: 0; */
+    resize: none;
+    background: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    font-size: 18px;
+    padding: 8px 10px;
+    border: 1px solid #EAEBEF;
+    border-radius: 3px;
+    min-height: 45px;
+}
+
+input[type="text"] {
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    vertical-align: middle;
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid #dddddd;
+    border-radius: 0;
+    resize: none;
+    background: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 18px;
+    padding: 8px 10px;
+    width: 100%;
+    max-height: 45px;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+textarea::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+    /* line-height: 1.3rem; */
+    line-height: 24px;
+}
+
+select {
+    outline: none;
+    box-sizing: border-box;
+    resize: none;
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 7px;
+    background: #FFFFFF;
+    border: 1px solid #EAEBEF;
+    border-radius: 3px;
+    height: 45px;
+}
+
+button {
+    outline: 0;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+
+/*
+label {
+    margin-bottom: 0 !important;
+}
+
+input::placeholder {
+    color: #ccc;
+}
+
+input::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+input:-ms-input-placeholder {
+    color: #ccc;
+}
+
+textarea::placeholder {
+    color: #ccc;
+}
+
+textarea::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+textarea:-ms-input-placeholder {
+    color: #ccc;
+} */

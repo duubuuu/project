@@ -1,0 +1,106 @@
+.button {
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 50px;
+  height: 30px;
+  border-radius: 3px;
+  vertical-align: top;
+  font-size: 12px;
+  cursor: pointer;
+  &.none {
+    position: relative;
+    top: 2px;
+    min-width: auto;
+    width: auto;
+    height: auto;
+    background: transparent;
+    font-weight: bold;
+  }
+  &[size='large'] {
+    min-width: 120px;
+    font-size: 14px;
+  }
+
+  &[size='small'] {
+    min-width: 80px;
+    font-size: 14px;
+  }
+  &.search {
+    width: 160px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #5978b9;
+    -webkit-box-shadow: 2px 2px 12px 2px rgba(188, 192, 215, .79);
+    box-shadow: 2px 2px 12px 2px rgba(188, 192, 215, .79);
+    color: $base-white;
+    font-weight: 400;
+    font-size: 16px;
+    &[size='small'] {
+      max-width: 100px;
+      font-size: 14px;
+    }
+  }
+
+  &.basic {
+    border-color: $company-purple-2;
+    background-color: $company-purple-2;
+    color: $base-white;
+  }
+  &.blue {
+    border-color: $company-skyblue-2;
+    background-color: $company-skyblue-2;
+    color: $base-white;
+    &.acc {
+      width: 33px;
+      height: 33px;
+      border-radius: 10px;
+      background-color: #488aff;
+      svg {
+        color: $base-white;
+      }
+    }
+
+    &.active {
+      border: 1px solid $company-skyblue-2;
+      background-color: $base-white;
+      color: $company-skyblue-2;
+    }
+  }
+
+  &.blue2 {
+    border-color: #00204f;
+    background-color: #00204f;
+    color: $base-white;
+  }
+  &.white {
+    background-color: $base-white;
+    color: #000;
+  }
+
+  &.icon {
+    min-width: 30px;
+    border: 1px solid #e3e3e3;
+    background-color: $base-white;
+    vertical-align: top;
+    &.date {
+      position: relative;
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      color: $company-skyblue-2;
+      content: '\f133';
+      font-size: 14px;
+      font-family: 'FontAwesome';
+    }
+    svg {
+      color: $company-skyblue-2;
+    }
+  }
+}
+
+a {
+  &.link {
+    color: $company-blue-1;
+    cursor: pointer;
+  }
+}

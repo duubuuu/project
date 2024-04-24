@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
+
+        <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+        <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+        <!--datepicker import-->
+        <script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+        <!-- jQuery Modal -->
+        <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+        <!--font awesome-->
+        <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+     <!--DEXT5 -->
+        <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+       <script type="text/javascript" src="../../../js/common_util.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+       <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+       <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+       <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+       <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+       <script type="text/javascript" src="../../../js/common.js"></script>
+
+       <link rel="stylesheet" href="../../../css/laylab.css" />
+
+    <title>공동제안자 조회</title>
+    <style>
+      .ui-jqgrid .ui-jqgrid-htable .ui-th-div{height: auto;}
+    </style>
+  </head>
+  <body>
+    <div class="" id="S700101A010POP02_container" style="width: 100%">
+      <form class="ui form">
+        <div class="search-box" style="padding: 17px 4px 0 0px;">
+          <div class="rows">
+            <div class="column">
+              <div class="fields">
+                <div class="field mgl10">
+                  <label class="pxw-82">직번(성명)</label>
+                  <input type="text" class="ui input pxw-200" />
+                </div>
+              </div>
+            </div>
+            <div class="column top">
+              <button class="ui button search pxw-60">조회</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="table-row">
+        <table
+          id="S700101A010POP02_view"
+          style="width: 500px; table-layout: fixed"
+        ></table>
+      </div>
+    </div>
+
+    <script>
+      setTimeout(function () {
+        $("#S700101A010POP02_view").jqGrid({
+          datatype: "local", //json
+          colModel: [
+            {
+              label: "직번",
+              name: "col1",
+              align: "center",
+              sortable: false,
+              align: "center",
+            },
+            {
+              label: "성명",
+              name: "col2",
+              align: "center",
+              sortable: false,
+              formatter: singleInput,
+            },
+            {
+              label: "부서",
+              name: "col3",
+              sortable: false,
+              align: "left",
+              formatter: singleInput,
+            },
+            {
+              label: "직책",
+              name: "col4",
+              sortable: false,
+              align: "center",
+            },
+          ],
+          data: [
+            /*
+                      {
+                          col1: "",
+                          col2: "",
+                          col3: "",
+                          col4: "",
+                      },
+                      {
+                          col1: "",
+                          col2: "",
+                          col3: "",
+                          col4: "",
+                          col5: "",
+                          col6: "",
+                      },
+                      {
+                          col1: "",
+                          col2: "",
+                          col3: "",
+                          col4: "",
+                          col5: "",
+                          col6: "",
+                      },
+                      {
+                          col1: "",
+                          col2: "",
+                          col3: "",
+                          col4: "",
+                          col5: "",
+                          col6: "",
+                      },
+                      {
+                          col1: "",
+                          col2: "",
+                          col3: "",
+                          col4: "",
+                          col5: "",
+                          col6: "",
+                      },
+                      */
+          ],
+          viewrecords: true,
+          height: "195px",
+          width: 760,
+          shrinkToFit: true,
+          emptyrecords: "조회결과가 없습니다.",
+        });
+      }, 100);
+
+      $(window)
+        .bind("resize", function () {
+          $("#S700101A010POP02_view").setGridWidth(
+            $("#S700101A010POP02_container").width(),
+            true
+          );
+        })
+        .trigger("resize");
+    </script>
+  </body>
+</html>

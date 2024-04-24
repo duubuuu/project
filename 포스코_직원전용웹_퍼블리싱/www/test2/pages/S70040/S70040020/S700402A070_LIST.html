@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+        <!--jquery import-->
+        <script src="../../../js/vendor/jquery/jquery.min.js"></script>
+
+        <script src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <!--datepicker import-->
+        <script src="../../../js/vendor/util/moment.js"></script>
+        <script src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <script src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+
+        <!-- jQuery Modal -->
+        <script src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script src="../../../js/components/modal/modal.js"></script>
+        <link rel="stylesheet" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+
+        <!--font awesome-->
+        <script src="../../../js/vendor/fontawesome/all.js"></script>
+
+        <!--style-->
+        <link rel="stylesheet" href="../../../css/default.css" />
+
+        <link rel="stylesheet" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" href="../../../js/vendor/datepicker/datepicker.css" />
+
+        <title>제안서등록</title>
+
+        <style>
+        /* border-right-none 처리 */
+        .none_border{border-right : none !important;}
+ 
+        .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{background-color: #d9deec;}
+        .button.search{background-color: #91a1c2;}
+        .ly-contents-boxed + .ly-contents-boxed {margin-top: 17px;}
+        .ly-contents-boxed {padding: 15px 26px 15px 29px;}
+          /* .search-box{padding : revert;} */
+
+          /* 폰트크기변경 */
+        .button.search[size='small'],
+        .search-box > .rows .column label,
+        .select2 select,
+        .search-box > .rows .column .input,
+        .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th,
+        .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td,
+        .ui-jqgrid .ui-jqgrid-pager .ui-paging-info, .ui-jqgrid .ui-jqgrid-toppager .ui-paging-info,
+        .ui-jqgrid .ui-pg-table td
+        {font-size: 17px}
+        .ui-jqgrid .ui-jqgrid-htable .ui-th-div{height: 18px; font-size: 17px}
+        .ui-jqgrid .ui-pg-input, .ui-jqgrid .ui-jqgrid-toppager .ui-pg-input{height: 20px}
+
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <!--ifram include header -->
+            <article>
+                <header>
+                    <div class="ly-user-header">
+                        <h1 class="logo">
+                            <a href="#none"><img src="../../../images/com/logo.png" alt="with posco 전자 제안관리 system" /></a>
+                        </h1>
+                        <nav class="ly-gnb">
+                            <ul>
+                                <li>
+                                    <a href="#none" alt="HOME" data-target="true">HOME</a>
+                                </li>
+                                <li class="on">
+                                    <a href="#none" alt="마이페이지" data-target="true">마이페이지</a>
+                                    <ul>
+                                        <li><a href="#none" alt="미정" id="">미정</a></li>
+                                        <li><a href="#none" alt="미정" id="">미정</a></li>
+                                        <li><a href="#none" alt="미정" id="">미정</a></li>
+                                        <li><a href="#none" alt="미정" id="">미정</a></li>
+                                        <li><a href="#none" alt="미정" id="">미정</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#none" alt="제안하기" data-target="true">제안하기</a>
+                                </li>
+                                <li>
+                                    <a href="#none" alt="검색하기" data-target="true">검색하기</a>
+                                </li>
+                                <li>
+                                    <a href="#none" alt="심사하기" data-target="true">심사하기</a>
+                                </li>
+                                <li>
+                                    <a href="#none" alt="명예의 전당" data-target="true">명예의 전당</a>
+                                </li>
+                                <li>
+                                    <a href="#none" alt="기준정보" data-target="true">기준정보</a>
+                                </li>
+                                <li>
+                                    <a href="#none" alt="DashBoard" data-target="true">DashBoard</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="ly-user-timeset">
+                            <p>안녕하세요 <span>홍길동</span> 님</p>
+                            <span class="ic-member">
+                                <a href="#none"><i class="fas fa-user"></i></a>
+                            </span>
+                            <span class="ic-change">
+                                <a href="#none"><img src="../../../images/com/head-icon01.png" /></a>
+                            </span>
+                            <span class="ic-helper">
+                                <a href="#none"><img src="../../../images/com/head-icon02.png" /></a>
+                            </span>
+                            <span class="ic-logout">
+                                <a href="#none"><img src="../../../images/com/head-icon03.png" /></a>
+                            </span>
+                        </div>
+                        <div class="nav-bar"></div>
+                    </div>
+                </header>
+            </article>
+            <section class="ly-box">
+                <h1>심사하기</h1>
+                <h3>이제 보여줄 때입니다.서제스트 팩토리에서 당신의 놀라운 상상력을 현실로 바꿔보세요!</h3>
+                <div class="box-toggle">
+                    <button class="ui button icon"><i class="fas fa-chevron-up"></i></button>
+                </div>
+            </section>
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-side">
+                    <ul>
+                        <li class="active">
+                            <a href="#child1" rel="child1" onclick="return false"><i class="s-icon icon3-1"></i>마이페이지</a>
+                        </li>
+                        <li>
+                            <a href="#child2" rel="child2" onclick="return false"><i class="s-icon icon3-2"></i>나의 제안</a>
+                        </li>
+                        <li>
+                            <a href="#child3" rel="child3" onclick="return false"><i class="s-icon icon3-3"></i>마일리지/point</a>
+                        </li>
+                        <li>
+                            <a href="#child4" rel="child4" onclick="return false"><i class="s-icon icon3-4"></i>제안BEST</a>
+                        </li>
+                        <li>
+                            <a href="#child5" rel="child5" onclick="return false"><i class="s-icon icon3-4"></i>커뮤니케이션</a>
+                        </li>
+                    </ul>
+                    <div class="side-toggle">
+                        <button class="ui button icon"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                </div>
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                            <div class="contents-wrapper">
+                                <div class="control">
+                                    <div class="control-column item-right">
+                                        <button class="ui button icon" style="font-size : 17px"onclick="windowOpenWrite()"><i class="fas fa-edit" style="vertical-align: top;"></i>글쓰기</button>
+                                    </div>
+                                </div>
+                                <!--상단 jqGrid-->
+                                <div class="table-row" id="S700402A070_jqGrid_container0">
+                                    <table id="S700402A070_jqGrid_view0" style="width: 100%"></table>
+                                    <div id="grid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+            $(function () {
+                $("#S700402A070_jqGrid_view0").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                        {
+                            label: "번호",
+                            name: "c1",
+                            width: 100,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "첨부",
+                            name: "c2",
+                            width: 120,
+                            align: "center",
+                            sortable: false,
+                        },
+
+                        {
+                            label: "제안명",
+                            name: "c3",
+                            width: 300,
+                            align: "left",
+                            sortable: false,
+                            formatter: function windowOpen(cellValue, options, rowObject) {
+                                var result = '<div class="ui renderer-wrp">' + '<a class="link" onclick="windowOpen()">' + cellValue + " </a></div>";
+                                return result;
+                            },
+                        },
+                        {
+                            label: "공지",
+                            name: "c4",
+                            width: 80,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "지역",
+                            name: "c5",
+                            width: 80,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "글쓴이",
+                            name: "c6",
+                            width: 100,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "조회",
+                            name: "c7",
+                            width: 80,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "날짜",
+                            name: "c8",
+                            width: 80,
+                            align: "center",
+                            sortable: false,
+                            classes:'none_border'
+                        },
+                    ],
+                    data: [
+                        {
+                            c1: "13",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "12",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "11",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "10",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "9",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "8",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "7",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "6",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "5",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "4",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "3",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "2",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                        {
+                            c1: "1",
+                            c2: "",
+                            c3: "[휴지] 4월 11일 목요일 저녁에 휴지작업 실시합니다",
+                            c4: "",
+                            c5: "전사",
+                            c6: "홍길동",
+                            c7: "144",
+                            c8: "2020-01-01",
+                        },
+                    ],
+
+                    rowNum: 10,
+                    viewrecords: true,
+                    loadonce: true,
+                    height: "auto",
+                    autowidth: true,
+                    shrinkToFit: true,
+                    pager: "#grid",
+                });
+            });
+
+            $(window)
+                .bind("resize", function () {
+                    $("#S700402A070_jqGrid_view0").setGridWidth($("#S700402A070_jqGrid_container0").width(), true);
+                })
+                .trigger("resize");
+
+            function windowOpen() {
+                window.open(
+                    "./S700402A070POP01.html",
+                    "07_pop",
+                    "width=1040, height=600, left=50%, top=50%, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no"
+                );
+            }
+
+            function windowOpenWrite() {
+                window.open(
+                    "./S700402A070POP02.html",
+                    "07_pop",
+                    "width=1040, height=600, left=50%, top=50%, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no"
+                );
+            }
+        </script>
+    </body>
+</html>

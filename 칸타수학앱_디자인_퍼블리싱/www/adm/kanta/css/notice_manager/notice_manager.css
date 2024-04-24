@@ -1,0 +1,114 @@
+.notice_manager_form {
+    height: 89vh;
+    min-width: 1200px;
+    margin: auto;
+    max-width: 100rem;
+}
+
+
+thead tr{
+  /* box-shadow:0px 0px 3px #d0d0d0; */
+}
+
+thead tr th {
+    border-top: 1px solid #c1c1c173;
+    border-bottom: 1px solid #c1c1c173;
+    padding: 5px 18px !important;
+}
+
+.important{
+  border: 1px solid #f36063;
+      background: #ffffff;
+      color: #f36063;
+      display: inline-block;
+      margin-bottom: 0;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 30px;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border-radius: 26px;
+      width: 58px;
+      height: 30px;
+      margin-right: 16px;
+}
+
+/* tbody tr{
+  box-shadow:0px 0px 3px #d0d0d0;
+} */
+
+
+div.dataTables_wrapper div.dataTables_filter {
+    position: relative;
+    right: 110px;
+}
+
+
+div.dataTables_wrapper div.dataTables_paginate {
+    position: fixed;
+    right: 0;
+    text-align: left;
+    bottom: 0;
+}
+
+
+#list_filter{
+  z-index: 100;
+}
+
+.toolbar{
+  display: inline-block;
+  position: relative;
+}
+
+
+
+.notice_select_delete {
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    background: #f36063;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 36px !important;
+    line-height: 36px !important;
+    font-size: 17px !important;
+    padding: 0px 15px !important;
+    box-sizing: initial !important;
+    min-width: 35px !important;
+}
+
+.notice_write_div {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.notice_write {
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    background: #f36063;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 36px !important;
+    line-height: 36px !important;
+    font-size: 17px !important;
+    padding: 0px 15px !important;
+    box-sizing: initial !important;
+    min-width: 35px !important;
+}
+
+.notice_write a{
+  color:#fff;
+}

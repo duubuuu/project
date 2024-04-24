@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--jquery import-->
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+          <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+          <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+          <!--jqGrid import-->
+          <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+          <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+
+          <!-- jQuery Modal -->
+          <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+          <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+          <!--font awesome-->
+          <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+       <!--DEXT5 -->
+          <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+          <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+         <script type="text/javascript" src="../../../js/common_util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+         <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+         <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+         <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+         <script type="text/javascript" src="../../../js/common.js"></script>
+
+         <link rel="stylesheet" href="../../../css/laylab.css" />
+
+        <title>부서별 제안통계(상세)</title>
+        <style>
+        .ui-widget.ui-widget-content {border: none;}
+        .ui-jqgrid .ui-jqgrid-htable th {
+        height: 0 !important;
+        }
+        .ui-jqgrid .ui-jqgrid-htable th div{margin: 0 !important; }
+        .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th .ui-jqgrid-sortable{padding: 0 0;}
+        #jqgh_S700201A010_jqGrid_view1_col3,
+        #jqgh_S700201A010_jqGrid_view1_col4,
+        #jqgh_S700201A010_jqGrid_view1_col5,
+        #jqgh_S700201A010_jqGrid_view1_col6,
+        #jqgh_S700201A010_jqGrid_view1_col7,
+        #jqgh_S700201A010_jqGrid_view1_col8,
+        #jqgh_S700201A010_jqGrid_view1_col9,
+        #jqgh_S700201A010_jqGrid_view1_col10,
+        #jqgh_S700201A010_jqGrid_view1_col11,
+        #jqgh_S700201A010_jqGrid_view1_col12,
+        #jqgh_S700201A010_jqGrid_view1_col13,
+        #jqgh_S700201A010_jqGrid_view1_col14,
+        #jqgh_S700201A010_jqGrid_view1_col19,
+        #jqgh_S700201A010_jqGrid_view1_col20,
+        #jqgh_S700201A010_jqGrid_view1_col22,
+        #jqgh_S700201A010_jqGrid_view1_col23,
+        #jqgh_S700201A010_jqGrid_view1_col24,
+        #jqgh_S700201A010_jqGrid_view1_col25{top:0 !important;}
+        /* 사라진 border 추가 */
+        #S700201A010_jqGrid_view1_col27 {border-right: 1px solid #cccccc !important;}
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                          <div class="flex">
+                              <div class="ly-contents-head">
+                                  <h1 class="contents-title big_title">부별 상세조회</h1>
+                              </div>
+                          </div>
+                            <div class="contents-wrapper" id="accordionView0">
+                                <!--부서별 제안통계 jqgrid start-->
+                                <div class="table-row" id="S700201A010_jqGrid_container1">
+                                    <table id="S700201A010_jqGrid_view1" style="width: 100%"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+            var linkText = ["작업표준", "변경관리", "위험성평가"];
+            var arr = ["#none", "#none", "#none"];
+            var arr2 = ["필요", "불필요", "불필요사유"];
+
+            //sample
+            var setting =
+                "<div class='ui renderer-wrp left mgb4'>" +
+                "<a class='mgr10 pxw-80 left' href='" +
+                arr[0] +
+                "'>" +
+                linkText[0] +
+                "</a>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+                "<label for='chk1'>" +
+                arr2[0] +
+                "</label>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+                "<label for='chk2'>" +
+                arr2[1] +
+                "</label>" +
+                "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                arr2[2] +
+                " id='001'></input>" +
+                "</div>" +
+                "<div class='ui renderer-wrp left mgb4'>" +
+                "<a class='mgr10 pxw-80 left' href='" +
+                arr[1] +
+                "'>" +
+                linkText[1] +
+                "</a>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+                "<label for='chk3'>" +
+                arr2[0] +
+                "</label>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+                "<label for='chk4'>" +
+                arr2[1] +
+                "</label>" +
+                "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                arr2[2] +
+                " id='003'></input>" +
+                "</div>" +
+                "<div class='ui renderer-wrp left mgb4'>" +
+                "<a class='mgr10 pxw-80 left' href='" +
+                arr[2] +
+                "'>" +
+                linkText[2] +
+                "</a>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+                "<label for='chk5'>" +
+                arr2[0] +
+                "</label>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+                "<label for='chk6'>" +
+                arr2[1] +
+                "</label>" +
+                "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                arr2[2] +
+                " id='005'></input>" +
+                "</div>";
+
+            var setting2 =
+                "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+            //self재무평가 평가 항목별 디스플레이
+            $("#S700201A010_jqGrid_view1").jqGrid({
+                datatype: "local", //json
+                colModel: [
+                    {
+                        label: "부",
+                        name: "col1",
+                        width: 400,
+                        align: "left",
+                        sortable: false,
+                        frozen:true,
+                        formatter: function windowOpen(cellValue, options, rowObject) {
+                            var result = '<div class="ui renderer-wrp">' + '<a class="link" onclick="windowOpen()">' + cellValue + " </a></div>";
+                            return result;
+                        },
+                    },
+                    {
+                        label: "등록<br>건수",
+                        name: "col2",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                        cellattr: cellMerge,
+                    },
+                    {
+                        label: "1",
+                        name: "col3",
+                        index: "col3",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "2",
+                        name: "col4",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "3",
+                        name: "col5",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "4",
+                        name: "col6",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "5",
+                        name: "col7",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "6",
+                        name: "col8",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "7",
+                        name: "col9",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "참여",
+                        name: "col10",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "소계",
+                        name: "col11",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+
+
+
+                    {
+                        label: "채택",
+                        name: "col12",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                        cellattr: cellMerge2,
+                    },
+                    {
+                        label: "참여",
+                        name: "col13",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "합계",
+                        name: "col14",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+
+
+                    {
+                        label: "반려",
+                        name: "col15",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "보상금<br>(천원)",
+                        name: "col16",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "마일리지",
+                        name: "col17",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "포인트",
+                        name: "col18",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "대상",
+                        name: "col19",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "참여",
+                        name: "col20",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+
+                    {
+                        label: "(분기)",
+                        name: "col21",
+                        width: 150,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "(년간)",
+                        name: "col22",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "건수",
+                        name: "col23",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+
+                    {
+                        label: "우수율",
+                        name: "col24",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "인원대비",
+                        name: "col25",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "재무",
+                        name: "col26",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "비재무",
+                        name: "col27",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "재무금액",
+                        name: "col28",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "지적재산<br>연계건수",
+                        name: "col29",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "직무발명<br>연계건수",
+                        name: "col30",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "QSS<br>연계건수",
+                        name: "col31",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "원가절감",
+                        name: "col32",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "품질향상",
+                        name: "col33",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "생산성향상",
+                        name: "col34",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "안전향상",
+                        name: "col35",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "설비개선",
+                        name: "col36",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "환경개선",
+                        name: "col37",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                    {
+                        label: "기타",
+                        name: "col38",
+                        width: 100,
+                        align: "right",
+                        sortable: false,
+                    },
+                ],
+
+
+                data: [
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                    {
+                    col2: "",
+                    col3: "",
+                    col4: "",
+                    col5: "",
+                    col6: "",
+                    col7: "",
+                    col8: "",
+                    col9: "",
+                    col10: "",
+                    col11: "",
+                    col12: "",
+                    col13: "",
+                    col14: "",
+                    col15: "",
+                    col16: "",
+                    col17: "",
+                    col18: "",
+                    col19: "",
+                    col20: "",
+                    col21: "",
+                    col22: "",
+                    col23: "",
+                    col24: "",
+                    col25: "",
+                    col26: "",
+                    col27: "",
+                    col28: "",
+                    col29: "",
+                    col30: "",
+                    col31: "",
+                    col32: "",
+                    col33: "",
+                    col34: "",
+                    col35: "",
+                    col36: "",
+                    },
+                ],
+                viewrecords: true,
+                height: "auto",
+                // width : "100%",
+                autowidth: true,
+                shrinkToFit: false,
+                rowNum:31,
+                scrollOffset:"auto",
+                loadComplete: function () {
+                    var bg = { "background-color": "#e8f2fc" };
+                    var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+                    var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+                    var bg2 = {"background-color": "#e8f2fc" , "text-align": "center"};
+
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 1, "col1", "(포항)EIC기술부", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 2, "col1", "(포항)EIC기술부 PLC기술과", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 3, "col1", "(포항)EIC기술부 SmartFactoryTF팀(170619-191)", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 4, "col1", "(포항)EIC기술부 계장정비섹션", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 5, "col1", "(포항)EIC기술부 계측기술과", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 6, "col1", "(포항)EIC기술부 계측정비섹션", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 7, "col1", "(포항)EIC기술부 자동화설비섹션", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 8, "col1", "(포항)EIC기술부 전기기술섹션", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 9, "col1", "(포항)EIC기술부 제어기술섹션", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 10, "col1", "(포항)EIC기술부 프로세스컴퓨터제어섹션", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 11, "col1", "부 소계", bg2);
+                },
+            });
+            // $("#S700201A010_jqGrid_view1").setGridHeight(517,true);
+            $("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders",{
+              useColSpanStyle :true,
+              groupHeaders : [
+                {startColumnName : 'col3',numberOfColumns : 9 , titleText: '성과 등급별 건수'},
+                {startColumnName : 'col12',numberOfColumns : 3 , titleText : '성과'},
+                {startColumnName : 'col19',numberOfColumns : 2 , titleText : '인원'},
+                {startColumnName : 'col21',numberOfColumns : 2 , titleText : '참여율'},
+                {startColumnName : 'col23',numberOfColumns : 3 , titleText : '우수제안'},
+                {startColumnName : 'col26',numberOfColumns : 2 , titleText : '제안성과'},
+              ]
+            });
+            $("#S700201A010_jqGrid_view1").jqGrid("setFrozenColumns");
+
+            function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+                //같은값 기준으로
+
+                var data = setting;
+
+                if (
+                    rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+                ) {
+                    return "colspan=2;";
+                }
+
+                if (rowObject.col2 == data) {
+                    return "colspan=6;";
+                }
+
+                if (rowObject.col2 == setting2) {
+                    return "colspan=6;";
+                }
+
+
+                if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>"){
+                  return "colspan=6;"
+                }
+            }
+
+            function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+                //같은값 기준으로
+                if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+                    return "colspan=3;";
+                }
+            }
+
+            $(window)
+                .bind("resize", function () {
+                    $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), false);
+                })
+                .trigger("resize");
+
+            function windowOpen() {
+                window.open(
+                    "./S700303A010POP01.html",
+                    "07_pop",
+                    "width=1040, height=600, left=50%, top=50%, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no"
+                );
+            }
+
+            function width_fix(){
+              // console.log($(".ly-wrapper").width()-153);
+              // console.log($("#gbox_S700201A010_jqGrid_view1").width());
+              // var fix_with = $(".ly-contents-boxed").width()+153;
+              $("#S700201A010_jqGrid_view1").setGridWidth(fix_with , false);
+            }
+        </script>
+    </body>
+</html>

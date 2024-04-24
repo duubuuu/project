@@ -1,0 +1,91 @@
+#tabs {
+  margin-top: 8px;
+  width: 100%;
+  ul {
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: 8px;
+    + button {
+      display: inline-block;
+      margin-left: 4px;
+    }
+    .tabs-child {
+      display: inline-block;
+      margin: 0 2px;
+      border-radius: 5px;
+      background-color: #fff;
+
+      &.active {
+        background-color: #6383ff;
+        a {
+          color: #fff;
+        }
+      }
+
+      a {
+        display: block;
+        overflow: hidden;
+        padding: 0 10px;
+        width: 80px;
+        height: 30px;
+        color: #565656;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 28px;
+      }
+    }
+  }
+}
+
+//tab 컨텐츠
+.tabs-view {
+  display: block;
+  width: 100%;
+  &-target {
+    display: none;
+    margin-bottom: 8px;
+  }
+}
+
+.tabs-inner-title {
+  margin-top: 12px;
+  font-size: 18px;
+}
+
+
+#form-tabs {
+  position: relative;
+  display: flex;
+  padding: 50px 12px 0;
+  padding-top: 50px;
+
+  > ul {
+    font-size: 0;
+
+    flex: 1 1 auto;
+    > li {
+      position: relative;
+      display: inline-block;
+      margin-left: 64px;
+      padding-bottom: 15px;
+      &.form-active {
+        border-bottom: 4px solid $company-blue-1;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+      > a {
+        color: #565656;
+        letter-spacing: -.005em;
+        font-weight: 400;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+.form-view-target {
+  display: none;
+}

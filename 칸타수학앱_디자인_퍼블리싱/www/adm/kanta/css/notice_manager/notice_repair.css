@@ -1,0 +1,180 @@
+/* .notice_write_form{
+  background: #ffffff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  width: 99%;
+  margin: 15px auto;
+  height: 89vh;
+  max-width: 1500px;
+  min-width: 1200px;
+}
+
+
+.flex{
+  display:flex;
+}
+
+
+.notice_top{
+  padding: 14px 0px;
+  box-shadow: 0px 0px 5px #d0d0d0;
+  margin: 15px;
+  border-radius:5px;
+}
+
+.title_div{
+  width: 15%;
+  text-align: center;
+  line-height: 38px;
+  font-weight: 600;
+}
+
+
+.input_div{
+  width:80%;
+  text-align:center;
+}
+
+
+
+
+
+.smart_editor_div{
+  box-shadow: 0px 0px 5px #d0d0d0;
+  width: 98%;
+  height: 628px;
+  border-radius: 5px;
+  margin: 0px auto;
+}
+
+
+
+.btn_form{
+  width:100%;
+  text-align: right;
+  padding:19px;
+}
+
+
+.notice_repair{
+  text-align: center;
+  display: inline-block;
+  line-height: 28px;
+  color: #fff;
+  background: #0000ff;
+  padding: 2px 7px;
+  border-radius:5px;
+  cursor:pointer;
+  width: 100px;
+}
+
+
+
+.notice_move_list{
+  text-align: center;
+  display: inline-block;
+  line-height: 28px;
+  color: #f36063;
+  border : 1px solid #f36063;
+  padding: 2px 7px;
+  border-radius:5px;
+  cursor:pointer;
+  width: 100px;
+} */
+
+
+.notice_write_form{
+  /* background: #ffffff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  width: 99%;
+  margin: 15px auto;
+  height: 89vh;
+  max-width: 1500px;
+  min-width: 1200px; */
+  height: 89vh;
+  min-width: 1200px;
+  margin: auto;
+  max-width: 100rem;
+}
+
+
+.flex{
+  display:flex;
+}
+
+
+/* .notice_top{
+  padding: 14px 0px;
+  margin: 15px;
+  border-radius:5px;
+} */
+
+.title_div {
+    width: 6%;
+    line-height: 38px;
+    font-weight: 600;
+    padding: 0 1rem;
+}
+
+
+.input_div {
+    width: 80%;
+    text-align: left;
+    line-height: 38px;
+}
+
+.word_div {
+    min-height: 600px;
+    border-radius: 0.5rem;
+    padding: 20px;
+    border: 1px solid #d1d1d1;
+    margin: 10px auto;
+    width: 99%;
+}
+
+
+.btn_form{
+  width:100%;
+  text-align: center;
+}
+
+
+.notice_reg{
+  text-align: center;
+  display: inline-block;
+  line-height: 28px;
+  color: #fff;
+  background: #f36063;
+  padding: 2px 7px;
+  border-radius:5px;
+  cursor:pointer;
+  width: 100px;
+}
+
+
+
+.notice_move_list {
+    text-align: center;
+    display: inline-block;
+    line-height: 35px;
+    color: #f36063;
+    border: 1px solid #f36063;
+    /* padding: 2px 7px; */
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
+
+
+.notice_repair{
+  text-align: center;
+  display: inline-block;
+  line-height: 28px;
+  color: #f36063;
+  border : 1px solid #f36063;
+  border-radius:5px;
+  cursor:pointer;
+  width: 100px;
+}

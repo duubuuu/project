@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--jquery import-->
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+
+          <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+          <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+          <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+          <!--jqGrid import-->
+          <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+          <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+          <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+          <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+          <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+          <!-- jQuery Modal -->
+          <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+          <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+          <!--font awesome-->
+          <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+       <!--DEXT5 -->
+          <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+          <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+         <script type="text/javascript" src="../../../js/common_util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+         <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+         <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+         <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+         <script type="text/javascript" src="../../../js/common.js"></script>
+         <link rel="stylesheet" href="../../../css/laylab.css" />
+        <title>제안 Helper 관리 굴리기상세</title>
+        <style>
+        .ui-jqgrid-bdiv {overflow-x: hidden !important;}
+        .ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top: 0; height: auto;}
+        .ui-widget.ui-widget-content {
+        border: none;
+        border-bottom: 1px solid #cccccc;
+        }
+        .select2:after {top: 7px !important; }
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                      <div class="ly-contents-boxed">
+                        <div class="column top" style="display: flex; justify-content: flex-end;">
+                          <button class="ui button search" size="small">조회</button>
+                          <button class="ui button search" size="small">저장</button>
+                          <button class="ui button search" size="small">삭제</button>
+                          <button class="ui button search" size="large">굴리기종료(확정)</button>
+                        </div>
+                        <div class="content-set" style="display: flex; height: 24px; line-height: 24px; font-size: 17px; color: #333333;margin-top: 15px;">
+                          <div class="small-title-set mgr10" style="display: flex;">
+                            <label>
+                              <span class="title-icon-S700402A071POP03"></span>
+                              제목 :
+                            </label>
+                          </div>
+                          <label><a>전사제안관리 개발 프로젝트 추진</a></label>
+                        </div>
+                        <div class="content-set" style="display: flex; height: 24px; line-height: 24px; font-size: 17px; color: #333333;margin-top: 15px;">
+                          <div class="" style="display: flex;">
+                            <div class="small-title-set mgr10" style="display: flex;">
+                              <label>
+                                <span class="title-icon-S700402A071POP03"></span>
+                                작성자 :
+                              </label>
+                            </div>
+                            <label>(포항)EIC기술부 조업안전섹션</label>
+                          </div>
+                          <div class="" style="display: flex; margin-left: 50px;">
+                            <div class="small-title-set mgr10" style="display: flex;">
+                              <label>
+                                <span class="title-icon-S700402A071POP03"></span>
+                                등록일 :
+                              </label>
+                            </div>
+                            <label>2021년 3월 23일</label>
+                          </div>
+                          <div class="" style="display: flex; margin-left: 50px;">
+                            <div class="small-title-set mgr10" style="display: flex;">
+                              <label>
+                                <span class="title-icon-S700402A071POP03"></span>
+                                종료일 :
+                              </label>
+                            </div>
+                            <label>2021년 3월 23일</label>
+                          </div>
+                        </div>
+                        <div class="content-set" style="display: flex; height: 24px; line-height: 24px; font-size: 17px; color: #333333;margin-top: 15px; margin-left: 8.5px;">
+                          <div class="" style="display: flex;">
+                            <div class="small-title-set mgr10" style="display: flex;">
+                              <label>
+                                <span class="title-icon2-S700402A071POP03"></span>
+                                댓글 수 :
+                              </label>
+                            </div>
+                            <label>12개</label>
+                          </div>
+                          <div class="" style="display: flex; margin-left: 50px;">
+                            <div class="small-title-set mgr10" style="display: flex;">
+                              <label>
+                                <span class="title-icon2-S700402A071POP03"></span>
+                                기여자 :
+                              </label>
+                            </div>
+                            <label>2명</label>
+                          </div>
+                          <div class="" style="display: flex; margin-left: 50px;">
+                            <div class="small-title-set mgr10" style="display: flex; align-items: center; align-items: center;">
+                              <label>
+                                <span class="title-icon2-S700402A071POP03"></span>
+                                공유조직 :
+                              </label>
+                            </div>
+                            <label>
+                              <div class="ui select2 pxw-120 mgl10">
+                                <select>
+                                  <option value="A" selected>선택</option>
+                                  <option value="B" >테스트1</option>
+                                  <option value="C" >테스트2</option>
+                                  <option value="D" >테스트3</option>
+                                  <option value="E" >테스트4</option>
+                                  <option value="F" >테스트5</option>
+                                </select>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="content-set" style="display: flex; height: 24px; line-height: 24px; font-size: 17px; color: #333333; margin-top: 15px;">
+                          <div class="small-title-set mgr10" style="display: flex;">
+                            <label>
+                              <span class="title-icon-S700402A071POP03"></span>
+                              상세 내역
+                            </label>
+                          </div>
+                        </div>
+                          <textarea draggable="false" style="resize: none; min-height: 150px; margin-top: 15px; margin-bottom: 10px;"></textarea>
+
+                          <div class="content-set" style="display: flex; height: 24px; line-height: 24px; font-size: 17px; color: #333333; margin-top: 15px;">
+                            <div class="small-title-set mgr10" style="display: flex;">
+                              <label>
+                                <span class="title-icon-S700402A071POP03"></span>
+                                댓글 목록
+                              </label>
+                            </div>
+                          </div>
+                          <div class="contents-wrapper" id="">
+                              <div class="table-row" id="S700201A010_jqGrid_container1">
+                                  <table id="S700201A010_jqGrid_view1"></table>
+                              </div>
+                          </div>
+                          <div class="column top" style="display: flex; justify-content: flex-end; margin-top: 25px;">
+                            <button class="ui button search" size="large">댓글/답글등록</button>
+                            <button class="ui button search" size="small">삭제</button>
+                          </div>
+                          <textarea draggable="false" style="resize: none; min-height: 150px; margin-top: 15px; margin-bottom: 10px;"></textarea>
+                      </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+            var fileTarget = $("#input-file");
+            fileTarget.on("change", function () {
+                // 값이 변경되면
+                var cur = $("input[type='file']").val();
+                $("input[name='upload']").val(cur);
+            });
+            </script>
+            <script src="../../../js/common.js"></script>
+            <script src="../../../js/components/panel/tab.js"></script>
+            <script src="../../../js/components/renderer/render.js"></script>
+            <script src="../../../js/components/pagenate/pager.js"></script>
+            <script>
+                var linkText = ["작업표준", "변경관리", "위험성평가"];
+                var arr = ["#none", "#none", "#none"];
+                var arr2 = ["필요", "불필요", "불필요사유"];
+
+                //sample
+                var setting =
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[0] +
+                    "'>" +
+                    linkText[0] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+                    "<label for='chk1'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+                    "<label for='chk2'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='001'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[1] +
+                    "'>" +
+                    linkText[1] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+                    "<label for='chk3'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+                    "<label for='chk4'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='003'></input>" +
+                    "</div>" +
+                    "<div class='ui renderer-wrp left mgb4'>" +
+                    "<a class='mgr10 pxw-80 left' href='" +
+                    arr[2] +
+                    "'>" +
+                    linkText[2] +
+                    "</a>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+                    "<label for='chk5'>" +
+                    arr2[0] +
+                    "</label>" +
+                    "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+                    "<label for='chk6'>" +
+                    arr2[1] +
+                    "</label>" +
+                    "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                    arr2[2] +
+                    " id='005'></input>" +
+                    "</div>";
+
+                var setting2 =
+                    "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+                // 댓글목록 jqgrid
+                $("#S700201A010_jqGrid_view1").jqGrid({
+                    datatype: "local", //json
+                    colModel: [
+                      {
+                            label: "NO",
+                            name: "col1",
+                            width: 50,
+                            align: "center",
+                            sortable: false,
+                            cellattr: cellMerge,
+                            formatter: sigleCheckbox,
+                        },
+                        {
+                            label: "내용",
+                            name: "col2",
+                            width: `500`,
+                            align: "left",
+                            sortable: false,
+                        },
+                        {
+                            label: "작성자",
+                            name: "col3",
+                            width: 80,
+                            align: "center",
+                            sortable: false,
+                        },
+                        {
+                            label: "작성일",
+                            name: "col4",
+                            width: 100,
+                            align: "center",
+                            sortable: false,
+                        },
+                        // {
+                        //     label: "공유 조직",
+                        //     name: "col5",
+                        //     width: 100,
+                        //     align: "center",
+                        //     sortable: false,
+                        // },
+                        // {
+                        //     label: "종료일",
+                        //     name: "col6",
+                        //     width: 100,
+                        //     align: "center",
+                        //     sortable: false,
+                        // },
+                        {
+                            label: "기여자",
+                            classes:'none_border',
+                            name: "col7",
+                            width: 90,
+                            align: "center",
+                            sortable: false,
+                            formatter:like
+                        },
+                    ],
+
+                    data: [
+                        {
+                        col1: "",
+                        col2: "안녕하세요.",
+                        col3: "홍길동",
+                        col4: "2020-02-11",
+                        col5: "",
+                        col6: "2020-02-11",
+                        col7: "",
+                        },
+                        {
+                        col1: "",
+                        col2: "안녕하세요.",
+                        col3: "홍길동",
+                        col4: "2020-02-11",
+                        col5: "",
+                        col6: "2020-02-11",
+                        col7: "",
+                        },
+                        {
+                        col1: "",
+                        col2: "안녕하세요.",
+                        col3: "홍길동",
+                        col4: "2020-02-11",
+                        col5: "",
+                        col6: "2020-02-11",
+                        col7: "",
+                        },
+                        {
+                        col1: "",
+                        col2: "안녕하세요.",
+                        col3: "홍길동",
+                        col4: "2020-02-11",
+                        col5: "",
+                        col6: "2020-02-11",
+                        col7: "",
+                        },
+                        {
+                        col1: "",
+                        col2: "안녕하세요.",
+                        col3: "홍길동",
+                        col4: "2020-02-11",
+                        col5: "",
+                        col6: "2020-02-11",
+                        col7: "",
+                        },
+                        {
+                        col1: "",
+                        col2: "안녕하세요.",
+                        col3: "홍길동",
+                        col4: "2020-02-11",
+                        col5: "",
+                        col6: "2020-02-11",
+                        col7: "",
+                        },
+                    ],
+                    loadComplete: function(data) {
+              				// 페이지 셋팅
+              				// initPage("S700201A010_jqGrid_view0", "paginate", true, "TOT");
+              			},
+              			rowNum: 10,
+              			viewrecords: true,
+              			loadonce: true,
+              			height: "128px",
+              			autowidth: true,
+              			shrinkToFit: true,
+                    loadComplete: function () {
+                        var bg = { "background-color": "#dbebfb" };
+                        var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+                        var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+
+                        $("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders",{
+                          useColSpanStyle :true,
+                          groupHeaders : [
+                          ]
+                        });
+                    },
+                });
+
+                function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+
+                    var data = setting;
+
+                    if (
+                        rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+                    ) {
+                        return "colspan=2;";
+                    }
+
+                    if (rowObject.col2 == data) {
+                        return "colspan=6;";
+                    }
+
+                    if (rowObject.col2 == setting2) {
+                        return "colspan=6;";
+                    }
+
+
+                    if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>"){
+                      return "colspan=6;"
+                    }
+                }
+
+                function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+                    //같은값 기준으로
+                    if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+                        return "colspan=3;";
+                    }
+                }
+
+                function like(cellValue, options, rowObject){
+                  var html ='<img src="../../../images/icon/thumb.png" onclick="like_on_off('+options.rowId+')" id="like'+options.rowId+'" style="color: #c1c1c1;width: 24px;margin-top: 6px; cursor: pointer;">';
+                  return html;
+                }
+
+                function like_on_off(id){
+                  var like_id = "#like"+id;
+                  console.log($(like_id).attr("src"));
+                  if($(like_id).attr("src") == '../../../images/icon/thumb.png'){
+                    $("#like"+id).attr("src" , "../../../images/icon/thumb_green.png")
+                  }else{
+                    $("#like"+id).attr("src" , "../../../images/icon/thumb.png")
+                  }
+                }
+
+
+                $(window)
+                    .bind("resize", function () {
+                        $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+                    })
+                    .trigger("resize");
+            </script>
+        </script>
+    </body>
+</html>

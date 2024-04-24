@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/vendor/datepicker/datepicker.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+
+  <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+  <!--jqGrid import-->
+  <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+  <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+  <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+  <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.js"></script>
+  <script type="text/javascript" src="../../../js/bootstarp-datetimepicker/bootstrap-datetimepicker.ko.js"></script>
+
+  <!--datepicker import-->
+  <script type="text/javascript" src="../../../js/vendor/util/moment.js"></script>
+  <script type="text/javascript" src="../../../js/vendor/util/moment.locale-kr.js"></script>
+  <script type="text/javascript" src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+  <!-- jQuery Modal -->
+  <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+  <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+  <!--font awesome-->
+  <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+  <!--DEXT5 -->
+  <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="../../../js/common_util.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+  <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+  <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+  <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+  <script type="text/javascript" src="../../../js/common.js"></script>
+
+  <title>심사일정 메일전송 및 접수</title>
+  <style>
+
+  /* 프로필 메시지 폰트  */
+        .ly-user-timeset p{
+          font-size: 17px;
+        }
+
+    /* 메뉴 음영처리 */
+    .txt_grad{
+    text-shadow: 1px 1px 6px #5a4cc3;
+    }
+
+    .ui-widget.ui-widget-content {
+    border: none; }
+    /* border-right-none 처리 */
+    .none_border{border-right : none !important;}
+
+
+    .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td input[type=text]{height: 36px; font-size: 17px;}
+    .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td {height:43px;}
+    .ui-jqgrid-btable td {height : 43px; min-height: 5px;}
+    /* .ui-jqgrid-btable tr {height : 43px; min-height: 5px;} */
+
+    .ui-jqgrid .ui-jqgrid-bdiv {
+    overflow-x: auto;
+    }
+
+    .ly-contents-boxed {
+    overflow: auto;
+    }
+
+    input.input,
+    input.hasDatepicker {
+    min-width: 112px;
+    }
+
+    .search-box>.rows .column .fields {
+    display: revert
+    }
+
+    .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th .ui-jqgrid-sortable {
+    padding: 0px 9px;
+    }
+
+    .search-box>.rows .column .input+.button {
+    margin-left: 0
+    }
+
+    .ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+    height: auto;
+    margin-top: revert
+    }
+
+    .frozen-div {
+    height: 62px !important;
+    }
+
+    .frozen-div .jqg-third-row-header {
+    height: 26px !important;
+    }
+
+    .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th {
+    background-color: #d9deec;
+    }
+
+    .button.search {
+    background-color: #91a1c2;
+    }
+
+    .ly-contents-boxed+.ly-contents-boxed {
+    margin-top: 17px;
+    }
+
+    /* 박스 패딩값 조절 */
+    .table-row {margin-top: 0;}
+    .ly-contents-boxed {
+    padding: 15px 26px 15px 29px;
+    }
+
+    .ui-jqgrid .ui-jqgrid-htable th div {
+    margin: revert !important;
+    }
+
+    .renderer-wrp {display: flex; justify-content: space-evenly;}
+
+    /* 폰트크기변경 */
+    .button.search[size='small'],
+    .search-box>.rows .column label,
+    .select2 select,
+    .search-box>.rows .column .input,
+    .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th,
+    .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td {font-size: 17px}
+
+    .Examination_date{display: contents;}
+    .date2{margin-right: 10px}
+    .ui-jqgrid .ui-jqgrid-htable th div{overflow: revert;}
+    .arrow{color: #fff; border-radius: 7px; background-color: #488aff; box-shadow: 2px 2px 5px 0px #c6c8dd;vertical-align: inherit;}
+    #accordionView0{width : 30%}
+    .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{
+    font-weight:400;
+    }
+    .ui-jqgrid .ui-jqgrid-hdiv{
+    border:none;
+    }
+    .ui-jqgrid{
+    border-color: #cccccc;
+    }
+    .button.noboxshadow{border-color: #91a1c2; background-color: #91a1c2; font-size: 17px; color: #fff; height: 30px; font-weight:400;}
+
+
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <!--ifram include header -->
+  <article>
+      <header>
+          <div class="ly-user-header">
+              <h1 class="logo">
+                  <a href="#none"><img src="../../../images/com/logo.png" alt="with posco 전자 제안관리 system" /></a>
+              </h1>
+              <nav class="ly-gnb">
+                  <ul class="ft_center_top">
+                      <li>
+                          <a href="#none" alt="HOME" class="txt_grad" data-target="true">HOME</a>
+                      </li>
+                      <li>
+                          <a href="#none" alt="마이페이지" class="txt_grad" data-target="true">MyPage</a>
+                      </li>
+                      <li class="on">
+                          <a href="#none" alt="제안하기" class="txt_grad" data-target="true">제안작성</a>
+                          <ul>
+                              <li><a href="#none" alt="제안서등록" id="S700101A010">제안등록</a></li>
+                              <li><a href="#none" alt="제안서임시저장" id="S700101A020">제안 임시저장</a></li>
+                              <li><a href="#none" alt="제안서수정" id="S700101A030">제안 수정</a></li>
+                              <!-- <li><a href="#none" alt="제안서 양식 다운로드" id="S700101A030">제안 양식 다운로드</a></li> -->
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="#none" alt="검색하기" class="txt_grad" data-target="true">검색하기</a>
+                      </li>
+                      <li>
+                          <a href="#none" alt="심사하기" class="txt_grad" data-target="true">심사하기</a>
+                      </li>
+                      <li>
+                          <a href="#none" alt="명예의 전당" class="txt_grad" data-target="true">명예의 전당</a>
+                      </li>
+                      <li>
+                          <a href="#none" alt="기준정보" class="txt_grad" data-target="true">기준정보</a>
+                      </li>
+                      <li>
+                          <a href="#none" alt="DashBoard" class="txt_grad" data-target="true">DashBoard</a>
+                      </li>
+                  </ul>
+              </nav>
+              <div class="ly-user-timeset">
+                  <p class="ft_right_top">안녕하세요 <span>홍길동</span> 님</p>
+                  <span class="ic-member">
+                              <a href="#none"><span class="material-icons set_top_identity">perm_identity</span></a>
+                          </span>
+                  <span class="ic-change">
+                              <a href="#none"><img src="../../../images/com/head-icon01.png" /></a>
+                          </span>
+                  <span class="ic-helper">
+                              <a href="#none"><span class="material-icons set_top_icon">help_outline</span></a>
+                          </span>
+                  <span class="ic-logout">
+                              <a href="#none"><span class="material-icons set_top_icon">power_settings_new</span></a>
+                          </span>
+              </div>
+              <div class="nav-bar"></div>
+          </div>
+      </header>
+  </article>
+    <section class="ly-box">
+      <h1>심사하기</h1>
+      <h3>이제 보여줄 때입니다.서제스트 팩토리에서 당신의 놀라운 상상력을 현실로 바꿔보세요!</h3>
+      <div class="box-toggle">
+        <button class="ui button icon"><i class="fas fa-chevron-up"></i></button>
+      </div>
+    </section>
+    <div class="ly-container">
+      <!--개발적용시 ly-side만 쓰시면 됩니다-->
+      <div class="ly-side">
+        <ul>
+          <li class="active">
+            <a href="#child1" rel="child1" onclick="return false"><i class="s-icon icon3-1"></i>제안심사</a>
+          </li>
+          <li>
+            <a href="#child2" rel="child2" onclick="return false"><i class="s-icon icon3-2"></i>부서(팀)장 확인</a>
+          </li>
+          <li>
+            <a href="#child3" rel="child3" onclick="return false"><i class="s-icon icon3-3"></i>재무 검증</a>
+          </li>
+          <li>
+            <a href="#child4" rel="child4" onclick="return false"><i class="s-icon icon3-4"></i>심사계획</a>
+          </li>
+          <li>
+            <a href="#child5" rel="child5" onclick="return false"><i class="s-icon icon3-4"></i>심사확정</a>
+          </li>
+        </ul>
+        <div class="side-toggle">
+          <button class="ui button icon"><i class="fas fa-chevron-left"></i></button>
+        </div>
+      </div>
+
+      <div class="ly-wrapper">
+        <main class="ly-contents">
+          <div class="ly-contents-boxed">
+            <p style ="font-size: 19px; font-weight: 400;     color: #565656;">
+              메일내용 : 제철소 <span>10</span>월 심사일은 아래와 같습니다. 심사가능일을 표기하여 주세요. <br>
+              (메일 수신일 2일 이내로 표기하여 주세요)
+              </p>
+            <!-- <div class="search-content">
+              <form class="ui form">
+                <div class="search-box">
+                  <div class="rows">
+                    <div class="column">
+                      <div class="fields">
+                        <div class="field" style="display : block">
+                          <label class="pxw-100">심사일자</label>
+                          <div class="Examination_date" >
+                            <div class="ui type pxw-120">
+                              <input type="text" class="ui input" id="CREATION_START_DATE" value="2020-10-20" />
+                            </div>
+                            <div class="ui type dpi">
+                              <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                <span class="material-icons material-icons-outlined set_date">date_range</span>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="Examination_date" >
+                            <div class="ui type pxw-120">
+                              <input type="text" class="ui input" id="CREATION_START_DATE" value="2020-10-23" />
+                            </div>
+                            <div class="ui type dpi">
+                              <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                <span class="material-icons material-icons-outlined set_date">date_range</span>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="Examination_date" >
+                            <div class="ui type pxw-120">
+                              <input type="text" class="ui input" id="CREATION_START_DATE" value="2020-10-25" />
+                            </div>
+                            <div class="ui type dpi">
+                              <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                <span class="material-icons material-icons-outlined set_date">date_range</span>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="Examination_date" >
+                            <div class="ui type pxw-120">
+                              <input type="text" class="ui input" id="CREATION_START_DATE" value="2020-10-28" />
+                            </div>
+                            <div class="ui type dpi">
+                              <button type="button" class="ui button icon date2" id="SSC_ALL_ACTIVITY_PRD">
+                                <span class="material-icons material-icons-outlined set_date">date_range</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column top">
+                      <button class="ui button search mgr10 mgl10" size="small">확인</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div> -->
+          </div>
+
+          <div class="ly-contents-boxed">
+            <div class="contents-wrapper" id="accordionView0">
+              <div class="table-row" id="S700201A010_jqGrid_container1">
+                <table id="S700201A010_jqGrid_view1"></table>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/common.js"></script>
+  <script src="../../../js/components/panel/tab.js"></script>
+  <script src="../../../js/components/renderer/render.js"></script>
+  <script src="../../../js/components/pagenate/pager.js"></script>
+  <script>
+    // console.log('aa');
+    $(function() {
+      var $CREATION_START_DATE = $('input[id="CREATION_START_DATE"]');
+      var $CREATION_END_DATE = $('input[id="CREATION_END_DATE"]');
+      var $CREATION_ALL_DATE = $('input[id="CREATION_ALL_DATE"]');
+
+      $CREATION_START_DATE.daterangepicker({
+          // showDropdowns: true,
+          opens: "right",
+          locale: {
+            format: "YYYY-MM-DD"
+          },
+          singleDatePicker: true,
+          viewMode: "months",
+          minViewMode: "months"
+        },
+        function(start, end, label) {
+          console.log(start, end, label);
+        }
+      );
+
+      $CREATION_END_DATE.daterangepicker({
+          viewMode: "months",
+          minViewMode: "months",
+          opens: "right",
+          // showDropdowns: true,
+          locale: {
+            format: "YYYY-MM-DD"
+          },
+          singleDatePicker: true,
+        },
+        function(start, end, label) {
+          console.log(start, end, label);
+        }
+      );
+
+      $CREATION_ALL_DATE.daterangepicker({
+          viewMode: "months",
+          minViewMode: "months",
+          opens: "left",
+          // showDropdowns: true,
+          locale: {
+            format: "YYYY-MM-DD"
+          },
+          autoUpdateInput: false, //default value 제거
+        },
+        function(start, end, label) {
+          console.log(start, end, label);
+        }
+      );
+
+      $('input[id="CREATION_ALL_DATE"]').on("apply.daterangepicker", function(ev, picker) {
+        $CREATION_START_DATE.val(picker.startDate.format("YYYY-MM"));
+        $CREATION_END_DATE.val(picker.endDate.format("YYYY-MM"));
+      });
+
+      $('input[id="CREATION_ALL_DATE"]').on(
+        //취소시 리셋
+        "cancel.daterangepicker",
+        function(ev, picker) {
+          if ($(this).val()) {
+            $(this).val();
+          } else {
+            $(this).val("");
+          }
+        }
+      );
+
+      $("#S700201A010_jqGrid_view0").jqGrid({
+        datatype: "local", //json
+        colModel: [{
+            label: "선택",
+            name: "col1",
+            width: 60,
+            align: "center",
+            sortable: false,
+            formatter: function radio(cellValue, options, rowObject) {
+              var result =
+                '<div class="ui renderer-wrp center singleradio">' +
+                '<input class="ui radio checkbox" name="singleRadioChecked" type="radio" value=' +
+                "rd" +
+                options.rowId +
+                " id=" +
+                "rd" +
+                options.rowId +
+                ">" +
+                "<label for=" +
+                "rd" +
+                options.rowId +
+                ">";
+              "</label>" + "</div>";
+              return result;
+            },
+          },
+          {
+            label: "평가구분",
+            name: "PROPOSE_CUR_EVALU_STEP_TP",
+            width: 120,
+            align: "center",
+            sortable: false,
+          },
+          {
+            label: "제안번호",
+            name: "SUGGESTION_NUMBER",
+            width: 150,
+            align: "center",
+            sortable: false,
+          },
+          {
+            label: "제안명",
+            name: "PROPOSE_NM",
+            width: 200,
+            align: "center",
+            sortable: false,
+            formatter: function link(cellValue) {
+              var result = '<a href="#none">' + cellValue + "</a>";
+              return result;
+            },
+          },
+
+
+
+
+
+          {
+            label: "구분",
+            name: "PROPOSE_CUR_EVALU_STEP_TP2",
+            width: 80,
+            align: "center",
+            sortable: false,
+          },
+          {
+            label: "제안자",
+            name: "FULL_NAME",
+            width: 120,
+            align: "center",
+            sortable: true,
+          },
+          {
+            label: "소속",
+            name: "NAME",
+            width: 200,
+            align: "center",
+            sortable: false,
+          },
+          {
+            label: "등록일",
+            name: "CREATION_DATE",
+            width: 120,
+            align: "center",
+            sortable: false,
+          },
+          {
+            label: "유사건수",
+            name: "col9",
+            width: 80,
+            align: "center",
+            sortable: false,
+          },
+        ],
+        data: [{
+            col1: "",
+            PROPOSE_CUR_EVALU_STEP_TP: "",
+            SUGGESTION_NUMBER: "1904KS53473",
+            PROPOSE_NM: "(광양)슬라브정정 2정정",
+            PROPOSE_CUR_EVALU_STEP_TP2: "성과",
+            FULL_NAME: "홍길동",
+            NAME: "(광양)제강부 슬라브정정…",
+            CREATION_DATE: "2020-03-20",
+            col9: "0",
+          },
+          {
+            col1: "",
+            PROPOSE_CUR_EVALU_STEP_TP: "",
+            SUGGESTION_NUMBER: "1904KS53474",
+            PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+            PROPOSE_CUR_EVALU_STEP_TP2: "성과",
+            FULL_NAME: "홍길동",
+            NAME: "(광양)제강부 슬라브정정…",
+            CREATION_DATE: "2020-03-20",
+            col9: "0",
+          },
+          {
+            col1: "",
+            PROPOSE_CUR_EVALU_STEP_TP: "",
+            SUGGESTION_NUMBER: "1904KS53475",
+            PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table...",
+            PROPOSE_CUR_EVALU_STEP_TP2: "성과",
+            FULL_NAME: "홍길동",
+            NAME: "(광양)제강부 슬라브정정…",
+            CREATION_DATE: "2020-03-20",
+            col9: "0",
+          },
+          {
+            col1: "",
+            PROPOSE_CUR_EVALU_STEP_TP: "",
+            SUGGESTION_NUMBER: "1904KS53476",
+            PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table...",
+            PROPOSE_CUR_EVALU_STEP_TP2: "성과",
+            FULL_NAME: "홍길동",
+            NAME: "(광양)제강부 슬라브정정…",
+            CREATION_DATE: "2020-03-20",
+            col9: "0",
+          },
+          {
+            col1: "",
+            PROPOSE_CUR_EVALU_STEP_TP: "",
+            SUGGESTION_NUMBER: "1904KS53477",
+            PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table...",
+            PROPOSE_CUR_EVALU_STEP_TP2: "성과",
+            FULL_NAME: "홍길동",
+            NAME: "(광양)제강부 슬라브정정…",
+            CREATION_DATE: "2020-03-20",
+            col9: "0",
+          },
+        ],
+        beforeSelectRow: function(rowid, e) {
+          var selected_row = $("#S700201A010_jqGrid_view0").jqGrid("getGridParam", "selrow");
+          var rowdata = $("#S700201A010_jqGrid_view0").getRowData(selected_row);
+
+          $("#TITLE").html('제안번호 <a href="#none">' + rowdata.SUGGESTION_NUMBER + "</a>" + '<span class="none">' + rowdata.PROPOSE_NM + "<span>");
+          return true; // true 반환하지 않으면 다음 이벤트가 수행되지 않음.
+        },
+        loadComplete: function(data) {
+          // 페이지 셋팅
+          $("#S700201A010_jqGrid_view0").jqGrid("setSelection", "1", true);
+          $("input[id='rd1']").prop("checked", true);
+          var deafultRow = $("#S700201A010_jqGrid_view0").jqGrid("getGridParam", "selrow");
+          var def = $("#S700201A010_jqGrid_view0").getRowData(deafultRow);
+
+          //initPage("S700201A010_jqGrid_view0", "paginate", true, "TOT");
+          $("#TITLE").html('제안번호 <a href="#none">' + def.SUGGESTION_NUMBER + '</a> <span class="none"> ' + def.PROPOSE_NM + " </span>");
+        },
+        rowNum: 10,
+        sortname: "col6",
+        sortorder: "desc",
+        viewrecords: true,
+        loadonce: true,
+        height: "128px",
+        autowidth: true,
+        shrinkToFit: true,
+        pager: "#jqGridPager",
+      });
+    });
+    var linkText = ["작업표준", "변경관리", "위험성평가"];
+    var arr = ["#none", "#none", "#none"];
+    var arr2 = ["필요", "불필요", "불필요사유"];
+
+    //sample
+    var setting =
+      "<div class='ui renderer-wrp left mgb4'>" +
+      "<a class='mgr10 pxw-80 left' href='" +
+      arr[0] +
+      "'>" +
+      linkText[0] +
+      "</a>" +
+      "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+      "<label for='chk1'>" +
+      arr2[0] +
+      "</label>" +
+      "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+      "<label for='chk2'>" +
+      arr2[1] +
+      "</label>" +
+      "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+      arr2[2] +
+      " id='001'></input>" +
+      "</div>" +
+      "<div class='ui renderer-wrp left mgb4'>" +
+      "<a class='mgr10 pxw-80 left' href='" +
+      arr[1] +
+      "'>" +
+      linkText[1] +
+      "</a>" +
+      "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+      "<label for='chk3'>" +
+      arr2[0] +
+      "</label>" +
+      "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+      "<label for='chk4'>" +
+      arr2[1] +
+      "</label>" +
+      "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+      arr2[2] +
+      " id='003'></input>" +
+      "</div>" +
+      "<div class='ui renderer-wrp left mgb4'>" +
+      "<a class='mgr10 pxw-80 left' href='" +
+      arr[2] +
+      "'>" +
+      linkText[2] +
+      "</a>" +
+      "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+      "<label for='chk5'>" +
+      arr2[0] +
+      "</label>" +
+      "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+      "<label for='chk6'>" +
+      arr2[1] +
+      "</label>" +
+      "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+      arr2[2] +
+      " id='005'></input>" +
+      "</div>";
+
+    var setting2 =
+      "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+    //self재무평가 평가 항목별 디스플레이
+    $("#S700201A010_jqGrid_view1").jqGrid({
+      datatype: "local", //json
+      colModel: [{
+          label: "순서",
+          name: "col1",
+          width: 100,
+          align: "center",
+          sortable: false,
+          formatter : setUpdateNumber
+        },
+        {
+          label: "심사가능일",
+          name: "PROPOSE_CD_NM",
+          width: `150`,
+          align: "center",
+          sortable: false,
+          formatter: function inputRenderer(cellValue, options, rowObject) {
+              var result = '<div class="ui renderer-wrp">' + '<input class="ui input pw-50" style="text-align : center " type="text" value=' + cellValue + ">" + "</div>";
+              return result;
+          },
+
+        },
+        {
+          label: "성명",
+          name: "col3",
+          index: "col3",
+          width: 150,
+          align: "center",
+          sortable: false,
+          // frozen:true,
+        },
+        {
+          label: "참석유무",
+          name: "col4",
+          width: 150,
+          align: "center",
+          classes:'none_border',
+          sortable: true,
+          formatter: function inputRenderer(cellValue, options, rowObject) {
+              var result = '<div class="ui renderer-wrp">' + '<button class="button noboxshadow">확인'+"</button>" + '<button class="button noboxshadow">삭제'+"</button>" + "</div>";
+              return result;
+          },
+        },
+      ],
+
+
+      data: [
+            {
+                col3: "홍길동",
+                PROPOSE_CD_NM: "2020-10-20",
+            },
+            {   col3: "홍길동",
+                PROPOSE_CD_NM: "2020-10-22",
+            },
+            {   col3: "홍길동",
+                PROPOSE_CD_NM: "2020-10-24",
+            },
+            {   col3: "홍길동",
+                PROPOSE_CD_NM: "2020-10-26",
+            },
+
+      ],
+
+      rowNum: 10,
+      viewrecords: true,
+      height: "auto",
+      autowidth: "false",
+      shrinkToFit: true,
+      // scroll:true,
+      // rownumWidth: 40,
+      // // width: 1000,
+      // scrollOffset:"auto",
+      loadComplete: function() {
+        var bg = {
+          "background-color": "#f5f9fd"
+        };
+        var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+        var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+
+      },
+    });
+
+    $("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders", {
+      useColSpanStyle: true,
+      groupHeaders: [
+      ]
+    });
+
+    $("#S700201A010_jqGrid_view1").jqGrid("setFrozenColumns");
+
+    function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+      //같은값 기준으로
+
+      var data = setting;
+
+      if (
+        rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+      ) {
+        return "colspan=2;";
+      }
+
+      if (rowObject.col2 == data) {
+        return "colspan=6;";
+      }
+
+      if (rowObject.col2 == setting2) {
+        return "colspan=6;";
+      }
+
+
+      if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+        return "colspan=6;"
+      }
+    }
+
+    function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+      //같은값 기준으로
+      if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+        return "colspan=3;";
+      }
+    }
+
+    $(window)
+      .bind("resize", function() {
+        $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+      })
+      .trigger("resize");
+
+    //accordion 펼침 접기
+    function accordionFunc(props) {
+      $("#accordionView" + props).toggleClass("show");
+      var $a = $(".ui.button.icon.acc").eq(props);
+      var b = $a.data("attr");
+
+      if ($("#accordionView" + props).attr("id") === b) {
+        $a.toggleClass("rotate");
+      } else {
+        return false;
+      }
+    }
+
+    function opendModal() {
+      event.preventDefault();
+      $.popup({
+        url: "./S700201A020POP01.html",
+
+        // 모달창 호출할때 넘길 파라메터들
+        /*
+                        data: {
+                        param_name1: value_1,
+                        param_name2: value_2,
+                    },
+                    */
+        //animation : "bounce",
+        close: function(result) {
+          // 모달창에서 넘어온 값
+          console.log(result);
+        },
+      });
+    }
+
+    function opendModal2() {
+      event.preventDefault();
+      $.popup({
+        url: "./S700201A020POP02.html",
+
+        // 모달창 호출할때 넘길 파라메터들
+        /*
+                        data: {
+                        param_name1: value_1,
+                        param_name2: value_2,
+                    },
+                    */
+        //animation : "bounce",
+        close: function(result) {
+          // 모달창에서 넘어온 값
+          console.log(result);
+        },
+      });
+    }
+  </script>
+</body>
+
+</html>

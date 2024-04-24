@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+        <!--jquery import-->
+        <script src="../../../js/vendor/jquery/jquery.min.js"></script>
+
+        <script src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <!--datepicker import-->
+        <script src="../../../js/vendor/util/moment.js"></script>
+        <script src="../../../js/vendor/util/moment.locale-kr.js"></script>
+        <script src="../../../js/vendor/datepicker/daterangepicker.js"></script>
+
+        <!-- jQuery Modal -->
+        <script src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script src="../../../js/components/modal/modal.js"></script>
+        <link rel="stylesheet" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+
+        <!--font awesome-->
+        <script src="../../../js/vendor/fontawesome/all.js"></script>
+
+        <!--style-->
+        <link rel="stylesheet" href="../../../css/default.css" />
+
+        <link rel="stylesheet" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" href="../../../js/vendor/datepicker/datepicker.css" />
+
+        <title>심사장소 조회 팝업 backup</title>
+        <style>
+        .table-row .table th, .table-row .table td {height: 43px;padding: 2px 4px; }
+
+        .noticedate1{display: contents; line-height: 34px}
+        .noticedate2{display: contents;}
+        .button.icon.date2{background-color: #fff}
+        input.input, input.hasDatepicker{min-width: 100px; width: 100%; font-size: 17px; height : 36px; }
+
+        .table-row .table tbody th{background-color: #d9deec;}
+        .button.search{background-color: #91a1c2;}
+        .material-icons{color: #585858;}
+
+        /* 폰트크기변경 */
+        .button,
+        .search-box > .rows .column label,
+        .select2 select,
+        .search-box > .rows .column .input,
+        .table-row .table tbody th,
+        #EMAIL_ADDRESS, #NOTICE,
+        #CREATION_END_DATE,
+        #BBS_REG_NAME,
+        #PROPOSER_WKS_TP,
+        .input-file-button,
+        #SSC_NOTICE_PLT_CONT,
+        .fts17,
+        #POPUP_FLAG,
+        #BBS_WRITING_TITLE{font-size: 17px}
+        .ly-contents-boxed .contents-title{font-size: 27px}
+        .input-file-button{min-width: 100px;}
+
+        .radio{display: inline-block}
+        .ly-contents-head-lt{width: 50%; padding-left: 12px}
+        .ly-contents-head-rt{width: 50%}
+        /* .pdr20, .pdr10{font-weight: bold} */
+
+        .control-column.item-right button{line-height: 18px}
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+            <div class="ly-container">
+                <!--ifram include sidebar -->
+                <div class="ly-wrapper">
+                    <main class="ly-contents">
+                        <div class="ly-contents-boxed">
+                            <div class="flex">
+                                <div class="ly-contents-head-lt">
+                                  <fieldset>
+                                    <div class="">
+                                      <label for="" class="pdr13">본사지역(전체)</label>
+                                        <div class="ui radio checkbox">
+                                            <!--disabled입력시 체크불가-->
+                                            <input type="radio" name="radio0" id="change0" checked />
+                                            <label for="change0">지정심사장소</label>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                      <label for="" class="pdr20">On-Line 심의</label>
+                                        <div class="ui radio checkbox">
+                                            <!--disabled입력시 체크불가-->
+                                            <input type="radio" name="radio0" id="change1" checked />
+                                            <label for="change1" style="width: 200px">On-line 심의</label>
+                                        </div>
+                                    </div>
+                                  </fieldset>
+                                </div>
+                                <div class="ly-contents-head-rt">
+                                    <div class="control">
+                                        <div class="control-column item-right">
+                                            <button class="ui button blue">선택</button>
+                                            <button class="ui button blue">취소</button>
+                                              <button class="ui button blue">재조회</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contents-wrapper">
+                                <div class="table-row">
+                                    <table id="TB_S70_SUGC020" class="ui table">
+                                        <colgroup>
+                                            <col style="width: 200px" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>지역코드</th>
+                                                <td id="tabletd">
+                                                  <input type="text" name="upload" class="ui input" value="A"/>
+                                                </td>
+                                                <th>장소코드</th>
+                                                <td id="tabletd">
+                                                  <input type="text" name="upload" class="ui input" value="010"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                              <th>지역명칭</th>
+                                              <td id="tabletd" colspan="3">
+                                                <input type="text" name="upload" class="ui input" value="본사지역(전체)"/>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <th>장소명칭</th>
+                                              <td id="tabletd" colspan="3">
+                                                <input type="text" name="upload" class="ui input" value="지정심사장소"/>
+                                              </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script></script>
+    </body>
+</html>

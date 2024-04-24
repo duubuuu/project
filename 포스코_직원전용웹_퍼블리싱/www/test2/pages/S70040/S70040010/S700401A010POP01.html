@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
+        <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+        <!--jqGrid import-->
+        <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+        <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+        <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+        <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+        <!-- jQuery Modal -->
+        <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+        <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+        <!--font awesome-->
+        <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+        <!--DEXT5 -->
+        <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+        <script type="text/javascript" src="../../../js/common_util.js"></script>
+        <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+        <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+        <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+        <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+        <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+        <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+        <script type="text/javascript" src="../../../js/components/datePicker/date.js"></script>
+        <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+        <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+        <script type="text/javascript" src="../../../js/common.js"></script>
+
+        <!-- 하이차트스크립트 -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
+        <title>Dashboard 제안등록현황(상세)</title>
+        <style>
+        .ui-widget.ui-widget-content { border: none; }
+
+        /* border-right-none 처리 */
+        .none_border{border-right : none !important;}
+
+        .space{clear:both}
+
+        /* 폰트크기변경 */
+        .type input.input, .type input.hasDatepicker,
+        .button.search[size='small'],
+       .search-box > .rows .column label,
+       .select2 select,
+       .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th,
+       .ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td
+       {font-size: 17px}
+
+       .ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top: 2px}
+       .ui-jqgrid .ui-jqgrid-htable th div{overflow: revert}
+       .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th{background-color: #d9deec;}
+       .button.search{background-color: #91a1c2;}
+
+        .ly-contents-boxed {padding: 15px 26px 15px 29px;}
+        .ui-jqgrid .ui-jqgrid-bdiv{ overflow-x:auto; }
+        .ly-contents-boxed{ overflow: auto; }
+        input.input, input.hasDatepicker{min-width: 100px;}
+        .search-box > .rows .column .fields{display: revert}
+        .ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th .ui-jqgrid-sortable{padding: revert}
+        .fields2 > .field > .vertical{vertical-align: sub; margin-right : 10px}
+        .input2{min-width: revert;}
+        input.input, input.hasDatepicker { min-width: 50px; }
+
+       .table-row .table th, .table-row .table td{background-color: #f6f8fa}
+       .table-row .table tbody th{background-color: #d9deec; border: 1px solid #b1b8cb;}
+       .table-row .table tbody th:nth-child(1){border-left: none; }
+       .table-row .table tbody th:nth-child(9){border-right: none; }
+       .table-row .table th{font-size: 14px; font-weight: bold; color: #000;}
+       .table-row .table td:nth-child(1){color: #000; text-align: center; border-left: none; }
+       .table-row .table td:nth-child(9){border-right: none;}
+       .ly-contents-boxed {padding: 15px 26px 15px 29px;}
+       .search-box{padding : revert;}
+       .ui-th-column-header, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column-header{height: 34px !important;}
+       input.input, input.hasDatepicker{height: 30px}
+       .button.search{margin: 10px 0;}
+       .bar_chart{color: #fff; border-radius: 7px; background-color: #488aff; box-shadow: 2px 2px 5px 0px #c6c8dd; vertical-align: sub;}
+       .ly-contents-boxed + .ly-contents-boxed {margin-top: 0;}
+       .bar-chart-set{width: 32%}
+
+       /* 하이차트 */
+       .highcharts-figure, .highcharts-data-table table { min-width: 750px;  max-width: 1000px;  margin: 1em auto; }
+
+        #container { height: 400px;}
+        .highcharts-data-table table {font-family: Verdana, sans-serif; border-collapse: collapse; border: 1px solid #EBEBEB; margin: 10px auto; text-align: center;   width: 100%; max-width: 500px; }
+        .highcharts-data-table caption { padding: 1em 0; font-size: 1.2em; color: #555; }
+        .highcharts-data-table th {font-weight: 600; padding: 0.5em;}
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {padding: 0.5em;}
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {background: #f8f8f8;}
+        .highcharts-data-table tr:hover {background: #f1f7ff;}
+
+        .highcharts-background {fill: #f6f8fa;}
+        .highcharts-contextbutton{display: none}
+
+        .field{margin: 0 auto;}
+
+        .contents-title {font-weight: 500; font-size: 27px;}
+
+        </style>
+    </head>
+    <body id="popup">
+        <div id="root">
+          <div class="ly-wrapper">
+            <main class="ly-contents">
+              <div class="ly-contents-boxed" style="display : flex">
+                <div class="field">
+                  <div class="flex">
+                    <div class="ly-contents-head mgb10">
+                      <button class="ui button icon blue acc" onclick="accordionFunc(0)" data-attr="accordionView0" style="width: 34px">
+                          <svg enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ffffff" style="padding-right: 2px;"><rect fill="none" height="24" width="24"/><g><path d="M19.88,18.47c0.44-0.7,0.7-1.51,0.7-2.39c0-2.49-2.01-4.5-4.5-4.5s-4.5,2.01-4.5,4.5s2.01,4.5,4.49,4.5 c0.88,0,1.7-0.26,2.39-0.7L21.58,23L23,21.58L19.88,18.47z M16.08,18.58c-1.38,0-2.5-1.12-2.5-2.5c0-1.38,1.12-2.5,2.5-2.5 s2.5,1.12,2.5,2.5C18.58,17.46,17.46,18.58,16.08,18.58z M15.72,10.08c-0.74,0.02-1.45,0.18-2.1,0.45l-0.55-0.83l-3.8,6.18 l-3.01-3.52l-3.63,5.81L1,17l5-8l3,3.5L13,6C13,6,15.72,10.08,15.72,10.08z M18.31,10.58c-0.64-0.28-1.33-0.45-2.05-0.49 c0,0,5.12-8.09,5.12-8.09L23,3.18L18.31,10.58z"/></g></svg>
+                      </button>
+                      <h1 class="contents-title" id="TITLE">공장별 활동 실적</h1>
+                    </div>
+                  </div>
+                  <div class="bar-chart mgb20">
+                    <figure class="highcharts-figure">
+                      <div id="container003"></div>
+                    </figure>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="flex">
+                      <div class="ly-contents-head" style="float: left">
+                        <button class="ui button icon blue acc" onclick="accordionFunc(0)" data-attr="accordionView0" style="width: 34px">
+                            <svg enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ffffff" style="padding-right: 2px;"><rect fill="none" height="24" width="24"/><g><path d="M19.88,18.47c0.44-0.7,0.7-1.51,0.7-2.39c0-2.49-2.01-4.5-4.5-4.5s-4.5,2.01-4.5,4.5s2.01,4.5,4.49,4.5 c0.88,0,1.7-0.26,2.39-0.7L21.58,23L23,21.58L19.88,18.47z M16.08,18.58c-1.38,0-2.5-1.12-2.5-2.5c0-1.38,1.12-2.5,2.5-2.5 s2.5,1.12,2.5,2.5C18.58,17.46,17.46,18.58,16.08,18.58z M15.72,10.08c-0.74,0.02-1.45,0.18-2.1,0.45l-0.55-0.83l-3.8,6.18 l-3.01-3.52l-3.63,5.81L1,17l5-8l3,3.5L13,6C13,6,15.72,10.08,15.72,10.08z M18.31,10.58c-0.64-0.28-1.33-0.45-2.05-0.49 c0,0,5.12-8.09,5.12-8.09L23,3.18L18.31,10.58z"/></g></svg>
+                        </button>
+                          <h1 class="contents-title" id="TITLE">파트 단위 활동 실적</h1>
+                      </div>
+                  </div>
+                  <div class="bar-chart">
+                    <figure class="highcharts-figure">
+                      <div id="container002"></div>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+              <div class="ly-contents-boxed" style="margin-top: 14px">
+                <div class="flex">
+                    <div class="ly-contents-head mgb10">
+                      <button class="ui button icon blue acc" onclick="accordionFunc(0)" data-attr="accordionView0" style="width: 34px">
+                          <svg enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ffffff" style="padding-right: 2px;"><rect fill="none" height="24" width="24"/><g><path d="M19.88,18.47c0.44-0.7,0.7-1.51,0.7-2.39c0-2.49-2.01-4.5-4.5-4.5s-4.5,2.01-4.5,4.5s2.01,4.5,4.49,4.5 c0.88,0,1.7-0.26,2.39-0.7L21.58,23L23,21.58L19.88,18.47z M16.08,18.58c-1.38,0-2.5-1.12-2.5-2.5c0-1.38,1.12-2.5,2.5-2.5 s2.5,1.12,2.5,2.5C18.58,17.46,17.46,18.58,16.08,18.58z M15.72,10.08c-0.74,0.02-1.45,0.18-2.1,0.45l-0.55-0.83l-3.8,6.18 l-3.01-3.52l-3.63,5.81L1,17l5-8l3,3.5L13,6C13,6,15.72,10.08,15.72,10.08z M18.31,10.58c-0.64-0.28-1.33-0.45-2.05-0.49 c0,0,5.12-8.09,5.12-8.09L23,3.18L18.31,10.58z"/></g></svg>
+                      </button>
+                        <h1 class="contents-title" id="TITLE">공장별 활동 실적 통계</h1>
+                    </div>
+                </div>
+                <div class="contents-wrapper mgb20" id="accordionView1" >
+                  <div class="table-row" id="S700201A010_jqGrid_container1">
+                    <table id="S700201A010_jqGrid_view1" style="width: 100%"></table>
+                  </div>
+                </div>
+
+                <div class="flex">
+                    <div class="ly-contents-head mgb10">
+                      <button class="ui button icon blue acc" onclick="accordionFunc(0)" data-attr="accordionView0" style="width: 34px">
+                          <svg enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#ffffff" style="padding-right: 2px;"><rect fill="none" height="24" width="24"/><g><path d="M19.88,18.47c0.44-0.7,0.7-1.51,0.7-2.39c0-2.49-2.01-4.5-4.5-4.5s-4.5,2.01-4.5,4.5s2.01,4.5,4.49,4.5 c0.88,0,1.7-0.26,2.39-0.7L21.58,23L23,21.58L19.88,18.47z M16.08,18.58c-1.38,0-2.5-1.12-2.5-2.5c0-1.38,1.12-2.5,2.5-2.5 s2.5,1.12,2.5,2.5C18.58,17.46,17.46,18.58,16.08,18.58z M15.72,10.08c-0.74,0.02-1.45,0.18-2.1,0.45l-0.55-0.83l-3.8,6.18 l-3.01-3.52l-3.63,5.81L1,17l5-8l3,3.5L13,6C13,6,15.72,10.08,15.72,10.08z M18.31,10.58c-0.64-0.28-1.33-0.45-2.05-0.49 c0,0,5.12-8.09,5.12-8.09L23,3.18L18.31,10.58z"/></g></svg>
+                      </button>
+                        <h1 class="contents-title" id="TITLE">파트 단위 활동 실적 통계</h1>
+                    </div>
+                </div>
+                <div class="contents-wrapper" id="accordionView2">
+                  <div class="table-row" id="S700201A010_jqGrid_container2">
+                    <table id="S700201A010_jqGrid_view2" style="width: 100%"></table>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </main>
+      </div>
+
+        <script src="../../../js/common.js"></script>
+        <script src="../../../js/components/panel/tab.js"></script>
+        <script src="../../../js/components/renderer/render.js"></script>
+        <script src="../../../js/components/pagenate/pager.js"></script>
+        <script>
+
+                        //공장별 활동 실적 통계
+                        $("#S700201A010_jqGrid_view1").jqGrid({
+                            datatype: "local", //json
+                            colModel: [
+                              {
+                                  label: "구분",
+                                  name: "col1",
+                                  width: `166`,
+                                  align: "center",
+                                  sortable: false
+                              },
+                              {
+                                  label: "1등급",
+                                  name: "col2",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                              },
+                              {
+                                  label: "2등급",
+                                  name: "col3",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false
+                              },
+                              {
+                                  label: "3등급",
+                                  name: "col4",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "4등급",
+                                  name: "col5",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "5등급",
+                                  name: "col6",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "6등급",
+                                  name: "col7",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "7등급",
+                                  name: "col8",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "8등급",
+                                  name: "col9",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "합계",
+                                  name: "col10",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "1Q",
+                                  name: "col11",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "2Q",
+                                  name: "col12",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "3Q",
+                                  name: "col13",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "4Q",
+                                  name: "col14",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "대상 인원",
+                                  name: "col15",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "실시 인원",
+                                  name: "col16",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "참여율",
+                                  name: "col17",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                                  classes:'none_border'
+                              },
+                          ],
+
+                            data: [
+                              {
+                              col1: "총계",
+                              col2: "33245",
+                              col3: "",
+                              col4: "",
+                              col5: "",
+                              col6: "",
+                              col7: "",
+                              col8: "",
+                              col9: "33245",
+                              col10: "",
+                              col11: "",
+                              col12: "33245",
+                              },
+                                {
+                                col1: "포항",
+                                col2: "33245",
+                                col3: "",
+                                col4: "",
+                                col5: "",
+                                col6: "",
+                                col7: "",
+                                col8: "",
+                                col9: "33245",
+                                col10: "",
+                                col11: "",
+                                col12: "",
+                                },
+                                {
+                                col1: "광양",
+                                col2: "",
+                                col3: "",
+                                col4: "",
+                                col5: "",
+                                col6: "",
+                                col7: "",
+                                col8: "",
+                                col9: "33245",
+                                col10: "",
+                                col11: "",
+                                col12: "",
+                                },
+                                {
+                                col1: "연구/본사",
+                                col2: "",
+                                col3: "",
+                                col4: "",
+                                col5: "",
+                                col6: "",
+                                col7: "",
+                                col8: "",
+                                col9: "",
+                                col10: "",
+                                col11: "",
+                                col12: "",
+                                },
+                            ],
+
+                            viewrecords: true,
+                            height: "auto",
+                            autowidth: false,
+                            shrinkToFit: false,
+                            rowNum:100,
+                            scrollOffset:"auto",
+                            loadComplete: function () {
+                                var bg = { "background-color": "#dbebfb" };
+                                var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+                                var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+
+
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 1, "col1", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 2, "col2", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 3, "col3", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 4, "col4", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 5, "col5", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 6, "col6", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 7, "col7", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 8, "col8", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 9, "col9", "", bg);
+                                $("#S700201A010_jqGrid_view1").jqGrid("setCell", 10, "col10", "", bg);
+
+
+                                var grid = this;
+
+                               $('td[name="cellRowspan"]', grid).each(function() {
+                                   var spans = $('td[rowspanid="'+this.id+'"]',grid).length+1;
+                                   if(spans>1){
+                                    $(this).attr('rowspan',spans);
+                                   }
+                               });
+
+                                $("#S700201A010_jqGrid_view1").setGroupHeaders({
+                                  useColSpanStyle : true,
+                                  groupHeaders : [
+                                    { numberOfColumns : 9, titleText : "등록현황", startColumnName : "col2" },
+                                    { numberOfColumns : 7, titleText : "참여율 현황", startColumnName : "col11" },
+                                  ]
+                                });
+                            },
+                        });
+
+                        //파트단위 활동 실적 통계
+                        $("#S700201A010_jqGrid_view2").jqGrid({
+                            datatype: "local", //json
+                            colModel: [
+                              {
+                                  label: "구분",
+                                  name: "col1",
+                                  width: `166`,
+                                  align: "center",
+                                  sortable: false
+                              },
+                              {
+                                  label: "1등급",
+                                  name: "col2",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                              },
+                              {
+                                  label: "2등급",
+                                  name: "col3",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false
+                              },
+                              {
+                                  label: "3등급",
+                                  name: "col4",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "4등급",
+                                  name: "col5",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "5등급",
+                                  name: "col6",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "6등급",
+                                  name: "col7",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "7등급",
+                                  name: "col8",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "8등급",
+                                  name: "col9",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "합계",
+                                  name: "col10",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "1Q",
+                                  name: "col11",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "2Q",
+                                  name: "col12",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "3Q",
+                                  name: "col13",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "4Q",
+                                  name: "col14",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "대상 인원",
+                                  name: "col15",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "실시 인원",
+                                  name: "col16",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                              },
+                              {
+                                  label: "참여율",
+                                  name: "col17",
+                                  width: 100,
+                                  align: "right",
+                                  sortable: false,
+                                  // cellattr: arrtSetting,
+                                  classes:'none_border'
+                              },
+                          ],
+
+                          data: [
+                            {
+                            col1: "총계",
+                            col2: "33245",
+                            col3: "",
+                            col4: "",
+                            col5: "",
+                            col6: "",
+                            col7: "",
+                            col8: "",
+                            col9: "33245",
+                            col10: "",
+                            col11: "",
+                            col12: "33245",
+                            },
+                              {
+                              col1: "포항",
+                              col2: "33245",
+                              col3: "",
+                              col4: "",
+                              col5: "",
+                              col6: "",
+                              col7: "",
+                              col8: "",
+                              col9: "33245",
+                              col10: "",
+                              col11: "",
+                              col12: "",
+                              },
+                              {
+                              col1: "광양",
+                              col2: "",
+                              col3: "",
+                              col4: "",
+                              col5: "",
+                              col6: "",
+                              col7: "",
+                              col8: "",
+                              col9: "33245",
+                              col10: "",
+                              col11: "",
+                              col12: "",
+                              },
+                              {
+                              col1: "연구/본사",
+                              col2: "",
+                              col3: "",
+                              col4: "",
+                              col5: "",
+                              col6: "",
+                              col7: "",
+                              col8: "",
+                              col9: "",
+                              col10: "",
+                              col11: "",
+                              col12: "",
+                              },
+                            ],
+
+                            viewrecords: true,
+                            height: "auto",
+                            autowidth: false,
+                            shrinkToFit: false,
+                            rowNum:100,
+                            scrollOffset:"auto",
+                            loadComplete: function () {
+                                var bg = { "background-color": "#dbebfb" };
+                                var ids = $("#S700201A010_jqGrid_view2").jqGrid("getDataIDs");
+                                var gridData = $("#S700201A010_jqGrid_view2").jqGrid("getRowData");
+
+
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 1, "col1", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 2, "col2", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 3, "col3", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 4, "col4", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 5, "col5", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 6, "col6", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 7, "col7", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 8, "col8", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 9, "col9", "", bg);
+                                $("#S700201A010_jqGrid_view2").jqGrid("setCell", 10, "col10", "", bg);
+
+
+                                var grid = this;
+
+                               $('td[name="cellRowspan"]', grid).each(function() {
+                                   var spans = $('td[rowspanid="'+this.id+'"]',grid).length+1;
+                                   if(spans>1){
+                                    $(this).attr('rowspan',spans);
+                                   }
+                               });
+
+                                $("#S700201A010_jqGrid_view2").setGroupHeaders({
+                                  useColSpanStyle : true,
+                                  groupHeaders : [
+                                    { numberOfColumns : 9, titleText : "등록현황", startColumnName : "col2" },
+                                    { numberOfColumns : 7, titleText : "참여율 현황", startColumnName : "col11" },
+                                  ]
+                                });
+                            },
+                        });
+
+
+
+        // console.log('aa');
+            $(function () {
+                var $CREATION_START_DATE = $('input[id="CREATION_START_DATE"]');
+                var $CREATION_END_DATE = $('input[id="CREATION_END_DATE"]');
+                var $CREATION_ALL_DATE = $('input[id="CREATION_ALL_DATE"]');
+
+
+
+
+                $CREATION_START_DATE.daterangepicker(
+                    {
+                        // showDropdowns: true,
+                        opens: "right",
+                        locale: { format: "YYYY-MM-DD" },
+                        singleDatePicker: true,
+                        viewMode: "months",
+                        minViewMode: "months"
+                    },
+                    function (start, end, label) {
+                        console.log(start, end, label);
+                    }
+                );
+
+                $CREATION_END_DATE.daterangepicker(
+                    {
+                      viewMode: "months",
+                      minViewMode: "months",
+                        opens: "right",
+                        // showDropdowns: true,
+                        locale: { format: "YYYY-MM-DD" },
+                        singleDatePicker: true,
+                    },
+                    function (start, end, label) {
+                        console.log(start, end, label);
+                    }
+                );
+
+                $CREATION_ALL_DATE.daterangepicker(
+                    {
+                      viewMode: "months",
+                      minViewMode: "months",
+                        opens: "left",
+                        // showDropdowns: true,
+                        locale: { format: "YYYY-MM" },
+                        autoUpdateInput: false, //default value 제거
+                    },
+                    function (start, end, label) {
+                        console.log(start, end, label);
+                    }
+                );
+
+                $('input[id="CREATION_ALL_DATE"]').on("apply.daterangepicker", function (ev, picker) {
+                    $CREATION_START_DATE.val(picker.startDate.format("YYYY-MM"));
+                    $CREATION_END_DATE.val(picker.endDate.format("YYYY-MM"));
+                });
+
+                $('input[id="CREATION_ALL_DATE"]').on(
+                    //취소시 리셋
+                    "cancel.daterangepicker",
+                    function (ev, picker) {
+                        if ($(this).val()) {
+                            $(this).val();
+                        } else {
+                            $(this).val("");
+                        }
+                    }
+                );
+
+
+            });
+            var linkText = ["작업표준", "변경관리", "위험성평가"];
+            var arr = ["#none", "#none", "#none"];
+            var arr2 = ["필요", "불필요", "불필요사유"];
+
+            //sample
+            var setting =
+                "<div class='ui renderer-wrp left mgb4'>" +
+                "<a class='mgr10 pxw-80 left' href='" +
+                arr[0] +
+                "'>" +
+                linkText[0] +
+                "</a>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk1' name='value1' value='001' checked />" +
+                "<label for='chk1'>" +
+                arr2[0] +
+                "</label>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk2' name='value1' value='002'/>" +
+                "<label for='chk2'>" +
+                arr2[1] +
+                "</label>" +
+                "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                arr2[2] +
+                " id='001'></input>" +
+                "</div>" +
+                "<div class='ui renderer-wrp left mgb4'>" +
+                "<a class='mgr10 pxw-80 left' href='" +
+                arr[1] +
+                "'>" +
+                linkText[1] +
+                "</a>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk3' name='value2' value='003'/>" +
+                "<label for='chk3'>" +
+                arr2[0] +
+                "</label>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk4' name='value2' value='004' checked/>" +
+                "<label for='chk4'>" +
+                arr2[1] +
+                "</label>" +
+                "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                arr2[2] +
+                " id='003'></input>" +
+                "</div>" +
+                "<div class='ui renderer-wrp left mgb4'>" +
+                "<a class='mgr10 pxw-80 left' href='" +
+                arr[2] +
+                "'>" +
+                linkText[2] +
+                "</a>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk5' name='value3' value='005' checked/>" +
+                "<label for='chk5'>" +
+                arr2[0] +
+                "</label>" +
+                "<input type='checkbox' class='ui input checkbox' id='chk6' name='value3' value='006'/>" +
+                "<label for='chk6'>" +
+                arr2[1] +
+                "</label>" +
+                "<input type='text' class='ui input mgl10 pxw-400' placeholder=" +
+                arr2[2] +
+                " id='005'></input>" +
+                "</div>";
+
+            var setting2 =
+                "<div class='ui renderer-wrp'><textarea class='pw-100' style='min-height:150px' resizable='no' placeholder='평가결과 우수제안으로 판단시 간략한 사유를 작성해 주시기 바랍니다'></textarea></div>";
+
+            //self재무평가 평가 항목별 디스플레이
+            $("#S700201A010_jqGrid_view1").jqGrid({
+                datatype: "local", //json
+                // colNames:['수집센서 ID','<input type="text" />','F/W 버전','<input type="text" />'],
+                colModel: [
+                    {
+                        label: "등급",
+                        name: "col1",
+                        width: 146,
+                        align: "center",
+                        sortable: false,
+                    },
+                    {
+                        label: "1등급",
+                        name: "col2",
+                        width: 170,
+                        align: "left",
+                        sortable: false,
+                        cellattr: cellMerge,
+                        // formatter: function inputRenderer(cellValue, options, rowObject) {
+                        //     var result = '<div class="ui renderer-wrp">' + '<input class="ui input pw-100" type="text" value=' + cellValue + ">" + "</div>";
+                        //     return result;
+                        // },
+                    },
+                    {
+                        label: "2등급",
+                        name: "col3",
+                        index: "col3",
+                        width: 170,
+                        align: "left",
+                        sortable: false,
+                    },
+                    {
+                        label: "3등급",
+                        name: "col4",
+                        width: 170,
+                        align: "left",
+                        sortable: false,
+
+                    },
+                    {
+                        label: "4등급",
+                        name: "col5",
+                        width: 170,
+                        align: "left",
+                        sortable: false,
+                    },
+                    {
+                        label: "5등급",
+                        name: "col6",
+                        width: 170,
+                        align: "left",
+                        sortable: false,
+                    },
+                    {
+                        label: "6등급",
+                        name: "col7",
+                        width: 170,
+                        align: "left",
+                        sortable: false,
+                    },
+                    {
+                        label: "7등급",
+                        name: "col8",
+                        width: 170,
+                        align: "left",
+                        sortable: false,
+                    },
+
+                ],
+
+
+
+                data: [
+
+                {col1: "점수",
+                  col2: "<input type=text class='ui input pw-30' name='asdasd' style = 'width : 40px'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  col3: "<input type=text class='ui input pw-30' name='asdasd'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  col4: "<input type=text class='ui input pw-30' name='asdasd'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  col5: "<input type=text class='ui input pw-30' name='asdasd'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  col6: "<input type=text class='ui input pw-30' name='asdasd'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  col7: "<input type=text class='ui input pw-30' name='asdasd'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  col8: "<input type=text class='ui input pw-30' name='asdasd'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  col9: "<input type=text class='ui input pw-30' name='asdasd'>"+"<span style = 'margin : 0 5px'>~</span>"+"<input type=text class='ui input pw-30' name='asdasd'>",
+                  },
+                  {col1: "보상금(천원)",
+                      col2: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                      col3: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                      col4: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                      col5: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                      col6: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                      col7: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                      col8: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                      col9: "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>",
+                    },
+                    {col1: "제안포인트",
+                        col2:  "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                        col3:   "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                        col4:   "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                        col5:   "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                        col6:   "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                        col7:   "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                        col8:   "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                        col9:   "<input tpye=text class='ui input'  name='asdasd' style='width : 100px; height : 20px'>"+"<span style = 'margin-left : 5px'>point</span>",
+                      },
+                ],
+
+                viewrecords: true,
+                height: "auto",
+                autowidth: false,
+                shrinkToFit: false,
+                // scroll:true,
+                // rownumWidth: 40,
+                // width: 1000,
+                scrollOffset:"auto",
+                loadComplete: function () {
+                    var bg = { "background-color": "#f5f9fd" };
+                    var ids = $("#S700201A010_jqGrid_view1").jqGrid("getDataIDs");
+                    var gridData = $("#S700201A010_jqGrid_view1").jqGrid("getRowData");
+
+
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 1, "col2", "", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 2, "col2", "", bg);
+                    $("#S700201A010_jqGrid_view1").jqGrid("setCell", 3, "col2", "", bg);
+
+
+                    $("#S700201A010_jqGrid_view1").jqGrid("setGroupHeaders",{
+                      useColSpanStyle :true,
+                    });
+                },
+            });
+
+            function cellMerge(rowId, cellvalue, rowObject, cm, rdata) {
+                //같은값 기준으로
+
+                var data = setting;
+
+                if (
+                    rowObject.col2 == "<div class='ui renderer-wrp left'><input class='ui input pxw-200' type='text'><button class='ui button icon'><i class='fas fa-map-marker-alt'></i></button</div>"
+                ) {
+                    return "colspan=2;";
+                }
+
+                if (rowObject.col2 == data) {
+                    return "colspan=6;";
+                }
+
+                if (rowObject.col2 == setting2) {
+                    return "colspan=6;";
+                }
+
+
+                if (rowObject.col2 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>"){
+                  return "colspan=6;"
+                }
+            }
+
+            function cellMerge2(rowId, cellvalue, rowObject, cm, rdata) {
+                //같은값 기준으로
+                if (rowObject.col4 == "<div class='ui renderer-wrp right'><input class='ui input pxw-120' type='text'><span>점</span></div>") {
+                    return "colspan=3;";
+                }
+            }
+
+            $(window)
+                .bind("resize", function () {
+                    $("#S700201A010_jqGrid_view1").setGridWidth($("#S700201A010_jqGrid_container1").width(), true);
+                    $("#S700201A010_jqGrid_view2").setGridWidth($("#S700201A010_jqGrid_container2").width(), true);
+                })
+                .trigger("resize");
+
+            //accordion 펼침 접기
+            function accordionFunc(props) {
+                $("#accordionView" + props).toggleClass("show");
+                var $a = $(".ui.button.icon.acc").eq(props);
+                var b = $a.data("attr");
+
+                if ($("#accordionView" + props).attr("id") === b) {
+                    $a.toggleClass("rotate");
+                } else {
+                    return false;
+                }
+            }
+
+            function opendModal() {
+                event.preventDefault();
+                $.popup({
+                    url: "./S700201A020POP01.html",
+
+                    // 모달창 호출할때 넘길 파라메터들
+                    /*
+                                    data: {
+                                    param_name1: value_1,
+                                    param_name2: value_2,
+                                },
+                                */
+                    //animation : "bounce",
+                    close: function (result) {
+                        // 모달창에서 넘어온 값
+                        console.log(result);
+                    },
+                });
+            }
+
+            function opendModal2() {
+                event.preventDefault();
+                $.popup({
+                    url: "./S700201A020POP02.html",
+
+                    // 모달창 호출할때 넘길 파라메터들
+                    /*
+                                    data: {
+                                    param_name1: value_1,
+                                    param_name2: value_2,
+                                },
+                                */
+                    //animation : "bounce",
+                    close: function (result) {
+                        // 모달창에서 넘어온 값
+                        console.log(result);
+                    },
+                });
+            }
+
+
+        </script>
+    </body>
+    <script>
+
+        // 하이차트 바 세트 : 전사 -2
+      Highcharts.chart('container002', {
+        chart: {
+          type: 'column'
+        },
+        title: {
+        text: undefined,
+        },
+        //    subtitle: {
+        //        text: ''
+        //    },
+        xAxis: {
+          categories: [
+            '전로',
+            '전로',
+            '전로',
+            '전로',
+            '전로',
+            '전로',
+            '전로',
+            '전로',
+            '전로',
+          ],
+          crosshair: true
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: ''
+          }
+        },
+        tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} 건</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+          }
+        },
+        series: [{
+          name: '건수(건)',
+          data: [49.9, 71.5, 106.4, 49.9, 71.5, 106.4,49.9, 71.5, 106.4]
+
+        }]
+      });
+
+        // 하이차트 바 세트 : 전사 -3
+      Highcharts.chart('container003', {
+        chart: {
+          type: 'column'
+        },
+        title: {
+          text: undefined,
+        },
+        //    subtitle: {
+        //        text: ''
+        //    },
+        xAxis: {
+          categories: [
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+            '1제강',
+
+          ],
+          crosshair: true
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: ''
+          }
+        },
+        tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} 건</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+          }
+        },
+        series: [{
+          name: '우수 건수',
+          data: [176.0, 106.4, 129.2, 176.0, 106.4, 129.2, 176.0, 106.4, 129.2, 176.0, 106.4,]
+        },
+        {
+          name: '일반 건수',
+          data:  [176.0, 106.4, 129.2, 176.0, 106.4, 129.2, 176.0, 106.4, 129.2, 176.0, 106.4, ]
+        },
+        {
+          name: '참여',
+          data:  [176.0, 106.4, 129.2, 176.0, 106.4, 129.2, 176.0, 106.4, 129.2, 176.0, 106.4, ]
+        },
+      ]
+      });
+
+
+        // 하이차트 바 세트 : 포항소
+        Highcharts.chart('container004', {
+        chart: {
+        type: 'column',
+        },
+
+        title: {
+        text: '부서별 활동 실적'
+        },
+
+        xAxis: {
+        categories: ['안전방재그룹', '에너지부', '발전부', '환경자원그룹', '행정섭외그룹', '인사노무그룹', '생산기술부', '품질기술부',
+        '노재그룹', 'FINEX부', '제선부', '화성부', '제강부', '열연부', '후판부', '선재부', '냉연부', '전기강판부', '설비기술부', 'EIC기술부',
+        '제선설비부', '제강설비부', '압연설비부', '설비투자그룹', 'STS제강부', 'STS압연부']
+        },
+
+        yAxis: {
+        allowDecimals: false,
+        min: 0,
+        title: {
+        text: ''        }
+        },
+
+        tooltip: {
+        formatter: function () {
+        return '<b>' + this.x + '</b><br />' +
+        this.series.name + ': ' + this.y + '<br />' +
+        'Total: ' + this.point.stackTotal;
+        }
+        },
+
+        plotOptions: {
+        column: {
+        stacking: 'normal'
+        }
+        },
+
+        series: [{
+        name: '우수건수',
+        data: [5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 10],
+        stack: 'male'
+        }, {
+        name: '일반건수',
+        data: [5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 10],
+        stack: 'male'
+        }, {
+        name: '참여',
+        data: [5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 5, 3, 4, 7, 2, 10],
+        stack: 'female'
+        }]
+        });
+
+
+      function renderIcons() {
+
+    // Move icon
+    if (!this.series[0].icon) {
+        this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+            .attr({
+                stroke: '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                zIndex: 10
+            })
+            .add(this.series[2].group);
+    }
+    this.series[0].icon.translate(
+        this.chartWidth / 2 - 10,
+        this.plotHeight / 2 - this.series[0].points[0].shapeArgs.innerR -
+            (this.series[0].points[0].shapeArgs.r - this.series[0].points[0].shapeArgs.innerR) / 2
+    );
+
+    // Exercise icon
+    if (!this.series[1].icon) {
+        this.series[1].icon = this.renderer.path(
+            ['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8,
+                'M', 8, -8, 'L', 16, 0, 8, 8]
+        )
+            .attr({
+                stroke: '#ffffff',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                zIndex: 10
+            })
+            .add(this.series[2].group);
+    }
+    this.series[1].icon.translate(
+        this.chartWidth / 2 - 10,
+        this.plotHeight / 2 - this.series[1].points[0].shapeArgs.innerR -
+            (this.series[1].points[0].shapeArgs.r - this.series[1].points[0].shapeArgs.innerR) / 2
+    );
+
+    // Stand icon
+    if (!this.series[2].icon) {
+        this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+            .attr({
+                stroke: '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                zIndex: 10
+            })
+            .add(this.series[2].group);
+    }
+
+    this.series[2].icon.translate(
+        this.chartWidth / 2 - 10,
+        this.plotHeight / 2 - this.series[2].points[0].shapeArgs.innerR -
+            (this.series[2].points[0].shapeArgs.r - this.series[2].points[0].shapeArgs.innerR) / 2
+    );
+}
+
+
+// 전사 - 제안참여현황 - 1
+Highcharts.chart('container01', {
+
+    chart: {
+        type: 'solidgauge',
+        height: '60%',
+        events: {
+            render: renderIcons
+        },
+       //  type: 'column',
+       // inverted: true,
+       // polar: true
+
+    },
+
+    title: {
+        text: undefined,
+        style: {
+            fontSize: '17px'
+        }
+    },
+
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: null,
+        shadow: false,
+        useHTML: true,
+        style: {
+            fontSize: '16px',
+        },
+        valueSuffix: '%',
+        pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
+
+          positioner: function () {
+                return { x: 110, y: 50 };
+            },
+            // positioner: function (labelWidth) {
+            //     return {
+            //         x: (this.chart.chartWidth - labelWidth) / 2,
+            //         y: (this.chart.plotHeight / 2) + 15
+            //     };
+            // },
+
+    },
+
+    pane: {
+        startAngle: 0,
+        endAngle: 360,
+        background: [{ // Track for Move
+            outerRadius: '112%',
+            innerRadius: '88%',
+            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
+                .setOpacity(0.1)
+                .get(),
+            borderWidth: 0
+        }, ]
+    },
+
+    yAxis: {
+        min: 0,
+        max: 100,
+        lineWidth: 0,
+        tickPositions: []
+    },
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                enabled: false
+            },
+            linecap: 'round',
+            stickyTracking: false,
+            rounded: false,
+        }
+    },
+
+    series: [{
+        name: '포항소',
+        data: [{
+            color: Highcharts.getOptions().colors[0],
+            radius: '112%',
+            innerRadius: '88%',
+            /* 수치입력부분(%) */
+            y: 75
+        }]
+    }, ]
+});
+
+
+// 전사 - 제안참여현황 - 2
+Highcharts.chart('container02', {
+
+    chart: {
+        type: 'solidgauge',
+        height: '60%',
+        events: {
+            render: renderIcons
+        },
+       //  type: 'column',
+       // inverted: true,
+       // polar: true
+
+    },
+
+    title: {
+        text: undefined,
+        style: {
+            fontSize: '17px'
+        }
+    },
+
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: null,
+        shadow: false,
+        useHTML: true,
+        style: {
+            fontSize: '16px',
+        },
+        valueSuffix: '%',
+        pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
+
+          positioner: function () {
+                return { x: 110, y: 50 };
+            },
+            // positioner: function (labelWidth) {
+            //     return {
+            //         x: (this.chart.chartWidth - labelWidth) / 2,
+            //         y: (this.chart.plotHeight / 2) + 15
+            //     };
+            // },
+
+    },
+
+    pane: {
+        startAngle: 0,
+        endAngle: 360,
+        background: [{ // Track for Move
+            outerRadius: '112%',
+            innerRadius: '88%',
+            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
+                .setOpacity(0.1)
+                .get(),
+            borderWidth: 0
+        }, ]
+    },
+
+    yAxis: {
+        min: 0,
+        max: 100,
+        lineWidth: 0,
+        tickPositions: []
+    },
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                enabled: false
+            },
+            linecap: 'round',
+            stickyTracking: false,
+            rounded: false,
+        }
+    },
+
+    series: [{
+        name: '광양소',
+        data: [{
+            color: Highcharts.getOptions().colors[0],
+            radius: '112%',
+            innerRadius: '88%',
+            /* 수치입력부분(%) */
+            y: 75
+        }]
+    }, ]
+});
+
+
+// 전사 - 제안참여현황 - 3
+Highcharts.chart('container03', {
+
+    chart: {
+        type: 'solidgauge',
+        height: '60%',
+        events: {
+            render: renderIcons
+        },
+       //  type: 'column',
+       // inverted: true,
+       // polar: true
+
+    },
+
+    title: {
+        text: undefined,
+        style: {
+            fontSize: '17px'
+        }
+    },
+
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: null,
+        shadow: false,
+        useHTML: true,
+        style: {
+            fontSize: '16px',
+        },
+        valueSuffix: '%',
+        pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
+
+          positioner: function () {
+                return { x: 110, y: 50 };
+            },
+            // positioner: function (labelWidth) {
+            //     return {
+            //         x: (this.chart.chartWidth - labelWidth) / 2,
+            //         y: (this.chart.plotHeight / 2) + 15
+            //     };
+            // },
+
+    },
+
+    pane: {
+        startAngle: 0,
+        endAngle: 360,
+        background: [{ // Track for Move
+            outerRadius: '112%',
+            innerRadius: '88%',
+            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
+                .setOpacity(0.1)
+                .get(),
+            borderWidth: 0
+        }, ]
+    },
+
+    yAxis: {
+        min: 0,
+        max: 100,
+        lineWidth: 0,
+        tickPositions: []
+    },
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                enabled: false
+            },
+            linecap: 'round',
+            stickyTracking: false,
+            rounded: false,
+        }
+    },
+
+    series: [{
+        name: '연구/본사',
+        data: [{
+            color: Highcharts.getOptions().colors[0],
+            radius: '112%',
+            innerRadius: '88%',
+            /* 수치입력부분(%) */
+            y: 75
+        }]
+    }, ]
+});
+
+    </script>
+</html>

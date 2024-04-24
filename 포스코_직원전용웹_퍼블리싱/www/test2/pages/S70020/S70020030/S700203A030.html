@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--jquery import-->
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> -->
+
+  <link rel="stylesheet" type="text/css" href="../../../css/default.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/vendor/modal/jquery.modal.0.9.1.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/vendor/jquery/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/vendor/jqgrid/jqGrid.css" />
+  <link rel="stylesheet" type="text/css" href="../../../js/jqGrid/css/ui.jqgrid.custom.css" />
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
+  <script type="text/javascript" src="../../../js/vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../js/vendor/jquery/jquery-ui.min.js"></script>
+  <!--jqGrid import-->
+  <script type="text/javascript" src="../../../js/vendor/jqgrid/jqGrid.min.js"></script>
+  <script type="text/javascript" src="../../../js/vendor/util/grid.locale-kr.js"></script>
+  <script type="text/javascript" src="../../../js/jqGrid/js/posjqgrid.js"></script>
+  <script type="text/javascript" src="../../../js/jquery/jquery-migrate-1.2.1.min.js"></script>
+
+  <!-- jQuery Modal -->
+  <script type="text/javascript" src="../../../js/vendor/modal/jquery-modal.0.9.1.js"></script>
+  <script type="text/javascript" src="../../../js/components/modal/modal.js"></script>
+  <!--font awesome-->
+  <script type="text/javascript" src="../../../js/vendor/fontawesome/all.js"></script>
+
+  <!--DEXT5 -->
+  <script type="text/javascript" src="../../../dext5editor/js/dext5editor.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../../../sampleEditor/sample.common.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="../../../js/common_util.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-comAjax.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-date.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-number.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-string.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-util.js"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-excel.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../../../js/project-util/common-comAjax.js" charset="utf-8"></script>
+
+  <script type="text/javascript" src="../../../js/components/panel/tab.js"></script>
+  <script type="text/javascript" src="../../../js/components/renderer/render.js"></script>
+  <script type="text/javascript" src="../../../js/common.js"></script>
+
+	<link rel="stylesheet" href="../../../css/laylab.css" />
+
+	<title>재무 및 표준 검증위원 지정</title>
+	<style>
+	.ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top: 0; height: auto;}
+	.ui-jqgrid .ui-jqgrid-bdiv .ui-jqgrid-btable td{line-height: inherit;}
+	</style>
+</head>
+
+<body>
+	<div id="root">
+		<!--ifram include header -->
+		<!--ifram include header -->
+		<article>
+			<header>
+				<div class="ly-user-header">
+					<h1 class="logo">
+						<a href="#none"><img src="../../../images/com/logo.png" alt="with posco 전자 제안관리 system" /></a>
+					</h1>
+					<nav class="ly-gnb">
+						<ul class="ft_center_top">
+							<li>
+								<a href="#none" alt="HOME" class="txt_grad" data-target="true">HOME</a>
+							</li>
+							<li>
+								<a href="#none" alt="마이페이지" class="txt_grad" data-target="true">MyPage</a>
+							</li>
+							<li>
+								<a href="#none" alt="제안하기" class="txt_grad" data-target="true">제안작성</a>
+							</li>
+							<li>
+								<a href="#none" alt="검색하기" class="txt_grad" data-target="true">검색하기</a>
+							</li>
+							<li class="on">
+								<a href="#none" alt="심사하기" class="txt_grad" data-target="true">심사하기</a>
+								<ul>
+									<li><a href="#none" alt="제안심사" id="">제안심사</a></li>
+									<li><a href="#none" alt="부서(팀)장 확인" id="">부서(팀)장 확인</a></li>
+									<li><a href="#none" alt="재무 검증" id="">재무 검증</a></li>
+									<li><a href="#none" alt="심사계획" id="">심사계획</a></li>
+									<li><a href="#none" alt="심사확정" id="">심사확정</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#none" alt="명예의 전당" class="txt_grad" data-target="true">명예의 전당</a>
+							</li>
+							<li>
+								<a href="#none" alt="기준정보" class="txt_grad" data-target="true">기준정보</a>
+							</li>
+							<li>
+								<a href="#none" alt="DashBoard" class="txt_grad" data-target="true">DashBoard</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="ly-user-timeset">
+                  <p class="ft_right_top">안녕하세요 <span>홍길동</span> 님</p>
+                  <span class="ic-member">
+                              <a href="#none">
+                                <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#ffffff" style="top: 3px; filter: drop-shadow(0px 0px 0px #ffffff);"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 9c2.7 0 5.8 1.29 6 2v1H6v-.99c.2-.72 3.3-2.01 6-2.01m0-11C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg>
+                              </a>
+                          </span>
+                  <span class="ic-change">
+                              <a href="#none"><img src="../../../images/com/head-icon01.png" /></a>
+                          </span>
+                  <span class="ic-helper">
+                              <a href="#none">
+                                <svg height="28px" viewBox="0 0 24 24" width="28px" fill="#ffffff" style="top: 0; filter: drop-shadow(0px 0px 0px #ffffff);"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+                              </a>
+                          </span>
+                  <span class="ic-logout">
+                              <a href="#none">
+                                <svg height="28px" viewBox="0 0 24 24" width="28px" fill="#ffffff" style="top: 0; filter: drop-shadow(0px 0px 0px #ffffff);"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg>
+                              </a>
+                          </span>
+              </div>
+					<div class="nav-bar"></div>
+				</div>
+			</header>
+		</article>
+		<section class="ly-box">
+			<h1>심사하기</h1>
+			<h3>이제 보여줄 때입니다.서제스트 팩토리에서 당신의 놀라운 상상력을 현실로 바꿔보세요!</h3>
+			<div class="box-toggle">
+				<button class="ui button icon"><i class="fas fa-chevron-up"></i></button>
+			</div>
+		</section>
+		<div class="ly-container">
+			<!--ifram include sidebar -->
+			<div class="ly-side">
+				<ul>
+					<li class="active">
+						<a href="#child1" rel="child1" onclick="return false"><i class="s-icon icon3-1"></i>제안심사</a>
+					</li>
+					<li>
+						<a href="#child2" rel="child2" onclick="return false"><i class="s-icon icon3-2"></i>부서(팀)장 확인</a>
+					</li>
+					<li>
+						<a href="#child3" rel="child3" onclick="return false"><i class="s-icon icon3-3"></i>재무 검증</a>
+					</li>
+					<li>
+						<a href="#child4" rel="child4" onclick="return false"><i class="s-icon icon3-4"></i>심사계획</a>
+					</li>
+					<li>
+						<a href="#child5" rel="child5" onclick="return false"><i class="s-icon icon3-4"></i>심사확정</a>
+					</li>
+				</ul>
+				<div class="side-toggle">
+					<button class="ui button icon"><i class="fas fa-chevron-left"></i></button>
+				</div>
+			</div>
+			<div class="ly-wrapper">
+				<main class="ly-contents">
+					<div class="ly-contents-boxed">
+						<div class="contents-wrapper">
+							<div class="control">
+								<div class="control-column item-right">
+									<button class="ui button search mgr4" size="small">등록/수정</button>
+								</div>
+							</div>
+							<!--상단 jqGrid-->
+							<div class="table-row" id="S700203A030_jqGrid_container0">
+								<table id="S700203A030_jqGrid_view0" style="width: 100%"></table>
+								<div id="jqGridPager"></div>
+								<div id="paginate"></div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+	</div>
+	<script src="../../../js/common.js"></script>
+	<script src="../../../js/components/panel/tab.js"></script>
+	<script src="../../../js/components/renderer/render.js"></script>
+	<script src="../../../js/components/pagenate/pager.js"></script>
+	<script>
+		$(function() {
+
+			$("#S700203A030_jqGrid_view0").jqGrid({
+				datatype: "local", //json
+				colModel: [{
+						label: "제안번호",
+						name: "SUGGESTION_NUMBER",
+						width: 100,
+						align: "center",
+						sortable: false,
+					},
+					{
+						label: "제안명",
+						name: "PROPOSE_NM",
+						width: 200,
+						align: "center",
+						sortable: false,
+						formatter: function link(cellValue) {
+							var result = '<a href="#none">' + cellValue + "</a>";
+							return result;
+						},
+					},
+					{
+						label: "제안자",
+						name: "FULL_NAME",
+						width: 60,
+						align: "center",
+						sortable: true,
+					},
+					{
+						label: "소속",
+						name: "NAME",
+						width: 200,
+						align: "left",
+						sortable: false,
+					},
+					{
+						label: "개선장소",
+						name: "PROPOSE_EXAM_PLACE",
+						width: 100,
+						align: "center",
+						sortable: false,
+					},
+					{
+						label: "재무검증요원",
+						name: "col6",
+						width: 120,
+						align: "center",
+						sortable: false,
+						formatter: function openPopupBtn(cellValue, options, rowObject) {
+							console.log("data 확인용", cellValue, options, rowObject);
+							var result =
+								'<div class="ui renderer-wrp">' +
+								'<input class="ui input pw-100" type="text" >' +
+								'<button class="ui button icon" onclick="opendModal()" style="box-shadow: none; background: transparent; border: none; ">' + '<svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333">' + '<path d="M0 0h24v24H0V0z" fill="none"/>' + '<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>' + '</svg>' + '</button>' +"</div>";
+							return result;
+						},
+					},
+					{
+						label: "표준검증위원",
+						name: "col7",
+						width: 120,
+						align: "center",
+						sortable: false,
+						classes: 'none_border',
+						formatter: function openPopupBtn(cellValue, options, rowObject) {
+							console.log("data 확인용", cellValue, options, rowObject);
+							var result =
+								'<div class="ui renderer-wrp">' +
+								'<input class="ui input pw-100" type="text" >' +
+								'<button class="ui button icon" onclick="opendModal2()" style="box-shadow: none; background: transparent; border: none; ">' + '<svg height="24px" viewBox="0 0 24 24" width="24px" fill="#333333">' + '<path d="M0 0h24v24H0V0z" fill="none"/>' + '<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>' + '</svg>' + '</button>' +"</div>";
+							return result;
+						},
+					},
+				],
+				data: [{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+					{
+						SUGGESTION_NUMBER: "1904KS53473",
+						PROPOSE_NM: "(광양)슬라브정정 2정정 B6 Roller Table",
+						FULL_NAME: "홍길동",
+						NAME: "(광양)슬라브정정 2정정 B6 Roller Table",
+						PROPOSE_EXAM_PLACE: "슬라브정정 2정정",
+					},
+				],
+				loadComplete: function(data) {
+					// 페이지 셋팅
+					// $("#S700203A030_jqGrid_view0").parent().parent().css("max-height", "540px");
+					// $("#S700203A030_jqGrid_view0").parent().parent().css("overflow-x", "hidden");
+					// initPage("S700201A010_jqGrid_view0", "paginate", true, "TOT");
+				},
+				rowNum: 10,
+				viewrecords: true,
+				loadonce: true,
+				height: "auto",
+				autowidth: true,
+				shrinkToFit: true,
+				pager: "#jqGridPager",
+			});
+		});
+
+		$(window)
+			.bind("resize", function() {
+				$("#S700203A030_jqGrid_view0").setGridWidth($("#S700203A030_jqGrid_container0").width(), true);
+			})
+			.trigger("resize");
+
+		function opendModal() {
+			event.preventDefault();
+			$.popup({
+				url: "./S700203A030POP01.html",
+
+				// 모달창 호출할때 넘길 파라메터들
+				/*
+				    data: {
+				    param_name1: value_1,
+				    param_name2: value_2,
+				},
+				*/
+				//animation : "bounce",
+				close: function(result) {
+					// 모달창에서 넘어온 값
+					console.log(result);
+				},
+			});
+		}
+
+		function opendModal2() {
+			event.preventDefault();
+			$.popup({
+				url: "./S700203A030POP02.html",
+
+				// 모달창 호출할때 넘길 파라메터들
+				/*
+				    data: {
+				    param_name1: value_1,
+				    param_name2: value_2,
+				},
+				*/
+				//animation : "bounce",
+				close: function(result) {
+					// 모달창에서 넘어온 값
+					console.log(result);
+				},
+			});
+		}
+	</script>
+</body>
+
+</html>

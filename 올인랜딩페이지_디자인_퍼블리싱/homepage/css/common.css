@@ -1,0 +1,220 @@
+    /* .inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        width: 100%;
+    } */
+
+    .inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    /* flex */
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .flex.d {
+        flex-direction: column;
+    }
+    .flex_wrap {
+        flex-wrap: wrap;
+    }
+
+
+
+    /* font */
+    .bold {
+        font-weight: 600;
+    }
+    .fff {
+        color: #ffffff;
+    }
+
+
+    /* size */
+    .mini {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+    }
+    p.small {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
+        letter-spacing: -0.01em;
+    }
+    p.middle {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 30px;
+    }
+    h1.main {
+        font-size: 56px;
+        font-weight: 500;
+        line-height: 74px;
+    }
+    h1.last {
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 74px;
+    }
+    h2.middle {
+        font-weight: 500;
+        font-size: 36px;
+        line-height: 53px;
+    }
+    h2.small {
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 44px;
+    }
+
+
+
+    /* margin */
+    .mr15 {
+        margin-right: 15px;
+    }
+    .mr40 {
+        margin-right: 40px;
+    }
+
+    /* 간격 */
+    p + h1.main, .middle + .middle {
+        padding: 10px 0 65px 0;
+    }
+    .small + .small {
+        padding: 15px 0 0 0;
+    }
+    h1 + .download_btn_set {
+        padding: 50px 0 0 0;
+    }
+    div.content {
+        padding: 180px 0;
+    }
+
+
+    /* 모르겟댱 */
+    .img {
+        width: calc(100% / 2);
+    }
+
+    img[src='']{
+      display:none;
+    }
+
+
+
+    /* select box style */
+    .select-box {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin: 0 auto;
+      font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+      font-size: 18px;
+
+    }
+    .select-box__current {
+      position: relative;
+      cursor: pointer;
+      outline: none;
+    }
+    .select-box__current:focus + .select-box__list {
+      opacity: 1;
+      -webkit-animation-name: none;
+              animation-name: none;
+    }
+    .select-box__current:focus + .select-box__list .select-box__option {
+      cursor: pointer;
+    }
+    .select-box__current:focus .select-box__icon {
+      -webkit-transform: translateY(-50%) rotate(180deg);
+              transform: translateY(-50%) rotate(180deg);
+    }
+    .select-box__icon {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      width: 20px;
+      opacity: 0.3;
+      -webkit-transition: 0.2s ease;
+      transition: 0.2s ease;
+    }
+    .select-box__value {
+      display: -webkit-box;
+      display: flex;
+    }
+    .select-box__input {
+      display: none;
+    }
+    .select-box__input:checked + .select-box__input-text {
+      display: block;
+    }
+    .select-box__input-text {
+        display: none;
+        width: 100%;
+        margin: 0;
+        padding: 12.5px 10px;
+        background-color: #fff;
+        border: 1px solid #EAEBEF;
+        border-radius: 3px;
+        font-size: 18px;
+    }
+    .select-box__list {
+      position: absolute;
+      width: 100%;
+      padding: 0;
+      list-style: none;
+      opacity: 0;
+      -webkit-animation-name: HideList;
+              animation-name: HideList;
+      -webkit-animation-duration: 0.5s;
+              animation-duration: 0.5s;
+      -webkit-animation-delay: 0.5s;
+              animation-delay: 0.5s;
+      -webkit-animation-fill-mode: forwards;
+              animation-fill-mode: forwards;
+      -webkit-animation-timing-function: step-start;
+              animation-timing-function: step-start;
+      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+    }
+    .select-box__option {
+      display: block;
+      padding: 12.5px 10px;
+      background-color: #fff;
+    }
+    .select-box__option:hover, .select-box__option:focus {
+      color: #fff;
+      background-color: #fe5c3f;
+    }
+
+    @-webkit-keyframes HideList {
+      from {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+      }
+      to {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+      }
+    }
+
+    @keyframes HideList {
+      from {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+      }
+      to {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+      }
+    }

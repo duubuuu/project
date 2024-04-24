@@ -1,0 +1,120 @@
+/* The container must be positioned relative: */
+.select {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.select2 {
+  position: relative;
+  display: inline-block;
+  height: 30px;
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  &:after {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 1;
+    color: #585858;
+    content: '\f107';
+    font-weight: 900;
+    font-size: 14px;
+    font-family: 'FontAwesome';
+  }
+
+  select {
+    padding: 0 22px 0 14px;
+    width: inherit;
+    height: inherit;
+    outline: 0;
+    border: 1px solid #cacaca;
+    border-radius: 3px;
+    color: #666;
+    font-size: 12px;
+    line-height: 28px;
+
+    -webkit-appearance: none;
+  }
+}
+
+.select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  position: relative;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  background-color: $base-white;
+  -webkit-box-shadow: inset 0 1px 12px 3px #f3f3f8;
+  box-shadow: inset 0 1px 12px 3px #f3f3f8;
+  color: #666;
+  font-size: 12px;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 1;
+  color: #585858;
+  content: '\f107';
+  font-weight: 900;
+  font-size: 14px;
+  font-family: 'FontAwesome';
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  top: 0;
+  right: 10px;
+  z-index: 1;
+  color: #585858;
+  content: '\f106';
+  font-weight: 900;
+  font-size: 14px;
+  font-family: 'FontAwesome';
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  overflow: hidden;
+  padding: 0 22px 0 14px;
+  width: inherit;
+  height: 30px;
+  color: #666;
+  font-size: 12px;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  top: 90%;
+  right: 0;
+  left: 0;
+  z-index: 101;
+  border: 1px solid #cacaca;
+  border-top: 0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: $base-white;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  width: 100%;
+  background-color: rgba(0, 0, 0, .1);
+}
